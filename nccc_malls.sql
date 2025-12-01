@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2025 at 04:58 AM
+-- Generation Time: Dec 01, 2025 at 02:17 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -70,18 +70,18 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`category_id`, `category_name`, `parent_category_id`, `description`, `image_url`, `is_active`, `created_at`) VALUES
-(1, 'Electronics', NULL, 'Electronic devices and accessories', NULL, 1, '2025-11-24 00:05:44'),
-(2, 'Clothing', NULL, 'Fashion and apparel', NULL, 1, '2025-11-24 00:05:44'),
-(3, 'Home & Garden', NULL, 'Home improvement and garden supplies', NULL, 1, '2025-11-24 00:05:44'),
-(4, 'Sports & Outdoors', NULL, 'Sports equipment and outdoor gear', NULL, 1, '2025-11-24 00:05:44'),
-(5, 'Books', NULL, 'Books and educational materials', NULL, 1, '2025-11-24 00:05:44'),
+(1, 'Electronics', NULL, 'Latest gadgets, smartphones, laptops, and tech accessories', 'https://images.unsplash.com/photo-1498049794561-7780e7231661?w=800&q=80', 1, '2025-11-24 00:05:44'),
+(2, 'Clothing', NULL, 'Fashion for every style and occasion - men, women, and kids', 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&q=80', 1, '2025-11-24 00:05:44'),
+(3, 'Home & Garden', NULL, 'Transform your living space with furniture and decor', 'https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&q=80', 1, '2025-11-24 00:05:44'),
+(4, 'Sports & Outdoors', NULL, 'Gear up for adventure and active lifestyle', 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800&q=80', 1, '2025-11-24 00:05:44'),
+(5, 'Books', NULL, 'Knowledge and stories await in our book collection', 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=800&q=80', 1, '2025-11-24 00:05:44'),
 (6, 'Grocery', NULL, '', NULL, 0, '2025-11-25 03:10:42'),
-(29, 'Groceries', NULL, 'Food, beverages, and household essentials', NULL, 1, '2025-11-25 05:31:02'),
-(30, 'Snacks & Sweets', 29, 'Filipino chips, cookies, and candies', NULL, 1, '2025-11-25 05:31:02'),
-(31, 'Canned Goods', 29, 'Canned fish, meat, and vegetables', NULL, 1, '2025-11-25 05:31:02'),
-(32, 'Noodles & Pasta', 29, 'Instant noodles and dried pasta', NULL, 1, '2025-11-25 05:31:02'),
-(33, 'Beverages', 29, 'Coffee, juices, and soft drinks', NULL, 1, '2025-11-25 05:31:02'),
-(34, 'Condiments & Sauces', 29, 'Soy sauce, vinegar, and cooking oils', NULL, 1, '2025-11-25 05:31:02');
+(29, 'Groceries', NULL, 'Fresh food, beverages, and household essentials', 'https://images.unsplash.com/photo-1542838132-92c53300491e?w=800&q=80', 1, '2025-11-25 05:31:02'),
+(30, 'Snacks & Sweets', 29, 'Filipino chips, cookies, candies, and sweet treats', 'https://images.unsplash.com/photo-1621768216002-5ac171876625?w=800&q=80', 0, '2025-11-25 05:31:02'),
+(31, 'Canned Goods', 29, 'Canned fish, meat, vegetables, and preserved foods', 'https://images.unsplash.com/photo-1562843467-e0e689b3d98d?w=800&q=80', 1, '2025-11-25 05:31:02'),
+(32, 'Noodles & Pasta', 29, 'Instant noodles, pasta, and quick meal solutions', 'https://images.unsplash.com/photo-1612927601601-6638404737ce?w=800&q=80', 1, '2025-11-25 05:31:02'),
+(33, 'Beverages', 29, 'Coffee, tea, juices, soft drinks, and refreshments', 'https://images.unsplash.com/photo-1544145945-35046820424e?w=800&q=80', 1, '2025-11-25 05:31:02'),
+(34, 'Condiments & Sauces', 29, 'Soy sauce, vinegar, cooking oils, and flavor enhancers', 'https://images.unsplash.com/photo-1596040033229-a0b8f3f5e5f5?w=800&q=80', 1, '2025-11-25 05:31:02');
 
 -- --------------------------------------------------------
 
@@ -167,9 +167,9 @@ INSERT INTO `inventory` (`inventory_id`, `product_id`, `quantity`, `reserved_qua
 (3, 3, 75, 8, 20, NULL, '2025-11-24 02:27:17'),
 (4, 4, 20, 2, 8, NULL, '2025-11-24 02:27:17'),
 (5, 5, 120, 10, 30, NULL, '2025-11-24 02:27:17'),
-(6, 6, 15, 1, 5, NULL, '2025-11-24 02:27:17'),
+(6, 6, 26, 1, 5, '2025-11-29 04:18:12', '2025-11-29 04:18:12'),
 (7, 7, 200, 15, 50, NULL, '2025-11-24 02:27:17'),
-(8, 8, 8, 1, 3, NULL, '2025-11-24 02:27:17'),
+(8, 8, 19, 1, 3, '2025-11-29 04:17:42', '2025-11-29 04:17:42'),
 (9, 9, 150, 12, 40, NULL, '2025-11-24 02:27:17'),
 (10, 10, 200, 20, 50, NULL, '2025-11-24 02:27:17'),
 (11, 11, 85, 9, 25, NULL, '2025-11-24 02:27:17'),
@@ -183,7 +183,7 @@ INSERT INTO `inventory` (`inventory_id`, `product_id`, `quantity`, `reserved_qua
 (19, 19, 50, 4, 15, NULL, '2025-11-24 02:27:17'),
 (20, 20, 18, 2, 6, NULL, '2025-11-24 02:27:17'),
 (21, 21, 65, 5, 20, NULL, '2025-11-24 02:27:17'),
-(22, 22, 12, 1, 4, NULL, '2025-11-24 02:27:17'),
+(22, 22, 24, 1, 4, '2025-11-29 04:17:50', '2025-11-29 04:17:50'),
 (23, 23, 40, 3, 12, NULL, '2025-11-24 02:27:17'),
 (24, 24, 22, 2, 7, NULL, '2025-11-24 02:27:17'),
 (25, 25, 55, 4, 15, NULL, '2025-11-24 02:27:17'),
@@ -219,7 +219,8 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`notification_id`, `customer_id`, `order_id`, `type`, `title`, `message`, `is_read`, `created_at`) VALUES
-(1, 4, 12, 'order_status', 'Order Shipped', 'Your order #ORD-20251129-2A1E86D9 has been shipped! It\'s on its way to you.', 1, '2025-11-29 01:52:44');
+(1, 4, 12, 'order_status', 'Order Shipped', 'Your order #ORD-20251129-2A1E86D9 has been shipped! It\'s on its way to you.', 1, '2025-11-29 01:52:44'),
+(2, 2, 3, 'order_status', 'Order Cancelled', 'Your order #ORD-20251128-2057B79F has been cancelled.', 0, '2025-11-29 04:16:06');
 
 -- --------------------------------------------------------
 
@@ -252,7 +253,7 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`order_id`, `customer_id`, `order_number`, `order_status`, `subtotal`, `tax_amount`, `shipping_cost`, `total_amount`, `shipping_address_id`, `billing_address_id`, `payment_method`, `payment_status`, `notes`, `created_at`, `updated_at`) VALUES
 (1, 2, 'ORD-20251128-27783FE6', 'cancelled', 49999.00, 5999.88, 0.00, 55998.00, 2, 2, 'Cash on Delivery', 'pending', '', '2025-11-28 10:45:23', '2025-11-28 11:45:42'),
 (2, 2, 'ORD-20251128-0E65360C', 'cancelled', 209997.00, 25199.64, 0.00, 235196.00, 2, 2, 'Credit Card', 'pending', '', '2025-11-28 11:40:01', '2025-11-28 11:45:41'),
-(3, 2, 'ORD-20251128-2057B79F', 'pending', 19498.00, 2339.76, 0.00, 21837.00, 2, 2, 'GCash', 'pending', '', '2025-11-28 11:50:00', '2025-11-28 11:50:00'),
+(3, 2, 'ORD-20251128-2057B79F', 'cancelled', 19498.00, 2339.76, 0.00, 21837.00, 2, 2, 'GCash', 'pending', '', '2025-11-28 11:50:00', '2025-11-29 04:16:06'),
 (4, 2, 'ORD-20251128-83F20F4B', 'pending', 19498.00, 2339.76, 0.00, 21837.00, 2, 2, 'GCash', 'pending', '', '2025-11-28 12:03:06', '2025-11-28 12:03:06'),
 (5, 2, 'ORD-20251128-F2B74647', 'pending', 19498.00, 2339.76, 0.00, 21837.00, 2, 2, 'GCash', 'pending', '', '2025-11-28 12:10:24', '2025-11-28 12:10:24'),
 (6, 2, 'ORD-20251128-313106AC', 'pending', 19498.00, 2339.76, 0.00, 21837.00, 2, 2, 'Cash on Delivery', 'pending', '', '2025-11-28 12:42:43', '2025-11-28 12:42:43'),
@@ -599,16 +600,23 @@ CREATE TABLE `site_settings` (
 
 INSERT INTO `site_settings` (`setting_key`, `setting_value`, `setting_type`, `description`, `updated_at`) VALUES
 ('currency_symbol', '₱', 'text', 'Currency symbol', '2025-11-24 14:17:43'),
+('enable_email_notifications', '1', 'checkbox', 'Enable email notifications', '2025-12-01 01:06:27'),
+('enable_order_emails', '1', 'checkbox', 'Send order confirmation emails', '2025-12-01 01:06:27'),
+('enable_payment_emails', '1', 'checkbox', 'Send payment confirmation emails', '2025-12-01 01:06:27'),
 ('enable_reviews', '1', 'checkbox', 'Enable product reviews', '2025-11-24 13:58:30'),
+('enable_shipping_emails', '1', 'checkbox', 'Send shipping notification emails', '2025-12-01 01:06:27'),
 ('free_shipping_threshold', '49.9', 'number', 'Free shipping minimum', '2025-11-28 03:29:00'),
-('items_per_page', '12', 'number', 'Products per page', '2025-11-24 13:58:30'),
+('gmail_sender_email', 'jrd.malls@gmail.com', 'email', 'Gmail sender email address', '2025-12-01 01:07:40'),
+('gmail_sender_name', 'JRD Malls', 'text', 'Email sender name', '2025-12-01 01:07:40'),
+('gmail_sender_password', 'kcooqodzgkvynodo', 'password', 'Gmail app password (16 characters)', '2025-12-01 01:07:40'),
+('items_per_page', '10', 'number', 'Products per page', '2025-11-30 13:13:58'),
 ('maintenance_mode', '0', 'checkbox', 'Maintenance mode', '2025-11-28 03:29:00'),
 ('require_email_verification', '1', 'checkbox', 'Require email verification', '2025-11-28 03:29:00'),
 ('shipping_cost', '5.99', 'number', 'Standard shipping cost', '2025-11-24 13:58:30'),
-('site_email', 'admin@ncccmalls.com', 'email', 'Contact email', '2025-11-24 13:58:30'),
+('site_email', 'jrd.malls@gmail.com', 'email', 'Contact email', '2025-12-01 00:26:48'),
 ('site_name', 'JRD Malls', 'text', 'Website name', '2025-11-28 03:37:27'),
-('site_phone', '+1 234 567 8900', 'text', 'Contact phone', '2025-11-24 13:58:30'),
-('tax_rate', '12', 'number', 'Tax rate (%)', '2025-11-24 13:58:30');
+('site_phone', '+63 992 607 2695', 'text', 'Contact phone', '2025-12-01 00:26:48'),
+('tax_rate', '10', 'number', 'Tax rate (%)', '2025-12-01 00:26:48');
 
 -- --------------------------------------------------------
 
@@ -815,7 +823,7 @@ ALTER TABLE `inventory`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `orders`
