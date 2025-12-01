@@ -1,8 +1,18 @@
 <?php
+// Set UTF-8 header at the very beginning
+if (!headers_sent()) {
+    header('Content-Type: text/html; charset=utf-8');
+}
+
 // Start session only if not already started
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+//define('DB_HOST', 'sql100.infinityfree.com');
+//define('DB_USER', 'if0_40532602');
+//define('DB_PASS', 'NblOpzQzps');
+//define('DB_NAME', 'if0_40532602_nccc_malls');
 
 // Database configuration
 define('DB_HOST', 'localhost');
@@ -16,6 +26,7 @@ function getDBConnection() {
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
+    $conn->set_charset("utf8mb4");
     return $conn;
 }
 
@@ -145,7 +156,17 @@ if (MAINTENANCE_MODE && !isset($_SESSION['admin_id'])) {
 
 // Format currency
 function formatCurrency($amount) {
-    return CURRENCY_SYMBOL . number_format($amount, 2);
+    $symbol = CURRENCY_SYMBOL;
+    
+    if (empty($symbol) || $symbol === '$') {
+        $symbol = getSetting('currency_symbol', '₱');
+    }
+    
+    if (strpos($symbol, '₱') === false && strpos($symbol, 'P') === false) {
+        $symbol = '₱';
+    }
+    
+    return $symbol . number_format($amount, 2);
 }
 
 // Calculate tax

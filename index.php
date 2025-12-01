@@ -227,7 +227,7 @@
                 <?php
                 $result = $conn->query("SELECT p.*, pi.image_url FROM products p 
                                        LEFT JOIN product_images pi ON p.product_id = pi.product_id AND pi.is_primary = 1
-                                       WHERE p.featured = 1 AND p.is_active = 1 LIMIT 8");
+                                       WHERE p.featured = 1 AND p.is_active = 1 LIMIT 9");
                 while ($product = $result->fetch_assoc()): ?>
                     <div class="product-card">
                         <img src="<?php echo htmlspecialchars($product['image_url'] ?: 'images/placeholder.jpg'); ?>" 

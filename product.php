@@ -11,6 +11,67 @@ $product_id = intval($_GET['id']);
 $message = '';
 $error = '';
 
+// Handle Review Submission
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
+    if (!isLoggedIn()) {
+        header('Location: login.php');
+        exit;
+    }
+    
+    $customer_id = $_SESSION['customer_id'];
+    $rating = intval($_POST['rating']);
+    $title = trim($_POST['review_title']);
+    $comment = trim($_POST['review_comment']);
+    
+    // Validation
+    if ($rating < 1 || $rating > 5) {
+        $error = 'Please select a rating between 1 and 5 stars.';
+    } elseif (empty($comment)) {
+        $error = 'Please write a review comment.';
+    } else {
+        $conn = getDBConnection();
+        
+        // Check if user already reviewed this product
+        $stmt = $conn->prepare("SELECT review_id FROM reviews WHERE customer_id = ? AND product_id = ?");
+        $stmt->bind_param("ii", $customer_id, $product_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            $error = 'You have already reviewed this product.';
+        } else {
+            // Check if user purchased this product (for verified purchase badge)
+            $stmt = $conn->prepare("
+                SELECT o.order_id 
+                FROM orders o
+                JOIN order_items oi ON o.order_id = oi.order_id
+                WHERE o.customer_id = ? AND oi.product_id = ? AND o.order_status = 'delivered'
+                LIMIT 1
+            ");
+            $stmt->bind_param("ii", $customer_id, $product_id);
+            $stmt->execute();
+            $purchase_result = $stmt->get_result();
+            $is_verified = $purchase_result->num_rows > 0;
+            $order_id = $is_verified ? $purchase_result->fetch_assoc()['order_id'] : null;
+            
+            // Insert review
+            $stmt = $conn->prepare("
+                INSERT INTO reviews (product_id, customer_id, order_id, rating, title, comment, is_verified_purchase, is_approved)
+                VALUES (?, ?, ?, ?, ?, ?, ?, 0)
+            ");
+            $stmt->bind_param("iiisssi", $product_id, $customer_id, $order_id, $rating, $title, $comment, $is_verified);
+            
+            if ($stmt->execute()) {
+                $message = 'Thank you for your review! It will be published after approval.';
+            } else {
+                $error = 'Failed to submit review. Please try again.';
+            }
+        }
+        
+        $conn->close();
+    }
+}
+
 // Handle Add to Cart
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
     if (!isLoggedIn()) {
@@ -139,6 +200,16 @@ $rating_data = $stmt->get_result()->fetch_assoc();
 $avg_rating = $rating_data['avg_rating'] ? round($rating_data['avg_rating'], 1) : 0;
 $review_count = $rating_data['review_count'];
 
+// Check if current user already reviewed this product
+$user_has_reviewed = false;
+if (isLoggedIn()) {
+    $customer_id = $_SESSION['customer_id'];
+    $stmt = $conn->prepare("SELECT review_id FROM reviews WHERE customer_id = ? AND product_id = ?");
+    $stmt->bind_param("ii", $customer_id, $product_id);
+    $stmt->execute();
+    $user_has_reviewed = $stmt->get_result()->num_rows > 0;
+}
+
 // Get related products
 $stmt = $conn->prepare("
     SELECT p.*, pi.image_url
@@ -170,6 +241,114 @@ $current_price = $product['sale_price'] ?: $product['price'];
     <title><?php echo htmlspecialchars($product['product_name']); ?> - <?php echo SITE_NAME; ?></title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="logo/favicon.png">
+    <style>
+        .review-form-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        
+        .review-form-section h3 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .star-rating {
+            display: flex;
+            gap: 5px;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .star-rating input[type="radio"] {
+            display: none;
+        }
+        
+        .star-rating label {
+            cursor: pointer;
+            color: #ddd;
+            transition: color 0.2s;
+        }
+        
+        .star-rating label:hover,
+        .star-rating label:hover ~ label,
+        .star-rating input[type="radio"]:checked ~ label {
+            color: #f39c12;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .form-group input[type="text"],
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .form-group input[type="text"]:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .btn-submit-review {
+            background: #27ae60;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn-submit-review:hover {
+            background: #229954;
+        }
+        
+        .review-login-prompt {
+            text-align: center;
+            padding: 30px;
+            background: #fff3cd;
+            border-radius: 10px;
+            border: 1px solid #ffc107;
+        }
+        
+        .review-login-prompt a {
+            color: #3498db;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .review-login-prompt a:hover {
+            text-decoration: underline;
+        }
+        
+        .rating-required {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
     <?php include 'includes/header.php'; ?>
@@ -323,7 +502,72 @@ $current_price = $product['sale_price'] ?: $product['price'];
             
             <div id="reviews" class="tab-content">
                 <h3>Customer Reviews</h3>
+                
+                <!-- Review Form Section -->
+                <?php if (ENABLE_REVIEWS): ?>
+                    <div class="review-form-section">
+                        <?php if (isLoggedIn()): ?>
+                            <?php if ($user_has_reviewed): ?>
+                                <div class="alert alert-info">
+                                    <strong>Thank you!</strong> You have already submitted a review for this product.
+                                </div>
+                            <?php else: ?>
+                                <h3>Write a Review</h3>
+                                <form method="POST" id="reviewForm">
+                                    <div class="form-group">
+                                        <label>Your Rating *</label>
+                                        <div class="star-rating" id="starRating">
+                                            <input type="radio" name="rating" value="5" id="star5" required>
+                                            <label for="star5">★</label>
+                                            <input type="radio" name="rating" value="4" id="star4">
+                                            <label for="star4">★</label>
+                                            <input type="radio" name="rating" value="3" id="star3">
+                                            <label for="star3">★</label>
+                                            <input type="radio" name="rating" value="2" id="star2">
+                                            <label for="star2">★</label>
+                                            <input type="radio" name="rating" value="1" id="star1">
+                                            <label for="star1">★</label>
+                                        </div>
+                                        <div class="rating-required" id="ratingError" style="display: none;">
+                                            Please select a rating
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="review_title">Review Title (Optional)</label>
+                                        <input type="text" 
+                                               id="review_title" 
+                                               name="review_title" 
+                                               placeholder="Summarize your experience"
+                                               maxlength="100">
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="review_comment">Your Review *</label>
+                                        <textarea id="review_comment" 
+                                                  name="review_comment" 
+                                                  placeholder="Share your thoughts about this product..."
+                                                  required
+                                                  maxlength="1000"></textarea>
+                                    </div>
+                                    
+                                    <button type="submit" name="submit_review" class="btn-submit-review">
+                                        Submit Review
+                                    </button>
+                                </form>
+                            <?php endif; ?>
+                        <?php else: ?>
+                            <div class="review-login-prompt">
+                                <p><strong>Want to write a review?</strong></p>
+                                <p>Please <a href="login.php">login</a> or <a href="register.php">create an account</a> to share your experience with this product.</p>
+                            </div>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
+                
+                <!-- Existing Reviews -->
                 <?php if (count($reviews) > 0): ?>
+                    <h3 style="margin-top: 40px;">All Reviews (<?php echo $review_count; ?>)</h3>
                     <?php foreach ($reviews as $review): ?>
                         <div class="review-item">
                             <div class="review-header">
@@ -345,7 +589,7 @@ $current_price = $product['sale_price'] ?: $product['price'];
                         </div>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <p>No reviews yet. Be the first to review this product!</p>
+                    <p style="text-align: center; color: #7f8c8d; padding: 30px;">No reviews yet. Be the first to review this product!</p>
                 <?php endif; ?>
             </div>
         </div>
@@ -418,6 +662,30 @@ $current_price = $product['sale_price'] ?: $product['price'];
             
             // Add active class to clicked button
             event.target.classList.add('active');
+        }
+        
+        // Review form validation
+        const reviewForm = document.getElementById('reviewForm');
+        if (reviewForm) {
+            reviewForm.addEventListener('submit', function(e) {
+                const ratingInputs = document.querySelectorAll('input[name="rating"]');
+                const isRatingSelected = Array.from(ratingInputs).some(input => input.checked);
+                
+                if (!isRatingSelected) {
+                    e.preventDefault();
+                    document.getElementById('ratingError').style.display = 'block';
+                    document.getElementById('starRating').scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    document.getElementById('ratingError').style.display = 'none';
+                }
+            });
+            
+            // Hide error when rating is selected
+            document.querySelectorAll('input[name="rating"]').forEach(input => {
+                input.addEventListener('change', function() {
+                    document.getElementById('ratingError').style.display = 'none';
+                });
+            });
         }
     </script>
     

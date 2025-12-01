@@ -78,214 +78,7 @@ $conn->close();
     <link rel="stylesheet" href="../css/style.css">
     <link rel="icon" type="image/png" href="../logo/icon.png">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f6fa;
-        }
-        
-        .admin-wrapper {
-            display: flex;
-            min-height: 100vh;
-        }
-        
-        /* Sidebar */
-        .admin-sidebar {
-            width: 260px;
-            background: #2c3e50;
-            color: white;
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-        }
-        
-        .admin-logo {
-            padding: 25px 20px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            border-bottom: 1px solid #34495e;
-            text-align: center;
-        }
-        
-        .admin-nav {
-            padding: 20px 0;
-        }
-        
-        .nav-item {
-            padding: 15px 25px;
-            color: #ecf0f1;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.3s;
-            border-left: 4px solid transparent;
-        }
-        
-        .nav-item:hover, .nav-item.active {
-            background: #34495e;
-            border-left-color: #3498db;
-        }
-        
-        .nav-icon {
-            font-size: 1.2rem;
-        }
-        
-        /* Main Content */
-        .admin-main {
-            margin-left: 260px;
-            flex: 1;
-            padding: 30px;
-        }
-        
-        .admin-header {
-            background: white;
-            padding: 20px 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        
-        .admin-header h1 {
-            color: #2c3e50;
-        }
-        
-        .admin-user {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #3498db;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-        
-        /* Stats Cards */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .stat-card {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border-left: 4px solid;
-        }
-        
-        .stat-card.blue { border-left-color: #3498db; }
-        .stat-card.green { border-left-color: #27ae60; }
-        .stat-card.orange { border-left-color: #f39c12; }
-        .stat-card.purple { border-left-color: #9b59b6; }
-        .stat-card.red { border-left-color: #e74c3c; }
-        
-        .stat-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .stat-title {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .stat-icon {
-            font-size: 2rem;
-            opacity: 0.3;
-        }
-        
-        .stat-value {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        
-        .stat-change {
-            font-size: 0.85rem;
-            color: #27ae60;
-            margin-top: 8px;
-        }
-        
-        /* Content Sections */
-        .content-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .content-card {
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-        
-        .content-card h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #f0f0f0;
-        }
-        
-        /* Table */
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        .data-table th {
-            background: #f8f9fa;
-            padding: 12px;
-            text-align: left;
-            font-weight: 600;
-            color: #2c3e50;
-            border-bottom: 2px solid #e0e0e0;
-            font-size: 0.9rem;
-        }
-        
-        .data-table td {
-            padding: 12px;
-            border-bottom: 1px solid #f0f0f0;
-            color: #555;
-        }
-        
-        .data-table tr:hover {
-            background: #f8f9fa;
-        }
-        
-        .status-badge {
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            display: inline-block;
-        }
-        
-        .status-pending { background: #fff3cd; color: #856404; }
-        .status-processing { background: #d1ecf1; color: #0c5460; }
-        .status-shipped { background: #e2e3e5; color: #383d41; }
-        .status-delivered { background: #d4edda; color: #155724; }
-        .status-cancelled { background: #f8d7da; color: #721c24; }
+        <?php include 'admin-styles.css'; ?>
         
         /* Chart Area */
         .chart-container {
@@ -298,7 +91,7 @@ $conn->close();
         
         .chart-bar {
             flex: 1;
-            background: linear-gradient(to top, #3498db, #5dade2);
+            background: linear-gradient(to top, #0284c7, #06b6d4);
             border-radius: 5px 5px 0 0;
             position: relative;
             min-height: 20px;
@@ -324,7 +117,7 @@ $conn->close();
             transform: translateX(-50%);
             font-size: 0.8rem;
             font-weight: bold;
-            color: #2c3e50;
+            color: #1e293b;
         }
         
         /* Top Products List */
@@ -334,7 +127,7 @@ $conn->close();
         
         .product-item {
             padding: 15px 0;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.4);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -346,7 +139,7 @@ $conn->close();
         
         .product-name {
             font-weight: 600;
-            color: #2c3e50;
+            color: #1e293b;
             margin-bottom: 5px;
         }
         
@@ -357,47 +150,7 @@ $conn->close();
         
         .product-revenue {
             font-weight: bold;
-            color: #27ae60;
-        }
-        
-        .btn-admin {
-            padding: 8px 16px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s;
-        }
-        
-        .btn-primary { background: #3498db; color: white; }
-        .btn-success { background: #27ae60; color: white; }
-        .btn-danger { background: #e74c3c; color: white; }
-        .btn-secondary { background: #95a5a6; color: white; }
-        
-        .btn-admin:hover { opacity: 0.8; transform: translateY(-2px); }
-        
-        @media (max-width: 968px) {
-            .admin-sidebar {
-                width: 80px;
-            }
-            
-            .admin-main {
-                margin-left: 80px;
-            }
-            
-            .admin-logo, .nav-item span {
-                display: none;
-            }
-            
-            .nav-item {
-                justify-content: center;
-            }
-            
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
+            color: #16a34a;
         }
     </style>
 </head>
