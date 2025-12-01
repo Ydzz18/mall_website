@@ -97,6 +97,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['place_order'])) {
             // Commit transaction
             $conn->commit();
             
+            logCustomerActivity(
+                $customer_id,
+                'order_create',
+                "Order created: $order_number (Total: " . formatCurrency($total) . ")",
+                'orders',
+                $order_id,
+                null,
+                [
+                    'order_number' => $order_number,
+                    'total' => $total,
+                    'items_count' => count($cart_items)
+                ]
+            );
+            
             // Redirect to payment page
             header("Location: payment.php?order_id=" . $order_id);
             exit;

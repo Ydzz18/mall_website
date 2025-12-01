@@ -41,6 +41,10 @@
             <span class="nav-icon">⚙️</span>
             <span>Settings</span>
         </a>
+        <a href="activity_logs.php" class="nav-item <?php echo basename($_SERVER['PHP_SELF']) === 'activity_logs.php' ? 'active' : ''; ?>">
+            <span class="nav-icon">📋</span>
+            <span>Activity Logs</span>
+        </a>
         <a href="logout.php" class="nav-item">
             <span class="nav-icon">🚪</span>
             <span>Logout</span>

@@ -30,6 +30,8 @@ function getDBConnection() {
     return $conn;
 }
 
+require_once __DIR__ . '/includes/ActivityLogger.php';
+
 // Check if user is logged in
 function isLoggedIn() {
     return isset($_SESSION['customer_id']);

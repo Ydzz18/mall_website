@@ -15,11 +15,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_inventory'])) 
     $quantity = intval($_POST['quantity']);
     $reorder_level = intval($_POST['reorder_level']);
     
+    $stmt = $conn->prepare("SELECT product_id, quantity, reorder_level FROM inventory WHERE inventory_id = ?");
+    $stmt->bind_param("i", $inventory_id);
+    $stmt->execute();
+    $old_inventory = $stmt->get_result()->fetch_assoc();
+    $product_id = $old_inventory['product_id'];
+    
+    $stmt = $conn->prepare("SELECT sku, product_name FROM products WHERE product_id = ?");
+    $stmt->bind_param("i", $product_id);
+    $stmt->execute();
+    $product = $stmt->get_result()->fetch_assoc();
+    $sku = $product['sku'];
+    $product_name = $product['product_name'];
+    
     $stmt = $conn->prepare("UPDATE inventory SET quantity=?, reorder_level=?, last_restocked=NOW() WHERE inventory_id=?");
     $stmt->bind_param("iii", $quantity, $reorder_level, $inventory_id);
     
     if ($stmt->execute()) {
         $message = 'Inventory updated successfully!';
+        
+        logAdminActivity(
+            $_SESSION['admin_id'],
+            'inventory_update',
+            "Inventory updated for $product_name (SKU: $sku): {$old_inventory['quantity']} → $quantity units",
+            'inventory',
+            $inventory_id,
+            ['quantity' => $old_inventory['quantity'], 'reorder_level' => $old_inventory['reorder_level']],
+            ['quantity' => $quantity, 'reorder_level' => $reorder_level]
+        );
     }
 }
 
@@ -28,8 +51,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['bulk_restock'])) {
     $product_id = intval($_POST['product_id']);
     $add_quantity = intval($_POST['add_quantity']);
     
+    $stmt = $conn->prepare("SELECT sku, product_name FROM products WHERE product_id = ?");
+    $stmt->bind_param("i", $product_id);
+    $stmt->execute();
+    $product = $stmt->get_result()->fetch_assoc();
+    
+    $stmt = $conn->prepare("SELECT inventory_id, quantity FROM inventory WHERE product_id = ?");
+    $stmt->bind_param("i", $product_id);
+    $stmt->execute();
+    $inventory = $stmt->get_result()->fetch_assoc();
+    $old_quantity = $inventory['quantity'];
+    $inventory_id = $inventory['inventory_id'];
+    $new_quantity = $old_quantity + $add_quantity;
+    
     $conn->query("UPDATE inventory SET quantity = quantity + $add_quantity, last_restocked = NOW() WHERE product_id = $product_id");
     $message = 'Stock added successfully!';
+    
+    logAdminActivity(
+        $_SESSION['admin_id'],
+        'inventory_restock',
+        "Stock restocked for {$product['product_name']} (SKU: {$product['sku']}): +$add_quantity units ($old_quantity → $new_quantity)",
+        'inventory',
+        $inventory_id,
+        ['quantity' => $old_quantity],
+        ['quantity' => $new_quantity]
+    );
 }
 
 // Filter

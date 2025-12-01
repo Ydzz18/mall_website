@@ -21,6 +21,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['admin_id'] = 1;
         $_SESSION['admin_username'] = $username;
         $_SESSION['admin_name'] = 'Admin User';
+        
+        logAdminActivity(
+            1,
+            'admin_login',
+            "Admin logged in: Admin User",
+            'admin_users',
+            1
+        );
+        
         header('Location: index.php');
         exit;
     } else {

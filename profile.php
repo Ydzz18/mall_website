@@ -21,12 +21,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
         $error = 'First name and last name are required.';
     } else {
         $conn = getDBConnection();
+        
+        $stmt = $conn->prepare("SELECT first_name, last_name, phone, date_of_birth FROM customers WHERE customer_id = ?");
+        $stmt->bind_param("i", $customer_id);
+        $stmt->execute();
+        $old_data = $stmt->get_result()->fetch_assoc();
+        
         $stmt = $conn->prepare("UPDATE customers SET first_name = ?, last_name = ?, phone = ?, date_of_birth = ? WHERE customer_id = ?");
         $stmt->bind_param("ssssi", $first_name, $last_name, $phone, $date_of_birth, $customer_id);
         
         if ($stmt->execute()) {
             $message = 'Profile updated successfully!';
             $_SESSION['first_name'] = $first_name;
+            
+            logCustomerActivity(
+                $customer_id,
+                'profile_update',
+                "Profile information updated",
+                'customers',
+                $customer_id,
+                $old_data,
+                [
+                    'first_name' => $first_name,
+                    'last_name' => $last_name,
+                    'phone' => $phone,
+                    'date_of_birth' => $date_of_birth
+                ]
+            );
         } else {
             $error = 'Failed to update profile.';
         }
@@ -61,6 +82,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['change_password'])) {
             
             if ($stmt->execute()) {
                 $message = 'Password changed successfully!';
+                
+                logCustomerActivity(
+                    $customer_id,
+                    'password_change',
+                    "Password changed successfully",
+                    'customers',
+                    $customer_id
+                );
             } else {
                 $error = 'Failed to change password.';
             }
@@ -98,6 +127,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_address'])) {
         
         if ($stmt->execute()) {
             $message = 'Address added successfully!';
+            $address_id = $conn->insert_id;
+            
+            logCustomerActivity(
+                $customer_id,
+                'address_add',
+                "New $address_type address added: $city, $state_province",
+                'addresses',
+                $address_id,
+                null,
+                [
+                    'address_type' => $address_type,
+                    'city' => $city,
+                    'state_province' => $state_province
+                ]
+            );
         } else {
             $error = 'Failed to add address.';
         }
@@ -112,6 +156,15 @@ if (isset($_GET['delete_address'])) {
     $stmt = $conn->prepare("DELETE FROM addresses WHERE address_id = ? AND customer_id = ?");
     $stmt->bind_param("ii", $address_id, $customer_id);
     $stmt->execute();
+    
+    logCustomerActivity(
+        $customer_id,
+        'address_delete',
+        "Address deleted",
+        'addresses',
+        $address_id
+    );
+    
     $conn->close();
     header('Location: profile.php?message=Address deleted');
     exit;

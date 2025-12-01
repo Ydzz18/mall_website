@@ -13,15 +13,52 @@ $message = '';
 if (isset($_GET['action'])) {
     $customer_id = intval($_GET['id']);
     
+    $stmt = $conn->prepare("SELECT email, first_name, last_name, is_active FROM customers WHERE customer_id = ?");
+    $stmt->bind_param("i", $customer_id);
+    $stmt->execute();
+    $customer = $stmt->get_result()->fetch_assoc();
+    $customer_email = $customer['email'];
+    $customer_name = $customer['first_name'] . ' ' . $customer['last_name'];
+    $old_status = $customer['is_active'];
+    
     if ($_GET['action'] === 'activate') {
         $conn->query("UPDATE customers SET is_active = 1 WHERE customer_id = $customer_id");
         $message = 'Customer activated successfully!';
+        
+        logAdminActivity(
+            $_SESSION['admin_id'],
+            'customer_status_change',
+            "Customer activated: $customer_name ($customer_email)",
+            'customers',
+            $customer_id,
+            ['is_active' => $old_status],
+            ['is_active' => 1]
+        );
     } elseif ($_GET['action'] === 'deactivate') {
         $conn->query("UPDATE customers SET is_active = 0 WHERE customer_id = $customer_id");
         $message = 'Customer deactivated successfully!';
+        
+        logAdminActivity(
+            $_SESSION['admin_id'],
+            'customer_status_change',
+            "Customer deactivated: $customer_name ($customer_email)",
+            'customers',
+            $customer_id,
+            ['is_active' => $old_status],
+            ['is_active' => 0]
+        );
     } elseif ($_GET['action'] === 'delete') {
         $conn->query("DELETE FROM customers WHERE customer_id = $customer_id");
         $message = 'Customer deleted successfully!';
+        
+        logAdminActivity(
+            $_SESSION['admin_id'],
+            'customer_delete',
+            "Customer deleted: $customer_name ($customer_email)",
+            'customers',
+            $customer_id,
+            ['email' => $customer_email, 'name' => $customer_name]
+        );
     }
 }
 

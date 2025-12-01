@@ -42,6 +42,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bind_param("sssss", $email, $password_hash, $first_name, $last_name, $phone);
             
             if ($stmt->execute()) {
+                $new_customer_id = $conn->insert_id;
+                
+                logCustomerActivity(
+                    $new_customer_id,
+                    'register',
+                    "New customer registered: $first_name $last_name ($email)",
+                    'customers',
+                    $new_customer_id
+                );
+                
                 // Send welcome email if enabled
                 if (ENABLE_EMAIL_NOTIFICATIONS) {
                     require_once 'includes/email.php';

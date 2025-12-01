@@ -58,6 +58,29 @@ function sendOrderConfirmationEmail($order_id, $customer_email, $customer_name, 
         $result = $mail->send();
         if ($result) {
             error_log("Order confirmation email sent to $customer_email for order $order_number");
+            
+            $conn = getDBConnection();
+            $stmt = $conn->prepare("SELECT customer_id FROM orders WHERE order_id = ?");
+            $stmt->bind_param("i", $order_id);
+            $stmt->execute();
+            $order_row = $stmt->get_result()->fetch_assoc();
+            
+            if ($order_row) {
+                logCustomerActivity(
+                    $order_row['customer_id'],
+                    'email_sent',
+                    "Order confirmation email sent: $order_number to $customer_email",
+                    null,
+                    null,
+                    null,
+                    [
+                        'to' => $customer_email,
+                        'subject' => 'Order Confirmation',
+                        'order_number' => $order_number
+                    ]
+                );
+            }
+            $conn->close();
         }
         return $result;
     } catch (Exception $e) {
@@ -92,6 +115,29 @@ function sendOrderStatusEmail($order_id, $customer_email, $customer_name, $order
         $result = $mail->send();
         if ($result) {
             error_log("Order status email sent to $customer_email for order $order_number - Status: $status");
+            
+            $conn = getDBConnection();
+            $stmt = $conn->prepare("SELECT customer_id FROM orders WHERE order_id = ?");
+            $stmt->bind_param("i", $order_id);
+            $stmt->execute();
+            $order_row = $stmt->get_result()->fetch_assoc();
+            
+            if ($order_row) {
+                logCustomerActivity(
+                    $order_row['customer_id'],
+                    'email_sent',
+                    "Order status email sent: $order_number - Status changed to $status",
+                    null,
+                    null,
+                    null,
+                    [
+                        'to' => $customer_email,
+                        'subject' => 'Order Status Update',
+                        'status' => $status
+                    ]
+                );
+            }
+            $conn->close();
         }
         return $result;
     } catch (Exception $e) {
@@ -117,6 +163,30 @@ function sendPaymentConfirmationEmail($order_id, $customer_email, $customer_name
         $result = $mail->send();
         if ($result) {
             error_log("Payment confirmation email sent to $customer_email for order $order_number");
+            
+            $conn = getDBConnection();
+            $stmt = $conn->prepare("SELECT customer_id FROM orders WHERE order_id = ?");
+            $stmt->bind_param("i", $order_id);
+            $stmt->execute();
+            $order_row = $stmt->get_result()->fetch_assoc();
+            
+            if ($order_row) {
+                logCustomerActivity(
+                    $order_row['customer_id'],
+                    'email_sent',
+                    "Payment confirmation email sent: $order_number for $amount via $payment_method",
+                    null,
+                    null,
+                    null,
+                    [
+                        'to' => $customer_email,
+                        'subject' => 'Payment Confirmation',
+                        'amount' => $amount,
+                        'payment_method' => $payment_method
+                    ]
+                );
+            }
+            $conn->close();
         }
         return $result;
     } catch (Exception $e) {
@@ -142,6 +212,29 @@ function sendShippingNotificationEmail($order_id, $customer_email, $customer_nam
         $result = $mail->send();
         if ($result) {
             error_log("Shipping notification email sent to $customer_email for order $order_number");
+            
+            $conn = getDBConnection();
+            $stmt = $conn->prepare("SELECT customer_id FROM orders WHERE order_id = ?");
+            $stmt->bind_param("i", $order_id);
+            $stmt->execute();
+            $order_row = $stmt->get_result()->fetch_assoc();
+            
+            if ($order_row) {
+                logCustomerActivity(
+                    $order_row['customer_id'],
+                    'email_sent',
+                    "Shipping notification email sent: $order_number" . ($tracking_number ? " with tracking $tracking_number" : ""),
+                    null,
+                    null,
+                    null,
+                    [
+                        'to' => $customer_email,
+                        'subject' => 'Shipping Notification',
+                        'tracking_number' => $tracking_number
+                    ]
+                );
+            }
+            $conn->close();
         }
         return $result;
     } catch (Exception $e) {
@@ -167,6 +260,28 @@ function sendWelcomeEmail($customer_email, $customer_name) {
         $result = $mail->send();
         if ($result) {
             error_log("Welcome email sent to $customer_email");
+            
+            $conn = getDBConnection();
+            $stmt = $conn->prepare("SELECT customer_id FROM customers WHERE email = ?");
+            $stmt->bind_param("s", $customer_email);
+            $stmt->execute();
+            $customer_row = $stmt->get_result()->fetch_assoc();
+            
+            if ($customer_row) {
+                logCustomerActivity(
+                    $customer_row['customer_id'],
+                    'email_sent',
+                    "Welcome email sent to $customer_email",
+                    null,
+                    null,
+                    null,
+                    [
+                        'to' => $customer_email,
+                        'subject' => 'Welcome to ' . SITE_NAME
+                    ]
+                );
+            }
+            $conn->close();
         }
         return $result;
     } catch (Exception $e) {

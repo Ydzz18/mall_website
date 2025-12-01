@@ -187,6 +187,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['process_payment'])) {
             // Commit transaction
             $conn->commit();
             
+            logCustomerActivity(
+                $customer_id,
+                'payment_complete',
+                "Payment completed for order " . $order['order_number'] . " via $payment_method",
+                'payments',
+                $order['payment_id'],
+                null,
+                [
+                    'transaction_id' => $transaction_id,
+                    'amount' => $order['total_amount'],
+                    'payment_method' => $payment_method
+                ]
+            );
+            
             $stmt->close();
             $conn->close();
             

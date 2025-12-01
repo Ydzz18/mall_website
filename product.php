@@ -11,6 +11,27 @@ $product_id = intval($_GET['id']);
 $message = '';
 $error = '';
 
+// Get product details early (before POST handlers)
+$conn = getDBConnection();
+$stmt = $conn->prepare("
+    SELECT p.*, c.category_name, i.quantity as stock_quantity
+    FROM products p
+    LEFT JOIN categories c ON p.category_id = c.category_id
+    LEFT JOIN inventory i ON p.product_id = i.product_id
+    WHERE p.product_id = ? AND p.is_active = 1
+");
+$stmt->bind_param("i", $product_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 0) {
+    header('Location: shop.php');
+    exit;
+}
+
+$product = $result->fetch_assoc();
+$conn->close();
+
 // Handle Review Submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
     if (!isLoggedIn()) {
@@ -63,6 +84,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
             
             if ($stmt->execute()) {
                 $message = 'Thank you for your review! It will be published after approval.';
+                $review_id = $conn->insert_id;
+                
+                logCustomerActivity(
+                    $customer_id,
+                    'review_submit',
+                    "Submitted review for product: {$product['product_name']} (Rating: $rating/5)",
+                    'reviews',
+                    $review_id,
+                    null,
+                    [
+                        'product_id' => $product_id,
+                        'rating' => $rating,
+                        'title' => $title
+                    ]
+                );
             } else {
                 $error = 'Failed to submit review. Please try again.';
             }
@@ -109,12 +145,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
                 $stmt->bind_param("ii", $new_quantity, $cart_item['cart_id']);
                 $stmt->execute();
                 $message = 'Cart updated successfully!';
+                
+                logCustomerActivity(
+                    $customer_id,
+                    'cart_update',
+                    "Updated cart for product: {$product['product_name']} (New Qty: $new_quantity)",
+                    'shopping_cart',
+                    $cart_item['cart_id'],
+                    null,
+                    [
+                        'product_id' => $product_id,
+                        'product_name' => $product['product_name'],
+                        'quantity' => $new_quantity
+                    ]
+                );
             } else {
                 // Add new item
                 $stmt = $conn->prepare("INSERT INTO shopping_cart (customer_id, product_id, quantity) VALUES (?, ?, ?)");
                 $stmt->bind_param("iii", $customer_id, $product_id, $quantity);
                 $stmt->execute();
                 $message = 'Product added to cart!';
+                $cart_id = $conn->insert_id;
+                
+                logCustomerActivity(
+                    $customer_id,
+                    'cart_add',
+                    "Added product to cart: {$product['product_name']} (Qty: $quantity)",
+                    'shopping_cart',
+                    $cart_id,
+                    null,
+                    [
+                        'product_id' => $product_id,
+                        'product_name' => $product['product_name'],
+                        'quantity' => $quantity
+                    ]
+                );
             }
         } else {
             $error = 'Insufficient stock available.';
@@ -147,31 +212,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_wishlist'])) {
         $stmt->bind_param("ii", $customer_id, $product_id);
         if ($stmt->execute()) {
             $message = 'Added to wishlist!';
+            $wishlist_id = $conn->insert_id;
+            
+            logCustomerActivity(
+                $customer_id,
+                'wishlist_add',
+                "Added product to wishlist: {$product['product_name']}",
+                'wishlist',
+                $wishlist_id,
+                null,
+                ['product_id' => $product_id, 'product_name' => $product['product_name']]
+            );
         }
     }
     
     $conn->close();
 }
 
-// Get product details
+// Get product images and related data
 $conn = getDBConnection();
-$stmt = $conn->prepare("
-    SELECT p.*, c.category_name, i.quantity as stock_quantity
-    FROM products p
-    LEFT JOIN categories c ON p.category_id = c.category_id
-    LEFT JOIN inventory i ON p.product_id = i.product_id
-    WHERE p.product_id = ? AND p.is_active = 1
-");
-$stmt->bind_param("i", $product_id);
-$stmt->execute();
-$result = $stmt->get_result();
-
-if ($result->num_rows === 0) {
-    header('Location: shop.php');
-    exit;
-}
-
-$product = $result->fetch_assoc();
 
 // Get product images
 $stmt = $conn->prepare("SELECT * FROM product_images WHERE product_id = ? ORDER BY is_primary DESC, display_order ASC");

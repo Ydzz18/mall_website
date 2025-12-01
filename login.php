@@ -27,6 +27,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['customer_id'] = $user['customer_id'];
                 $_SESSION['first_name'] = $user['first_name'];
                 
+                logCustomerActivity(
+                    $user['customer_id'],
+                    'login',
+                    'Customer logged in successfully',
+                    'customers',
+                    $user['customer_id']
+                );
+                
                 // Update last login
                 $update_stmt = $conn->prepare("UPDATE customers SET last_login = NOW() WHERE customer_id = ?");
                 $update_stmt->bind_param("i", $user['customer_id']);

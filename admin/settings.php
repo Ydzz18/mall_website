@@ -54,11 +54,24 @@ foreach ($default_settings as $setting) {
 
 // Handle settings update
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_settings'])) {
+    $updated_settings = [];
+    
     foreach ($_POST as $key => $value) {
         if ($key !== 'update_settings') {
             $value_safe = $conn->real_escape_string($value);
             $key_safe = $conn->real_escape_string($key);
+            
+            $stmt = $conn->prepare("SELECT setting_value FROM site_settings WHERE setting_key = ?");
+            $stmt->bind_param("s", $key);
+            $stmt->execute();
+            $old_setting = $stmt->get_result()->fetch_assoc();
+            
             $conn->query("UPDATE site_settings SET setting_value = '$value_safe' WHERE setting_key = '$key_safe'");
+            $updated_settings[] = [
+                'key' => $key,
+                'old' => $old_setting['setting_value'],
+                'new' => $value
+            ];
         }
     }
     
@@ -67,9 +80,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_settings'])) {
                    'enable_email_notifications', 'enable_order_emails', 'enable_shipping_emails', 'enable_payment_emails'];
     foreach ($checkboxes as $checkbox) {
         if (!isset($_POST[$checkbox])) {
+            $stmt = $conn->prepare("SELECT setting_value FROM site_settings WHERE setting_key = ?");
+            $stmt->bind_param("s", $checkbox);
+            $stmt->execute();
+            $old_setting = $stmt->get_result()->fetch_assoc();
+            
             $conn->query("UPDATE site_settings SET setting_value = '0' WHERE setting_key = '$checkbox'");
+            $updated_settings[] = [
+                'key' => $checkbox,
+                'old' => $old_setting['setting_value'],
+                'new' => '0'
+            ];
         }
     }
+    
+    // Log settings update
+    $settings_summary = implode(', ', array_map(function($s) { 
+        return $s['key'] . ': ' . $s['old'] . ' → ' . $s['new']; 
+    }, $updated_settings));
+    
+    logAdminActivity(
+        $_SESSION['admin_id'],
+        'settings_update',
+        "Site settings updated: " . (count($updated_settings) > 0 ? substr($settings_summary, 0, 100) . '...' : 'No changes'),
+        'site_settings',
+        null,
+        null,
+        ['total_updates' => count($updated_settings)]
+    );
     
     // Clear settings cache
     clearSettingsCache();
