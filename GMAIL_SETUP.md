@@ -10,6 +10,8 @@
 2. Select "Mail" and "Windows Computer" (or your device)
 3. Google will generate a 16-character password
 4. **Copy this password** - you'll need it next
+5. kcooqodzgkvynodo
+6. xbmeddiipuizqogy
 
 ## Step 3: Configure in Admin Settings
 1. Log in to admin panel → Settings

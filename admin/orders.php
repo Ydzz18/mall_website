@@ -15,21 +15,37 @@ if (isset($_POST['update_status'])) {
     $order_id = intval($_POST['order_id']);
     $new_status = $_POST['order_status'];
     
+    // Update order status in database
     $stmt = $conn->prepare("UPDATE orders SET order_status = ? WHERE order_id = ?");
     $stmt->bind_param("si", $new_status, $order_id);
+    $stmt->execute();
     
-    if ($stmt->execute()) {
-        require_once '../includes/notifications.php';
-        notifyOrderStatusChange($order_id, $new_status);
+    // Get order and customer details
+    $order_query = $conn->query("
+        SELECT o.*, c.email, c.first_name, c.last_name 
+        FROM orders o 
+        JOIN customers c ON o.customer_id = c.customer_id 
+        WHERE o.order_id = $order_id
+    ");
+    $order = $order_query->fetch_assoc();
+    
+    // Send status update email
+    if (ENABLE_EMAIL_NOTIFICATIONS && ENABLE_ORDER_EMAILS) {
+        require_once '../includes/email.php';
+        sendOrderStatusEmail(
+            $order_id,
+            $order['email'],
+            $order['first_name'] . ' ' . $order['last_name'],
+            $order['order_number'],
+            $new_status
+        );
         
-        // Also update shipping status if order is shipped/delivered
-        if ($new_status === 'shipped') {
-            $conn->query("UPDATE shipping SET status = 'shipped', shipped_date = NOW() WHERE order_id = $order_id");
-        } elseif ($new_status === 'delivered') {
-            $conn->query("UPDATE shipping SET status = 'delivered', actual_delivery_date = NOW() WHERE order_id = $order_id");
-        }
-        $message = 'Order status updated successfully!';
+        // Also create in-app notification
+        require_once '../includes/notifications.php';
+        createOrderStatusNotification($order['customer_id'], $order_id, $new_status);
     }
+    
+    $message = 'Order status updated successfully!';
 }
 
 // Filter orders

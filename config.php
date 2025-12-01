@@ -116,6 +116,23 @@ if (!defined('GMAIL_SENDER_EMAIL')) {
 if (!defined('GMAIL_SENDER_PASSWORD')) {
     define('GMAIL_SENDER_PASSWORD', getSetting('gmail_sender_password', 'your-app-password'));
 }
+if (!defined('GMAIL_SENDER_NAME')) {
+    define('GMAIL_SENDER_NAME', getSetting('gmail_sender_name', SITE_NAME));
+}
+
+// Email notification settings
+if (!defined('ENABLE_EMAIL_NOTIFICATIONS')) {
+    define('ENABLE_EMAIL_NOTIFICATIONS', boolval(getSetting('enable_email_notifications', 1)));
+}
+if (!defined('ENABLE_ORDER_EMAILS')) {
+    define('ENABLE_ORDER_EMAILS', boolval(getSetting('enable_order_emails', 1)));
+}
+if (!defined('ENABLE_SHIPPING_EMAILS')) {
+    define('ENABLE_SHIPPING_EMAILS', boolval(getSetting('enable_shipping_emails', 1)));
+}
+if (!defined('ENABLE_PAYMENT_EMAILS')) {
+    define('ENABLE_PAYMENT_EMAILS', boolval(getSetting('enable_payment_emails', 1)));
+}
 
 // Check maintenance mode
 if (MAINTENANCE_MODE && !isset($_SESSION['admin_id'])) {

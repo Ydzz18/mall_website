@@ -42,7 +42,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->bind_param("sssss", $email, $password_hash, $first_name, $last_name, $phone);
             
             if ($stmt->execute()) {
-                $success = 'Registration successful! You can now log in.';
+                // Send welcome email if enabled
+                if (ENABLE_EMAIL_NOTIFICATIONS) {
+                    require_once 'includes/email.php';
+                    
+                    $email_sent = sendWelcomeEmail(
+                        $email,
+                        $first_name . ' ' . $last_name
+                    );
+                    
+                    if ($email_sent) {
+                        error_log("Welcome email sent to $email");
+                    }
+                }
+                
+                // Redirect to login
+                header('Location: login.php?registered=1');
+                exit;
             } else {
                 $error = 'Registration failed. Please try again.';
             }

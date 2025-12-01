@@ -54,6 +54,36 @@ $stmt->bind_param("i", $order['order_id']);
 $stmt->execute();
 $order_items = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
 
+// Get customer email and name
+$customer_stmt = $conn->prepare("
+    SELECT email, first_name, last_name 
+    FROM customers 
+    WHERE customer_id = ?
+");
+$customer_stmt->bind_param("i", $customer_id);
+$customer_stmt->execute();
+$customer_result = $customer_stmt->get_result();
+$customer = $customer_result->fetch_assoc();
+
+// Send order confirmation email if enabled
+if (ENABLE_EMAIL_NOTIFICATIONS && ENABLE_ORDER_EMAILS) {
+    require_once 'includes/email.php';
+    
+    $email_sent = sendOrderConfirmationEmail(
+        $order['order_id'],
+        $customer['email'],
+        $customer['first_name'] . ' ' . $customer['last_name'],
+        $order['order_number'],
+        $order['total_amount']
+    );
+    
+    if ($email_sent) {
+        error_log("Order confirmation email sent for order " . $order['order_number']);
+    } else {
+        error_log("Failed to send order confirmation email for order " . $order['order_number']);
+    }
+}
+
 $conn->close();
 ?>
 <!DOCTYPE html>

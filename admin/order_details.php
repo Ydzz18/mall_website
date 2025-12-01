@@ -61,6 +61,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if ($stmt->execute()) {
             $message = 'Tracking information updated successfully!';
+            
+            // Send shipping notification email if enabled
+            if (ENABLE_EMAIL_NOTIFICATIONS && ENABLE_SHIPPING_EMAILS) {
+                require_once '../includes/email.php';
+                
+                $order_data = $conn->query("
+                    SELECT o.*, c.email, c.first_name, c.last_name 
+                    FROM orders o 
+                    JOIN customers c ON o.customer_id = c.customer_id 
+                    WHERE o.order_id = $order_id
+                ")->fetch_assoc();
+                
+                $email_sent = sendShippingNotificationEmail(
+                    $order_id,
+                    $order_data['email'],
+                    $order_data['first_name'] . ' ' . $order_data['last_name'],
+                    $order_data['order_number'],
+                    $tracking_number
+                );
+                
+                if ($email_sent) {
+                    error_log("Shipping notification email sent for order " . $order_data['order_number']);
+                }
+            }
         }
     }
     

@@ -34,6 +34,17 @@ $default_settings = [
     ['enable_reviews', '1', 'checkbox', 'Enable product reviews'],
     ['require_email_verification', '0', 'checkbox', 'Require email verification'],
     ['maintenance_mode', '0', 'checkbox', 'Maintenance mode'],
+    
+    // Gmail SMTP Settings
+    ['gmail_sender_email', '', 'email', 'Gmail sender email address'],
+    ['gmail_sender_password', '', 'password', 'Gmail app password (16 characters)'],
+    ['gmail_sender_name', 'NCCC Malls', 'text', 'Email sender name'],
+    
+    // Email Notification Settings
+    ['enable_email_notifications', '1', 'checkbox', 'Enable email notifications'],
+    ['enable_order_emails', '1', 'checkbox', 'Send order confirmation emails'],
+    ['enable_shipping_emails', '1', 'checkbox', 'Send shipping notification emails'],
+    ['enable_payment_emails', '1', 'checkbox', 'Send payment confirmation emails'],
 ];
 
 foreach ($default_settings as $setting) {
@@ -52,19 +63,76 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_settings'])) {
     }
     
     // Handle checkboxes (unchecked boxes don't send POST data)
-    $checkboxes = ['enable_reviews', 'require_email_verification', 'maintenance_mode'];
+    $checkboxes = ['enable_reviews', 'require_email_verification', 'maintenance_mode', 
+                   'enable_email_notifications', 'enable_order_emails', 'enable_shipping_emails', 'enable_payment_emails'];
     foreach ($checkboxes as $checkbox) {
         if (!isset($_POST[$checkbox])) {
             $conn->query("UPDATE site_settings SET setting_value = '0' WHERE setting_key = '$checkbox'");
         }
     }
     
+    // Clear settings cache
+    clearSettingsCache();
+    
     $message = 'Settings updated successfully! Changes will take effect on next page load.';
+}
+
+// Handle test email
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_test_email'])) {
+    $test_email = trim($_POST['test_email']);
+    
+    if (filter_var($test_email, FILTER_VALIDATE_EMAIL)) {
+        require_once '../includes/email.php';
+        
+        try {
+            $mail = getMailer();
+            if ($mail) {
+                $mail->addAddress($test_email);
+                $mail->Subject = 'Test Email from ' . SITE_NAME;
+                $mail->Body = "
+                <html>
+                <body style='font-family: Arial, sans-serif; padding: 20px;'>
+                    <h2>🎉 Email Configuration Test</h2>
+                    <p>Congratulations! Your Gmail SMTP configuration is working correctly.</p>
+                    <p><strong>Configuration Details:</strong></p>
+                    <ul>
+                        <li>SMTP Host: " . GMAIL_SMTP_HOST . "</li>
+                        <li>SMTP Port: " . GMAIL_SMTP_PORT . "</li>
+                        <li>Sender Email: " . GMAIL_SENDER_EMAIL . "</li>
+                    </ul>
+                    <p>This means your e-commerce site can now send:</p>
+                    <ul>
+                        <li>✅ Order confirmations</li>
+                        <li>✅ Shipping notifications</li>
+                        <li>✅ Payment confirmations</li>
+                        <li>✅ Account welcome emails</li>
+                    </ul>
+                    <p style='margin-top: 30px; color: #666; font-size: 12px;'>
+                        Sent from " . SITE_NAME . " at " . date('Y-m-d H:i:s') . "
+                    </p>
+                </body>
+                </html>
+                ";
+                $mail->AltBody = 'Test email from ' . SITE_NAME . '. Your Gmail SMTP is configured correctly!';
+                
+                if ($mail->send()) {
+                    $message = "✅ Test email sent successfully to $test_email! Check your inbox.";
+                } else {
+                    $error = "Failed to send test email. Please check your Gmail configuration.";
+                }
+            } else {
+                $error = "Failed to initialize email mailer. Please check your Gmail app password.";
+            }
+        } catch (Exception $e) {
+            $error = "Email error: " . $e->getMessage();
+        }
+    } else {
+        $error = "Please enter a valid email address.";
+    }
 }
 
 // Handle admin creation
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_admin'])) {
-    // Create admins table if not exists
     $conn->query("
         CREATE TABLE IF NOT EXISTS admins (
             admin_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -104,7 +172,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['clear_all_carts'])) {
 
 // Handle reset statistics
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reset_statistics'])) {
-    // Reset view counts or other statistics
     $conn->query("UPDATE products SET views = 0");
     $message = 'Statistics reset successfully!';
 }
@@ -130,8 +197,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['backup_database'])) {
     }
 }
 
-// Get all settings
+// Get all settings grouped
 $settings = $conn->query("SELECT * FROM site_settings ORDER BY setting_key")->fetch_all(MYSQLI_ASSOC);
+
+// Group settings
+$general_settings = [];
+$gmail_settings = [];
+$email_notification_settings = [];
+
+foreach ($settings as $setting) {
+    if (strpos($setting['setting_key'], 'gmail_') === 0) {
+        $gmail_settings[] = $setting;
+    } elseif (strpos($setting['setting_key'], 'enable_') === 0 && strpos($setting['setting_key'], 'email') !== false) {
+        $email_notification_settings[] = $setting;
+    } else {
+        $general_settings[] = $setting;
+    }
+}
 
 // Get database stats
 $db_stats = [
@@ -174,6 +256,13 @@ $conn->close();
             margin-bottom: 20px;
             padding-bottom: 15px;
             border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .settings-section h3 {
+            color: #7c3aed;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
         }
         
         .form-group {
@@ -271,6 +360,31 @@ $conn->close();
             border: 1px solid #f5c6cb;
         }
         
+        .gmail-setup-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .gmail-setup-box h3 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .gmail-setup-box a {
+            color: #ffd700;
+            text-decoration: underline;
+        }
+        
+        .test-email-form {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+        
         @media (max-width: 968px) {
             .settings-grid {
                 grid-template-columns: 1fr;
@@ -299,9 +413,9 @@ $conn->close();
                 <div>
                     <!-- General Settings -->
                     <div class="settings-section">
-                        <h2>General Settings</h2>
+                        <h2>⚙️ General Settings</h2>
                         <form method="POST">
-                            <?php foreach ($settings as $setting): ?>
+                            <?php foreach ($general_settings as $setting): ?>
                                 <div class="form-group">
                                     <label><?php echo ucwords(str_replace('_', ' ', $setting['setting_key'])); ?></label>
                                     
@@ -323,15 +437,60 @@ $conn->close();
                                 </div>
                             <?php endforeach; ?>
                             
+                            <h3>📧 Gmail SMTP Configuration</h3>
+                            <div class="gmail-setup-box">
+                                <h3>📋 Setup Instructions</h3>
+                                <ol style="line-height: 1.8;">
+                                    <li>Enable 2-Factor Authentication on your Gmail account</li>
+                                    <li>Generate an App Password at <a href="https://myaccount.google.com/apppasswords" target="_blank">myaccount.google.com/apppasswords</a></li>
+                                    <li>Copy the 16-character password (no spaces)</li>
+                                    <li>Paste it in the "Gmail App Password" field below</li>
+                                </ol>
+                                <small>⚠️ Never use your regular Gmail password - use App Password only!</small>
+                            </div>
+                            
+                            <?php foreach ($gmail_settings as $setting): ?>
+                                <div class="form-group">
+                                    <label><?php echo ucwords(str_replace(['gmail_', '_'], ['', ' '], $setting['setting_key'])); ?></label>
+                                    <input type="<?php echo $setting['setting_type']; ?>" 
+                                           name="<?php echo $setting['setting_key']; ?>" 
+                                           value="<?php echo htmlspecialchars($setting['setting_value']); ?>"
+                                           placeholder="<?php echo $setting['setting_key'] === 'gmail_sender_email' ? 'your-email@gmail.com' : ''; ?>">
+                                    <small><?php echo htmlspecialchars($setting['description']); ?></small>
+                                </div>
+                            <?php endforeach; ?>
+                            
+                            <div class="test-email-form">
+                                <h4>🧪 Test Email Configuration</h4>
+                                <p style="font-size: 0.9rem; margin-bottom: 10px;">Send a test email to verify your Gmail SMTP setup:</p>
+                                <div style="display: flex; gap: 10px;">
+                                    <input type="email" name="test_email" placeholder="test@example.com" style="flex: 1; padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
+                                    <button type="submit" name="send_test_email" class="btn-admin btn-primary">Send Test</button>
+                                </div>
+                            </div>
+                            
+                            <h3>📨 Email Notification Settings</h3>
+                            <?php foreach ($email_notification_settings as $setting): ?>
+                                <div class="form-group">
+                                    <label class="checkbox-label">
+                                        <input type="checkbox" 
+                                               name="<?php echo $setting['setting_key']; ?>" 
+                                               value="1"
+                                               <?php echo $setting['setting_value'] == '1' ? 'checked' : ''; ?>>
+                                        <?php echo htmlspecialchars($setting['description']); ?>
+                                    </label>
+                                </div>
+                            <?php endforeach; ?>
+                            
                             <button type="submit" name="update_settings" class="btn-admin btn-success" style="width: 100%;">
-                                Save Settings
+                                💾 Save All Settings
                             </button>
                         </form>
                     </div>
                     
                     <!-- Create Admin User -->
                     <div class="settings-section">
-                        <h2>Create Admin User</h2>
+                        <h2>👤 Create Admin User</h2>
                         <form method="POST">
                             <div class="form-group">
                                 <label>Username *</label>
@@ -383,7 +542,7 @@ $conn->close();
                 <div>
                     <!-- System Information -->
                     <div class="settings-section">
-                        <h2>System Information</h2>
+                        <h2>📊 System Information</h2>
                         
                         <div class="info-card">
                             <h4>Database Statistics</h4>
@@ -429,20 +588,39 @@ $conn->close();
                             </div>
                         </div>
                         
+                        <div class="info-card" style="border-left-color: #7c3aed;">
+                            <h4>📧 Email Configuration Status</h4>
+                            <div class="info-row">
+                                <span>SMTP Host:</span>
+                                <strong><?php echo GMAIL_SMTP_HOST; ?></strong>
+                            </div>
+                            <div class="info-row">
+                                <span>SMTP Port:</span>
+                                <strong><?php echo GMAIL_SMTP_PORT; ?></strong>
+                            </div>
+                            <div class="info-row">
+                                <span>Sender Email:</span>
+                                <strong style="font-size: 0.8rem;"><?php echo GMAIL_SENDER_EMAIL; ?></strong>
+                            </div>
+                            <div class="info-row">
+                                <span>Status:</span>
+                                <strong style="color: <?php echo GMAIL_SENDER_EMAIL !== 'your-email@gmail.com' ? '#27ae60' : '#e74c3c'; ?>;">
+                                    <?php echo GMAIL_SENDER_EMAIL !== 'your-email@gmail.com' ? '✅ Configured' : '⚠️ Not Configured'; ?>
+                                </strong>
+                            </div>
+                        </div>
+                        
                         <div class="info-card">
                             <h4>Quick Actions</h4>
                             <button class="btn-admin btn-primary" style="width: 100%; margin-bottom: 10px;" onclick="window.open('../index.php', '_blank')">
-                                View Store
+                                🏪 View Store
                             </button>
                             <form method="POST" style="margin-bottom: 10px;">
                                 <button type="submit" name="backup_database" class="btn-admin btn-secondary" style="width: 100%;"
                                         onclick="return confirm('Create database backup?')">
-                                    Backup Database
+                                    💾 Backup Database
                                 </button>
                             </form>
-                            <button class="btn-admin btn-secondary" style="width: 100%;" onclick="clearCache()">
-                                Clear Cache
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -451,13 +629,6 @@ $conn->close();
     </div>
     
     <script>
-        function clearCache() {
-            // Simulate cache clearing
-            if (confirm('Clear application cache?')) {
-                alert('Cache cleared successfully!');
-            }
-        }
-        
         // Show a notification when settings are saved
         <?php if ($message && strpos($message, 'Settings updated') !== false): ?>
         setTimeout(function() {
