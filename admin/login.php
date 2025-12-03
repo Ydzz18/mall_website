@@ -15,25 +15,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
     
-    // For demo purposes - in production, store admin credentials in database
-    // Default credentials: admin / admin123
-    if ($username === 'admin' && $password === 'admin123') {
-        $_SESSION['admin_id'] = 1;
-        $_SESSION['admin_username'] = $username;
-        $_SESSION['admin_name'] = 'Admin User';
-        
-        logAdminActivity(
-            1,
-            'admin_login',
-            "Admin logged in: Admin User",
-            'admin_users',
-            1
-        );
-        
-        header('Location: index.php');
-        exit;
+    if (empty($username) || empty($password)) {
+        $error = 'Please enter both username and password';
     } else {
-        $error = 'Invalid username or password';
+        $conn = getDBConnection();
+        
+        // Check if admin exists in database
+        $stmt = $conn->prepare("SELECT admin_id, username, password_hash, full_name, email, is_active FROM admin_users WHERE username = ? OR email = ?");
+        $stmt->bind_param("ss", $username, $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            $admin = $result->fetch_assoc();
+            
+            // Check if account is active
+            if ($admin['is_active'] != 1) {
+                $error = 'Your account has been deactivated. Please contact the system administrator.';
+            }
+            // Verify password
+            elseif (password_verify($password, $admin['password_hash'])) {
+                // Successful login
+                $_SESSION['admin_id'] = $admin['admin_id'];
+                $_SESSION['admin_username'] = $admin['username'];
+                $_SESSION['admin_name'] = $admin['full_name'];
+                $_SESSION['admin_email'] = $admin['email'];
+                
+                // Update last login time
+                $stmt = $conn->prepare("UPDATE admin_users SET last_login = NOW() WHERE admin_id = ?");
+                $stmt->bind_param("i", $admin['admin_id']);
+                $stmt->execute();
+                
+                // Log activity
+                logAdminActivity(
+                    $admin['admin_id'],
+                    'admin_login',
+                    "Admin logged in: {$admin['full_name']}",
+                    'admin_users',
+                    $admin['admin_id']
+                );
+                
+                $conn->close();
+                header('Location: index.php');
+                exit;
+            } else {
+                $error = 'Invalid username or password';
+            }
+        } else {
+            $error = 'Invalid username or password';
+        }
+        
+        $conn->close();
     }
 }
 ?>
@@ -143,18 +175,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
         }
         
-        .back-link {
+        .btn-login:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .links-container {
             text-align: center;
             margin-top: 20px;
         }
         
-        .back-link a {
+        .links-container a {
             color: #667eea;
             text-decoration: none;
             font-size: 0.9rem;
+            display: block;
+            margin: 10px 0;
         }
         
-        .back-link a:hover {
+        .links-container a:hover {
             text-decoration: underline;
         }
         
@@ -175,7 +214,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         .demo-info p {
             color: #555;
             font-size: 0.9rem;
-            margin: 0;
+            margin: 5px 0;
+        }
+        
+        .demo-credentials {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-family: monospace;
+        }
+        
+        @media (max-width: 640px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+            
+            .login-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .admin-icon {
+                font-size: 3rem;
+            }
         }
     </style>
 </head>
@@ -191,23 +252,57 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="alert"><?php echo htmlspecialchars($error); ?></div>
         <?php endif; ?>
         
-        <form method="POST" action="">
+        <form method="POST" action="" id="loginForm">
             <div class="form-group">
-                <label>Username</label>
-                <input type="text" name="username" required autofocus value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>">
+                <label>Username or Email</label>
+                <input type="text" 
+                       name="username" 
+                       required 
+                       autofocus 
+                       placeholder="Enter your username or email"
+                       value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>">
             </div>
             
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="password" required>
+                <input type="password" 
+                       name="password" 
+                       required
+                       placeholder="Enter your password">
             </div>
             
-            <button type="submit" class="btn-login">Login to Dashboard</button>
+               <div class="back-link">
+                   <a href="reset_password.php">Forgot Password?</a>
+               </div>
+            
+            <button type="submit" class="btn-login" id="loginBtn">
+                Login to Dashboard
+            </button>
         </form>
         
-        <div class="back-link">
+        <div class="links-container">
+            <a href="reset_password.php">🔑 Forgot Password?</a>
             <a href="../index.php">← Back to Store</a>
         </div>
+        
+        <div class="demo-info">
+            <strong>📋 Default Admin Credentials:</strong>
+            <div class="demo-credentials">
+                <p><strong>Username:</strong> admin</p>
+                <p><strong>Password:</strong> admin123</p>
+            </div>
+            <p style="margin-top: 10px; font-size: 0.85rem; color: #666;">
+                ⚠️ Make sure to change the default password after first login!
+            </p>
+        </div>
     </div>
+    
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function() {
+            const btn = document.getElementById('loginBtn');
+            btn.disabled = true;
+            btn.textContent = 'Logging in...';
+        });
+    </script>
 </body>
 </html>

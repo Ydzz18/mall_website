@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2025 at 02:17 AM
+-- Generation Time: Dec 01, 2025 at 12:46 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,34 @@ SET time_zone = "+00:00";
 --
 -- Database: `nccc_malls`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activity_logs`
+--
+
+CREATE TABLE `activity_logs` (
+  `log_id` int(11) NOT NULL,
+  `user_type` enum('admin','customer') NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `action_type` varchar(50) NOT NULL,
+  `action_description` text NOT NULL,
+  `table_affected` varchar(50) DEFAULT NULL,
+  `record_id` int(11) DEFAULT NULL,
+  `old_values` text DEFAULT NULL,
+  `new_values` text DEFAULT NULL,
+  `ip_address` varchar(45) DEFAULT NULL,
+  `user_agent` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `activity_logs`
+--
+
+INSERT INTO `activity_logs` (`log_id`, `user_type`, `user_id`, `action_type`, `action_description`, `table_affected`, `record_id`, `old_values`, `new_values`, `ip_address`, `user_agent`, `created_at`) VALUES
+(1, 'customer', 2, 'logout', 'Customer logged out', 'customers', 2, NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-01 11:45:24');
 
 -- --------------------------------------------------------
 
@@ -48,6 +76,32 @@ INSERT INTO `addresses` (`address_id`, `customer_id`, `address_type`, `is_defaul
 (1, 3, 'billing', 1, '123', 'Puerto Princesa', 'Palawan', '5300', 'Philippines', '2025-11-24 02:54:32'),
 (2, 2, 'billing', 1, '123', 'Puerto Princesa', 'Palawan', '5300', 'Philippines', '2025-11-28 10:44:57'),
 (3, 4, 'billing', 1, '123', 'Puerto Princesa', 'Palawan', '5300', 'Philippines', '2025-11-29 00:44:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_users`
+--
+
+CREATE TABLE `admin_users` (
+  `admin_id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `full_name` varchar(100) NOT NULL,
+  `role` enum('super_admin','admin','moderator') DEFAULT 'admin',
+  `is_active` tinyint(1) DEFAULT 1,
+  `last_login` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `admin_users`
+--
+
+INSERT INTO `admin_users` (`admin_id`, `username`, `email`, `password_hash`, `full_name`, `role`, `is_active`, `last_login`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'admin@jrdmalls.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'System Administrator', 'super_admin', 1, NULL, '2025-12-01 10:59:22', '2025-12-01 10:59:22');
 
 -- --------------------------------------------------------
 
@@ -137,7 +191,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customer_id`, `email`, `password_hash`, `first_name`, `last_name`, `phone`, `date_of_birth`, `created_at`, `updated_at`, `is_active`, `last_login`) VALUES
-(2, 'yayenydrian@gmail.com', '$2y$10$.VYqTcirLgMMy5zONfCPBuP3A/BOqN2ui9sy8tgtktgmMOqDl7GBW', 'Ydrian', 'Yayen', '09461478420', '2002-05-18', '2025-11-24 00:16:42', '2025-11-28 23:48:36', 1, '2025-11-28 23:48:36'),
+(2, 'yayenydrian@gmail.com', '$2y$10$.VYqTcirLgMMy5zONfCPBuP3A/BOqN2ui9sy8tgtktgmMOqDl7GBW', 'Ydrian', 'Yayen', '09461478420', '2002-05-18', '2025-11-24 00:16:42', '2025-12-01 01:27:10', 1, '2025-12-01 01:27:10'),
 (3, 'johndoe@gmail.com', '$2y$10$UwyejG2ch57BFD.W5zxD5eDCGhmvfdjWncFQX5BfSs/5N/g9saymG', 'john', 'doe', '09123121231', NULL, '2025-11-24 02:52:43', '2025-11-24 02:52:52', 1, '2025-11-24 02:52:52'),
 (4, 'andrepagliawan@gmail.com', '$2y$10$A.kIRqkRC4wvR4Fj1TQvMeftFcGwtdnY9pW.NCgjTgMlUGHkKgj/G', 'Andre', 'Pagliawan', '09123121231', NULL, '2025-11-29 00:25:52', '2025-11-29 00:26:05', 1, '2025-11-29 00:26:05');
 
@@ -220,7 +274,8 @@ CREATE TABLE `notifications` (
 
 INSERT INTO `notifications` (`notification_id`, `customer_id`, `order_id`, `type`, `title`, `message`, `is_read`, `created_at`) VALUES
 (1, 4, 12, 'order_status', 'Order Shipped', 'Your order #ORD-20251129-2A1E86D9 has been shipped! It\'s on its way to you.', 1, '2025-11-29 01:52:44'),
-(2, 2, 3, 'order_status', 'Order Cancelled', 'Your order #ORD-20251128-2057B79F has been cancelled.', 0, '2025-11-29 04:16:06');
+(2, 2, 3, 'order_status', 'Order Cancelled', 'Your order #ORD-20251128-2057B79F has been cancelled.', 1, '2025-11-29 04:16:06'),
+(3, 2, 13, 'order_status', 'Order Shipped', 'Your order #ORD-20251201-D6AEC454 has been shipped! It\'s on its way to you.', 1, '2025-12-01 07:07:29');
 
 -- --------------------------------------------------------
 
@@ -262,7 +317,8 @@ INSERT INTO `orders` (`order_id`, `customer_id`, `order_number`, `order_status`,
 (9, 2, 'ORD-20251129-C2A4DEBB', 'pending', 19498.00, 2339.76, 0.00, 21837.00, 2, 2, 'Cash on Delivery', 'pending', '', '2025-11-29 00:03:43', '2025-11-29 00:03:43'),
 (10, 2, 'ORD-20251129-A288F9B8', 'processing', 19498.00, 2339.76, 0.00, 21837.00, 2, 2, 'GCash', 'completed', '', '2025-11-29 00:06:33', '2025-11-29 00:07:39'),
 (11, 2, 'ORD-20251129-A2573A98', 'shipped', 49999.00, 5999.88, 0.00, 55998.00, 2, 2, 'GCash', 'completed', '', '2025-11-29 00:10:25', '2025-11-29 00:20:41'),
-(12, 4, 'ORD-20251129-2A1E86D9', 'shipped', 99998.00, 11999.76, 0.00, 111997.00, 3, 3, 'GCash', 'completed', '', '2025-11-29 00:44:59', '2025-11-29 01:52:44');
+(12, 4, 'ORD-20251129-2A1E86D9', 'shipped', 99998.00, 11999.76, 0.00, 111997.00, 3, 3, 'GCash', 'completed', '', '2025-11-29 00:44:59', '2025-11-29 01:52:44'),
+(13, 2, 'ORD-20251201-D6AEC454', 'shipped', 99998.00, 9999.80, 0.00, 109997.00, 2, 2, 'Cash on Delivery', 'completed', '', '2025-12-01 01:27:39', '2025-12-01 07:07:41');
 
 -- --------------------------------------------------------
 
@@ -316,7 +372,8 @@ INSERT INTO `order_items` (`order_item_id`, `order_id`, `product_id`, `quantity`
 (17, 10, 3, 1, 14999.00, 14999.00),
 (18, 10, 5, 1, 4499.00, 4499.00),
 (19, 11, 1, 1, 49999.00, 49999.00),
-(20, 12, 1, 2, 49999.00, 99998.00);
+(20, 12, 1, 2, 49999.00, 99998.00),
+(21, 13, 1, 2, 49999.00, 99998.00);
 
 -- --------------------------------------------------------
 
@@ -365,7 +422,8 @@ INSERT INTO `payments` (`payment_id`, `order_id`, `payment_method`, `transaction
 (9, 9, 'Cash on Delivery', NULL, 21837.76, 'pending', NULL, '2025-11-29 00:03:43'),
 (10, 10, 'GCash', 'TXN-20251129010739-77DDAF4E', 21837.76, 'completed', '2025-11-28 17:07:39', '2025-11-29 00:06:33'),
 (11, 11, 'GCash', 'TXN-20251129011035-5E35E5F7', 55998.88, 'completed', '2025-11-28 17:10:35', '2025-11-29 00:10:25'),
-(12, 12, 'GCash', 'TXN-20251129014517-0AA0838D', 111997.76, 'completed', '2025-11-28 17:45:17', '2025-11-29 00:44:59');
+(12, 12, 'GCash', 'TXN-20251129014517-0AA0838D', 111997.76, 'completed', '2025-11-28 17:45:17', '2025-11-29 00:44:59'),
+(13, 13, 'Cash on Delivery', 'COD-ORD-20251201-D6AEC454', 109997.80, 'completed', '2025-11-30 18:27:41', '2025-12-01 01:27:39');
 
 -- --------------------------------------------------------
 
@@ -402,7 +460,7 @@ INSERT INTO `products` (`product_id`, `category_id`, `product_name`, `descriptio
 (5, 1, 'Logitech MX Master 3S Mouse', 'Wireless ergonomic mouse with 8K DPI sensor', 4999.00, 4499.00, 'ELEC-LOGI-MXM3S', 'Logitech', 0.14, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
 (6, 1, 'Samsung 55\" 4K Smart TV', 'Crystal UHD 4K display, Tizen OS, HDR10+', 32999.00, 29999.00, 'ELEC-SMSG-TV55-4K', 'Samsung', 15.50, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
 (7, 1, 'Anker PowerCore 20000mAh', 'High-capacity portable charger with fast charging', 2499.00, NULL, 'ELEC-ANKR-PC20K', 'Anker', 0.35, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(8, 1, 'Canon EOS R6 Mark II', 'Full-frame mirrorless camera, 24.2MP, 4K 60fps video', 149999.00, NULL, 'ELEC-CANN-R6M2', 'Canon', 0.67, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(8, 1, 'Canon EOS R6 Mark II', 'Full-frame mirrorless camera, 24.2MP, 4K 60fps video', 149999.00, NULL, 'ELEC-CANN-R6M2', 'Canon', 0.67, NULL, 0, 1, '2025-11-24 02:27:17', '2025-12-01 07:08:50'),
 (9, 2, 'Levi\'s 501 Original Jeans', 'Classic straight fit denim jeans, 100% cotton', 3499.00, 2999.00, 'CLTH-LEVI-501-BLU-32', 'Levi\'s', 0.60, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
 (10, 2, 'Nike Dri-FIT Running Shirt', 'Moisture-wicking performance t-shirt, breathable fabric', 1499.00, NULL, 'CLTH-NIKE-DRIF-BLK-L', 'Nike', 0.15, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
 (11, 2, 'Adidas Ultraboost 23 Shoes', 'Premium running shoes with Boost cushioning technology', 8999.00, 7999.00, 'CLTH-ADID-UB23-WHT-10', 'Adidas', 0.75, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
@@ -420,7 +478,7 @@ INSERT INTO `products` (`product_id`, `category_id`, `product_name`, `descriptio
 (23, 4, 'Yeti Tundra 45 Cooler', 'Rotomolded construction, bear-resistant, 28-can capacity', 19999.00, NULL, 'SPRT-YETI-T45-WHT', 'Yeti', 10.00, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
 (24, 4, 'Trek Marlin 7 Mountain Bike', '29-inch wheels, 21-speed, aluminum frame', 32999.00, 29999.00, 'SPRT-TREK-M7-BLU-M', 'Trek', 13.50, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
 (25, 4, 'Coleman Sundome Tent 4-Person', 'WeatherTec system, easy setup, fits 4 campers', 4999.00, NULL, 'SPRT-COLM-SD4-GRN', 'Coleman', 5.80, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(26, 4, 'TRX Home2 Suspension Trainer', 'Total body resistance training system with workout guide', 7999.00, 6999.00, 'SPRT-TRX-HM2-BLK', 'TRX', 1.20, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(26, 4, 'TRX Home2 Suspension Trainer', 'Total body resistance training system with workout guide', 7999.00, 6999.00, 'SPRT-TRX-HM2-BLK', 'TRX', 1.20, NULL, 0, 0, '2025-11-24 02:27:17', '2025-12-01 07:08:44'),
 (27, 4, 'Bowflex SelectTech 552 Dumbbells', 'Adjustable dumbbells, 5-52.5 lbs per dumbbell', 24999.00, NULL, 'SPRT-BWFX-ST552', 'Bowflex', 25.00, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
 (28, 4, 'GoPro HERO12 Black', '5.3K60 video, HyperSmooth 6.0, waterproof to 33ft', 21999.00, 19999.00, 'SPRT-GPRO-H12-BLK', 'GoPro', 0.15, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
 (29, 4, 'Wilson Evolution Basketball', 'Official size, composite leather, indoor use', 2499.00, NULL, 'SPRT-WILS-EVO-BBAL', 'Wilson', 0.62, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
@@ -509,14 +567,25 @@ CREATE TABLE `reviews` (
   `product_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `order_id` int(11) DEFAULT NULL,
-  `rating` int(11) NOT NULL CHECK (`rating` between 1 and 5),
-  `title` varchar(255) DEFAULT NULL,
-  `comment` text DEFAULT NULL,
+  `rating` int(11) NOT NULL CHECK (`rating` >= 1 and `rating` <= 5),
+  `title` varchar(100) DEFAULT NULL,
+  `comment` text NOT NULL,
   `is_verified_purchase` tinyint(1) DEFAULT 0,
   `is_approved` tinyint(1) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`review_id`, `product_id`, `customer_id`, `order_id`, `rating`, `title`, `comment`, `is_verified_purchase`, `is_approved`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, NULL, 5, 'Amazing phone!', 'This Samsung Galaxy S24 Ultra exceeded my expectations. The camera quality is outstanding and the battery life is incredible. Highly recommended!', 1, 1, '2025-11-28 02:30:00', '2025-12-01 10:45:52'),
+(2, 1, 3, NULL, 4, 'Great but expensive', 'Excellent phone with top-notch features. The only downside is the price, but you get what you pay for.', 0, 1, '2025-11-27 06:20:00', '2025-12-01 10:45:52'),
+(3, 3, 2, NULL, 5, 'Best headphones ever', 'The noise cancellation is phenomenal. I use these daily for work and travel. Worth every penny!', 1, 1, '2025-11-26 01:15:00', '2025-12-01 10:45:52'),
+(4, 11, 3, NULL, 5, 'Super comfortable running shoes', 'These Adidas Ultraboost shoes are incredibly comfortable. Perfect for long runs and everyday wear.', 1, 1, '2025-11-25 08:45:00', '2025-12-01 10:45:52'),
+(5, 30, 2, NULL, 5, 'Life-changing book', 'Atomic Habits helped me build better routines. The concepts are practical and easy to implement. Must read!', 1, 1, '2025-11-24 03:30:00', '2025-12-01 10:45:52');
 
 -- --------------------------------------------------------
 
@@ -554,7 +623,8 @@ INSERT INTO `shipping` (`shipping_id`, `order_id`, `carrier`, `tracking_number`,
 (9, 9, NULL, NULL, 'Standard', NULL, NULL, NULL, 'preparing', '2025-11-29 00:03:43', '2025-11-29 00:03:43'),
 (10, 10, NULL, NULL, 'Standard', NULL, NULL, NULL, 'preparing', '2025-11-29 00:06:33', '2025-11-29 00:06:33'),
 (11, 11, NULL, NULL, 'Standard', '2025-11-29 00:20:41', NULL, NULL, 'shipped', '2025-11-29 00:10:25', '2025-11-29 00:20:41'),
-(12, 12, NULL, NULL, 'Standard', '2025-11-29 01:52:44', NULL, NULL, 'shipped', '2025-11-29 00:44:59', '2025-11-29 01:52:44');
+(12, 12, NULL, NULL, 'Standard', '2025-11-29 01:52:44', NULL, NULL, 'shipped', '2025-11-29 00:44:59', '2025-11-29 01:52:44'),
+(13, 13, NULL, NULL, 'Standard', '2025-12-01 07:07:29', NULL, NULL, 'shipped', '2025-12-01 01:27:39', '2025-12-01 07:07:29');
 
 -- --------------------------------------------------------
 
@@ -609,7 +679,7 @@ INSERT INTO `site_settings` (`setting_key`, `setting_value`, `setting_type`, `de
 ('gmail_sender_email', 'jrd.malls@gmail.com', 'email', 'Gmail sender email address', '2025-12-01 01:07:40'),
 ('gmail_sender_name', 'JRD Malls', 'text', 'Email sender name', '2025-12-01 01:07:40'),
 ('gmail_sender_password', 'kcooqodzgkvynodo', 'password', 'Gmail app password (16 characters)', '2025-12-01 01:07:40'),
-('items_per_page', '10', 'number', 'Products per page', '2025-11-30 13:13:58'),
+('items_per_page', '9', 'number', 'Products per page', '2025-12-01 10:36:49'),
 ('maintenance_mode', '0', 'checkbox', 'Maintenance mode', '2025-11-28 03:29:00'),
 ('require_email_verification', '1', 'checkbox', 'Require email verification', '2025-11-28 03:29:00'),
 ('shipping_cost', '5.99', 'number', 'Standard shipping cost', '2025-11-24 13:58:30'),
@@ -644,11 +714,31 @@ INSERT INTO `wishlist` (`wishlist_id`, `customer_id`, `product_id`, `added_at`) 
 --
 
 --
+-- Indexes for table `activity_logs`
+--
+ALTER TABLE `activity_logs`
+  ADD PRIMARY KEY (`log_id`),
+  ADD KEY `idx_user` (`user_type`,`user_id`),
+  ADD KEY `idx_action` (`action_type`),
+  ADD KEY `idx_created` (`created_at`),
+  ADD KEY `idx_table` (`table_affected`,`record_id`),
+  ADD KEY `idx_log_search` (`user_type`,`action_type`,`created_at`),
+  ADD KEY `idx_user_activity` (`user_id`,`user_type`,`created_at`);
+
+--
 -- Indexes for table `addresses`
 --
 ALTER TABLE `addresses`
   ADD PRIMARY KEY (`address_id`),
   ADD KEY `customer_id` (`customer_id`);
+
+--
+-- Indexes for table `admin_users`
+--
+ALTER TABLE `admin_users`
+  ADD PRIMARY KEY (`admin_id`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- Indexes for table `categories`
@@ -752,9 +842,10 @@ ALTER TABLE `product_images`
 --
 ALTER TABLE `reviews`
   ADD PRIMARY KEY (`review_id`),
+  ADD KEY `product_id` (`product_id`),
   ADD KEY `customer_id` (`customer_id`),
   ADD KEY `order_id` (`order_id`),
-  ADD KEY `idx_review_product` (`product_id`);
+  ADD KEY `idx_approved` (`is_approved`);
 
 --
 -- Indexes for table `shipping`
@@ -790,10 +881,22 @@ ALTER TABLE `wishlist`
 --
 
 --
+-- AUTO_INCREMENT for table `activity_logs`
+--
+ALTER TABLE `activity_logs`
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `addresses`
 --
 ALTER TABLE `addresses`
   MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `admin_users`
+--
+ALTER TABLE `admin_users`
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -823,13 +926,13 @@ ALTER TABLE `inventory`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `order_coupons`
@@ -841,7 +944,7 @@ ALTER TABLE `order_coupons`
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `order_notes`
@@ -853,7 +956,7 @@ ALTER TABLE `order_notes`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -871,19 +974,19 @@ ALTER TABLE `product_images`
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `shipping`
 --
 ALTER TABLE `shipping`
-  MODIFY `shipping_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `shipping_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `wishlist`
