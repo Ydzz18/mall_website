@@ -296,12 +296,13 @@ function sendWelcomeEmail($customer_email, $customer_name) {
 
 function getOrderConfirmationTemplate($order_number, $customer_name, $total, $order_id) {
     $site_url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
-    $order_url = $site_url . "/orders.php?order_id=" . $order_id;
+    $order_url = $site_url . "/track_order.php";
     
     return "
     <!DOCTYPE html>
     <html>
     <head>
+        <meta charset='UTF-8'>
         <style>
             body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
             .container { max-width: 600px; margin: 0 auto; padding: 20px; }
@@ -323,12 +324,18 @@ function getOrderConfirmationTemplate($order_number, $customer_name, $total, $or
                 
                 <div class='order-details'>
                     <h2>Order Details</h2>
-                    <p><strong>Order Number:</strong> $order_number</p>
+                    <p><strong>Order Number:</strong> " . htmlspecialchars($order_number) . "</p>
                     <p><strong>Total Amount:</strong> " . formatCurrency($total) . "</p>
                 </div>
                 
                 <p>You can track your order status at any time:</p>
-                <a href='$order_url' class='button'>View Order Details</a>
+                <table width='100%' cellpadding='0' cellspacing='0'>
+                    <tr>
+                        <td align='center' style='padding: 20px 0;'>
+                            <a href='" . htmlspecialchars($order_url) . "' style='display: inline-block; background: #7c3aed; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px;'>View Order Details</a>
+                        </td>
+                    </tr>
+                </table>
                 
                 <p>We'll send you another email when your order ships.</p>
                 
@@ -345,7 +352,7 @@ function getOrderConfirmationTemplate($order_number, $customer_name, $total, $or
 
 function getOrderStatusTemplate($order_number, $customer_name, $status, $order_id) {
     $site_url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://" . $_SERVER['HTTP_HOST'];
-    $order_url = $site_url . "/orders.php?order_id=" . $order_id;
+    $order_url = $site_url . "/track_order.php";
     
     $status_messages = [
         'processing' => ['emoji' => '⚙️', 'title' => 'Order is Being Processed', 'message' => 'Your order is now being prepared for shipment.'],
@@ -360,6 +367,7 @@ function getOrderStatusTemplate($order_number, $customer_name, $status, $order_i
     <!DOCTYPE html>
     <html>
     <head>
+        <meta charset='UTF-8'>
         <style>
             body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
             .container { max-width: 600px; margin: 0 auto; padding: 20px; }
@@ -379,12 +387,18 @@ function getOrderStatusTemplate($order_number, $customer_name, $status, $order_i
                 <p>Hi <strong>$customer_name</strong>,</p>
                 
                 <div class='status-box'>
-                    <h2>Order #$order_number</h2>
-                    <p style='font-size: 18px; color: #7c3aed;'><strong>" . ucfirst($status) . "</strong></p>
+                    <h2>Order #" . htmlspecialchars($order_number) . "</h2>
+                    <p style='font-size: 18px; color: #7c3aed;'><strong>" . htmlspecialchars(ucfirst($status)) . "</strong></p>
                     <p>{$status_info['message']}</p>
                 </div>
                 
-                <a href='$order_url' class='button'>View Order Details</a>
+                <table width='100%' cellpadding='0' cellspacing='0'>
+                    <tr>
+                        <td align='center' style='padding: 20px 0;'>
+                            <a href='" . htmlspecialchars($order_url) . "' style='display: inline-block; background: #7c3aed; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px;'>View Order Details</a>
+                        </td>
+                    </tr>
+                </table>
                 
                 <p>If you have any questions, please don't hesitate to contact us.</p>
             </div>
@@ -402,6 +416,7 @@ function getPaymentConfirmationTemplate($order_number, $customer_name, $amount, 
     <!DOCTYPE html>
     <html>
     <head>
+        <meta charset='UTF-8'>
         <style>
             body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
             .container { max-width: 600px; margin: 0 auto; padding: 20px; }
@@ -422,9 +437,9 @@ function getPaymentConfirmationTemplate($order_number, $customer_name, $amount, 
                 
                 <div class='payment-details'>
                     <h2>Payment Details</h2>
-                    <p><strong>Order Number:</strong> $order_number</p>
+                    <p><strong>Order Number:</strong> " . htmlspecialchars($order_number) . "</p>
                     <p><strong>Amount Paid:</strong> " . formatCurrency($amount) . "</p>
-                    <p><strong>Payment Method:</strong> $payment_method</p>
+                    <p><strong>Payment Method:</strong> " . htmlspecialchars($payment_method) . "</p>
                 </div>
                 
                 <p>Your order will be processed shortly.</p>
@@ -445,6 +460,7 @@ function getShippingNotificationTemplate($order_number, $customer_name, $trackin
     <!DOCTYPE html>
     <html>
     <head>
+        <meta charset='UTF-8'>
         <style>
             body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
             .container { max-width: 600px; margin: 0 auto; padding: 20px; }
@@ -466,8 +482,8 @@ function getShippingNotificationTemplate($order_number, $customer_name, $trackin
                 
                 <div class='shipping-box'>
                     <h2>Shipping Details</h2>
-                    <p><strong>Order Number:</strong> $order_number</p>
-                    " . ($tracking_number ? "<p><strong>Tracking Number:</strong></p><div class='tracking'>$tracking_number</div>" : "<p>You will receive a tracking number soon.</p>") . "
+                    <p><strong>Order Number:</strong> " . htmlspecialchars($order_number) . "</p>
+                    " . ($tracking_number ? "<p><strong>Tracking Number:</strong></p><div class='tracking'>" . htmlspecialchars($tracking_number) . "</div>" : "<p>You will receive a tracking number soon.</p>") . "
                 </div>
                 
                 <p>Your order should arrive within 3-7 business days.</p>
@@ -490,6 +506,7 @@ function getWelcomeEmailTemplate($customer_name) {
     <!DOCTYPE html>
     <html>
     <head>
+        <meta charset='UTF-8'>
         <style>
             body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
             .container { max-width: 600px; margin: 0 auto; padding: 20px; }
@@ -516,9 +533,15 @@ function getWelcomeEmailTemplate($customer_name) {
                     <li>Track your orders easily</li>
                 </ul>
                 
-                <a href='$site_url' class='button'>Start Shopping</a>
+                <table width='100%' cellpadding='0' cellspacing='0'>
+                    <tr>
+                        <td align='center' style='padding: 20px 0;'>
+                            <a href='" . htmlspecialchars($site_url) . "' style='display: inline-block; background: #7c3aed; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px;'>Start Shopping</a>
+                        </td>
+                    </tr>
+                </table>
                 
-                <p>If you have any questions, feel free to contact us at " . SITE_EMAIL . "</p>
+                <p>If you have any questions, feel free to contact us at " . htmlspecialchars(SITE_EMAIL) . "</p>
             </div>
             <div class='footer'>
                 <p>&copy; " . date('Y') . " " . SITE_NAME . ". All rights reserved.</p>

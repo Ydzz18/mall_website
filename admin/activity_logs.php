@@ -82,77 +82,9 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Activity Logs - Admin Panel</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="icon" type="image/png" href="../logo/icon.png">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #f5f7fa;
-            color: #2c3e50;
-        }
-
-        .admin-container {
-            display: flex;
-            min-height: 100vh;
-        }
-
-        .admin-sidebar {
-            width: 250px;
-            background: #2c3e50;
-            color: white;
-            padding: 20px 0;
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-        }
-
-        .admin-logo {
-            padding: 0 20px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 20px;
-        }
-
-        .admin-logo h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .admin-nav {
-            list-style: none;
-        }
-
-        .admin-nav li {
-            margin-bottom: 5px;
-        }
-
-        .admin-nav a {
-            display: flex;
-            align-items: center;
-            padding: 12px 20px;
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .admin-nav a:hover,
-        .admin-nav a.active {
-            background: rgba(255,255,255,0.1);
-            color: white;
-        }
-
-        .admin-nav a.active {
-            border-left: 3px solid #3498db;
-        }
-
-        .admin-content {
-            flex: 1;
-            margin-left: 250px;
-            padding: 30px;
-        }
+        <?php include 'admin-styles.css'; ?>
 
         .page-header {
             background: white;
@@ -467,51 +399,18 @@ $conn->close();
         }
 
         @media (max-width: 768px) {
-            .admin-sidebar {
-                width: 200px;
-            }
-
-            .admin-content {
-                margin-left: 200px;
-                padding: 20px;
-            }
-
             .stats-grid,
             .filters-grid {
                 grid-template-columns: 1fr;
-            }
-
-            table {
-                font-size: 0.85rem;
-            }
-
-            th, td {
-                padding: 10px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="admin-container">
-        <!-- Sidebar -->
-        <aside class="admin-sidebar">
-            <div class="admin-logo">
-                <h2>🛍️ Admin Panel</h2>
-            </div>
-            <ul class="admin-nav">
-                <li><a href="dashboard.php">📊 Dashboard</a></li>
-                <li><a href="orders.php">📦 Orders</a></li>
-                <li><a href="products.php">🏷️ Products</a></li>
-                <li><a href="customers.php">👥 Customers</a></li>
-                <li><a href="categories.php">📂 Categories</a></li>
-                <li><a href="settings.php">⚙️ Settings</a></li>
-                <li><a href="activity_logs.php" class="active">📋 Activity Logs</a></li>
-                <li><a href="logout.php">🚪 Logout</a></li>
-            </ul>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="admin-content">
+    <div class="admin-wrapper">
+        <?php include 'sidebar.php'; ?>
+        
+        <main class="admin-main">
             <div class="page-header">
                 <h1>📋 Activity Logs</h1>
                 <p>Monitor all activities and actions performed in the system</p>

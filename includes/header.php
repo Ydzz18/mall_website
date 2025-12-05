@@ -9,6 +9,7 @@
                 <ul>
                     <li><a href="index.php">Home</a></li>
                     <li><a href="shop.php">Shop</a></li>
+                    <li><a href="track_order.php">Track Order</a></li>
                     <?php if (isLoggedIn()): ?>
                         <li><a href="cart.php">Cart</a></li>
                         <li><a href="orders.php">My Orders</a></li>
