@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $conn = getDBConnection();
         
         // Check if admin exists in database
-        $stmt = $conn->prepare("SELECT admin_id, username, password_hash, full_name, email, is_active FROM admin_users WHERE username = ? OR email = ?");
+        $stmt = $conn->prepare("SELECT admin_id, username, password_hash, full_name, email, is_active, role FROM admin_users WHERE username = ? OR email = ?");
         $stmt->bind_param("ss", $username, $username);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -40,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['admin_username'] = $admin['username'];
                 $_SESSION['admin_name'] = $admin['full_name'];
                 $_SESSION['admin_email'] = $admin['email'];
+                $_SESSION['admin_role'] = $admin['role'] ?? 'admin';
                 
                 // Update last login time
                 $stmt = $conn->prepare("UPDATE admin_users SET last_login = NOW() WHERE admin_id = ?");

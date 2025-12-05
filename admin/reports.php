@@ -6,6 +6,11 @@ if (!isset($_SESSION['admin_id'])) {
     exit;
 }
 
+if (!hasAdminPermission(RoleManager::PERMISSION_VIEW_REPORTS)) {
+    header('Location: index.php');
+    exit;
+}
+
 $conn = getDBConnection();
 
 // Date range filter

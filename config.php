@@ -2,12 +2,9 @@
 // Set timezone to Philippine Standard Time (GMT+8)
 date_default_timezone_set('Asia/Manila');
 
-<<<<<<< HEAD
 // Include rating functions
 require_once __DIR__ . '/includes/rating_functions.php';
 
-=======
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 // Set UTF-8 header at the very beginning
 if (!headers_sent()) {
     header('Content-Type: text/html; charset=utf-8');
@@ -44,26 +41,12 @@ if (!in_array($current_file, $allowed_files)) {
         }
     }
 }
-<<<<<<< HEAD
 
 // Database configuration
-//define('DB_HOST', 'sql100.infinityfree.com');
-//define('DB_USER', 'if0_40532602');
-//define('DB_PASS', 'NblOpzQzps');
-//define('DB_NAME', 'if0_40532602_malls');
-
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'malls');
-=======
-
-// Database configuration
-define('DB_HOST', 'sql100.infinityfree.com');
-define('DB_USER', 'if0_40532602');
-define('DB_PASS', 'NblOpzQzps');
-define('DB_NAME', 'if0_40532602_malls');
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 // Connect to database
 function getDBConnection() {
@@ -80,6 +63,7 @@ function getDBConnection() {
 }
 
 require_once __DIR__ . '/includes/ActivityLogger.php';
+require_once __DIR__ . '/includes/RoleManager.php';
 
 // Check if user is logged in
 function isLoggedIn() {
@@ -89,6 +73,31 @@ function isLoggedIn() {
 // Check if admin is logged in - SIMPLIFIED VERSION
 function isAdminLoggedIn() {
     return isset($_SESSION['admin_id']);
+}
+
+// Check if rider is logged in
+function isRiderLoggedIn() {
+    return isset($_SESSION['rider_id']);
+}
+
+// Get current admin's role
+function getAdminRole() {
+    if (!isAdminLoggedIn()) return null;
+    return $_SESSION['admin_role'] ?? 'admin';
+}
+
+// Check if current admin has permission
+function hasAdminPermission($permission) {
+    $role = getAdminRole();
+    if (!$role) return false;
+    return RoleManager::hasPermission($role, $permission);
+}
+
+// Check if current admin has permission to create a role
+function canCreateAdminRole($targetRole) {
+    $currentRole = getAdminRole();
+    if (!$currentRole) return false;
+    return RoleManager::canCreateRole($currentRole, $targetRole);
 }
 
 // Get current user
@@ -106,6 +115,23 @@ function getCurrentUser() {
     $user = $result->fetch_assoc();
     $conn->close();
     return $user;
+}
+
+// Get current rider
+function getCurrentRider() {
+    if (!isRiderLoggedIn()) return null;
+    
+    $conn = getDBConnection();
+    if (!$conn) return null;
+    
+    $rider_id = $_SESSION['rider_id'];
+    $stmt = $conn->prepare("SELECT rider_id, email, first_name, last_name, vehicle_type, vehicle_plate, status, rating FROM riders WHERE rider_id = ?");
+    $stmt->bind_param("i", $rider_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $rider = $result->fetch_assoc();
+    $conn->close();
+    return $rider;
 }
 
 // Global settings cache

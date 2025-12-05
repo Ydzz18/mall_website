@@ -7,18 +7,18 @@ if (!isset($_SESSION['admin_id'])) {
     exit;
 }
 
+if (!hasAdminPermission(RoleManager::PERMISSION_MANAGE_ADMINS)) {
+    header('Location: index.php');
+    exit;
+}
+
 $conn = getDBConnection();
 
-// Check if current user is super admin
+// Get current admin
 $stmt = $conn->prepare("SELECT role FROM admin_users WHERE admin_id = ?");
 $stmt->bind_param("i", $_SESSION['admin_id']);
 $stmt->execute();
 $current_admin = $stmt->get_result()->fetch_assoc();
-
-if ($current_admin['role'] !== 'super_admin') {
-    header('Location: index.php');
-    exit;
-}
 
 $message = '';
 $error = '';
@@ -40,7 +40,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_admin'])) {
     $password = $_POST['password'];
     $role = $_POST['role'];
     
-    if (strlen($password) < 6) {
+    if (!canCreateAdminRole($role)) {
+        $error = 'You do not have permission to create this role.';
+    } elseif (strlen($password) < 6) {
         $error = 'Password must be at least 6 characters long.';
     } else {
         $password_hash = password_hash($password, PASSWORD_DEFAULT);
@@ -223,6 +225,17 @@ $conn->close();
         
         .admin-badge {
             background: #3498db;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        
+        .moderator-badge {
+            background: #27ae60;
             color: white;
             padding: 4px 10px;
             border-radius: 20px;
@@ -480,10 +493,12 @@ $conn->close();
                                     </span>
                                 </td>
                                 <td>
-                                    <?php if ($admin['role'] === 'super_admin'): ?>
+                                    <?php if ($admin['role'] === RoleManager::ROLE_SUPER_ADMIN): ?>
                                         <span class="super-admin-badge">👑 SUPER ADMIN</span>
-                                    <?php else: ?>
+                                    <?php elseif ($admin['role'] === RoleManager::ROLE_ADMIN): ?>
                                         <span class="admin-badge">🔧 ADMIN</span>
+                                    <?php elseif ($admin['role'] === RoleManager::ROLE_MODERATOR): ?>
+                                        <span class="moderator-badge">🛡️ MODERATOR</span>
                                     <?php endif; ?>
                                 </td>
                                 <td>
@@ -555,8 +570,9 @@ $conn->close();
             <div class="warning-box">
                 <h4>⚠️ Role Permissions</h4>
                 <ul>
-                    <li><strong>Super Admin:</strong> Full system access, can manage other admins</li>
-                    <li><strong>Admin:</strong> Can manage products, orders, customers (cannot manage admins)</li>
+                    <li><strong>Super Admin:</strong> Full system access, can manage other admins and moderators</li>
+                    <li><strong>Admin:</strong> Can manage products, orders, customers, and create moderators</li>
+                    <li><strong>Moderator:</strong> Limited access - can view orders, manage reviews, and manage customers</li>
                 </ul>
             </div>
             
@@ -587,8 +603,12 @@ $conn->close();
                     <div class="form-group">
                         <label>Role *</label>
                         <select name="role" required class="role-select-highlight">
-                            <option value="admin">🔧 Admin</option>
-                            <option value="super_admin">👑 Super Admin</option>
+                            <?php if ($current_admin['role'] === RoleManager::ROLE_SUPER_ADMIN): ?>
+                                <option value="<?php echo RoleManager::ROLE_ADMIN; ?>">🔧 Admin</option>
+                                <option value="<?php echo RoleManager::ROLE_MODERATOR; ?>">🛡️ Moderator</option>
+                            <?php elseif ($current_admin['role'] === RoleManager::ROLE_ADMIN): ?>
+                                <option value="<?php echo RoleManager::ROLE_MODERATOR; ?>">🛡️ Moderator</option>
+                            <?php endif; ?>
                         </select>
                     </div>
                 </div>

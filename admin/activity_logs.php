@@ -11,6 +11,11 @@ if (!isset($_SESSION['admin_id'])) {
     exit;
 }
 
+if (!hasAdminPermission(RoleManager::PERMISSION_VIEW_ACTIVITY_LOGS)) {
+    header('Location: index.php');
+    exit;
+}
+
 $admin_id = $_SESSION['admin_id'];
 $logger = new ActivityLogger();
 

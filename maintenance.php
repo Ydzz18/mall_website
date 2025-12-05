@@ -4,11 +4,8 @@ require_once 'config.php';
 // Check if maintenance mode is actually enabled
 // If not, redirect to homepage
 $conn = getDBConnection();
-<<<<<<< HEAD
 $contact_info = array();
 
-=======
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 if ($conn) {
     $result = $conn->query("SELECT setting_value FROM site_settings WHERE setting_key = 'maintenance_mode'");
     if ($result && $row = $result->fetch_assoc()) {
@@ -24,7 +21,6 @@ if ($conn) {
             exit;
         }
     }
-<<<<<<< HEAD
     
     // Fetch contact information from database
     $contact_result = $conn->query("SELECT setting_key, setting_value FROM site_settings WHERE setting_key IN ('support_email', 'support_phone', 'support_hours')");
@@ -37,10 +33,6 @@ if ($conn) {
     $conn->close();
 }
 ?>
-=======
-    $conn->close();
-}
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 // Check if admin is logged in - allow them to access site
 if (isset($_SESSION['admin_id'])) {

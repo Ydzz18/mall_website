@@ -99,6 +99,7 @@ project-root/
 │   ├── header.php            # Site header
 │   ├── footer.php            # Site footer
 │   ├── ActivityLogger.php    # Activity logging
+│   ├── RoleManager.php       # Role-based access control
 │   ├── email.php             # Email functions
 │   └── notifications.php     # Notification functions
 │
@@ -675,30 +676,117 @@ ENABLE_PAYMENT_EMAILS
 
 The admin panel is a comprehensive management interface accessible at `/admin/` that allows administrators to manage all aspects of the e-commerce platform. Three role levels provide different permission levels.
 
-### Admin Roles
+### Admin Roles & Permission System
+
+The platform implements a hierarchical role-based access control (RBAC) system managed through the **RoleManager** class (`includes/RoleManager.php`).
 
 #### **Super Admin** (`super_admin`)
-- **Full system access**
-- User management
-- All admin functions
-- System settings
-- Admin user management
-- Reset functionality
+**Permissions:**
+- Full system access to all features
+- **Admin Management**: Create, edit, delete admins and moderators
+- **Product Management**: Full CRUD operations on all products and categories
+- **Order Management**: View and manage all orders
+- **Inventory Management**: Full inventory control
+- **Customer Management**: Full customer access and control
+- **Coupon Management**: Create and manage all coupons
+- **Review Management**: Approve/reject all reviews
+- **Rider Management**: Full control of rider accounts
+- **Delivery Management**: Manage all deliveries
+- **Reports**: Access to all reports
+- **Activity Logs**: View all system activity
+- **Settings**: Modify all system settings
 
 #### **Admin** (`admin`)
-- Product management
-- Order management
-- Inventory management
-- Customer management
-- Coupon management
-- Reports and activity logs
+**Permissions:**
+- **Moderator Management**: Can create and manage moderators only
+- **Product Management**: Full CRUD operations on all products and categories
+- **Order Management**: View and manage all orders and order details
+- **Inventory Management**: Full inventory control
+- **Customer Management**: Full customer access and control
+- **Coupon Management**: Create and manage all coupons
+- **Review Management**: Approve/reject all reviews
+- **Rider Management**: Full control of rider accounts
+- **Delivery Management**: Manage all deliveries
+- **Reports**: Access to all reports
+- **Activity Logs**: View all system activity
+- **Restrictions**: 
+  - Cannot create other admins or super admins
+  - Cannot access settings page
+  - Cannot manage other admin accounts
 
 #### **Moderator** (`moderator`)
-- View orders and order details
-- View customers
-- View activity logs
-- View reports
-- Restricted product/inventory modifications
+**Permissions:**
+- **Order Management**: View and manage orders
+- **Customer Management**: View and manage customer information
+- **Review Management**: View and manage product reviews
+- **Activity Logs**: View activity logs
+- **Dashboard**: Access to dashboard view
+- **Restrictions**:
+  - No access to product management
+  - No access to inventory management
+  - No access to coupon creation
+  - No access to rider management
+  - No access to delivery management
+  - No access to reports
+  - No access to settings
+  - No access to admin user management
+
+### Permission Management System
+
+#### Permission Constants (`includes/RoleManager.php`)
+```php
+// Available permissions
+PERMISSION_VIEW_DASHBOARD
+PERMISSION_MANAGE_USERS
+PERMISSION_MANAGE_ADMINS        // Only Super Admin
+PERMISSION_MANAGE_MODERATORS    // Super Admin & Admin
+PERMISSION_MANAGE_PRODUCTS
+PERMISSION_MANAGE_ORDERS
+PERMISSION_MANAGE_CUSTOMERS
+PERMISSION_MANAGE_CATEGORIES
+PERMISSION_MANAGE_COUPONS
+PERMISSION_MANAGE_INVENTORY
+PERMISSION_MANAGE_REVIEWS
+PERMISSION_MANAGE_RIDERS
+PERMISSION_MANAGE_DELIVERIES
+PERMISSION_VIEW_REPORTS
+PERMISSION_MANAGE_SETTINGS      // Only Super Admin
+PERMISSION_VIEW_ACTIVITY_LOGS
+```
+
+#### Helper Functions (`config.php`)
+```php
+// Get current admin's role
+getAdminRole() -> string
+
+// Check if current admin has specific permission
+hasAdminPermission($permission) -> boolean
+
+// Check if current admin can create a role
+canCreateAdminRole($targetRole) -> boolean
+```
+
+#### Implementation Pattern
+Every protected admin page follows this pattern:
+```php
+<?php
+require_once '../config.php';
+
+// Check login
+if (!isset($_SESSION['admin_id'])) {
+    header('Location: login.php');
+    exit;
+}
+
+// Check permission
+if (!hasAdminPermission(RoleManager::PERMISSION_MANAGE_PRODUCTS)) {
+    header('Location: index.php');
+    exit;
+}
+```
+
+#### Navigation Filtering
+The sidebar (`admin/sidebar.php`) automatically filters menu items based on the current user's role using permission checks. Users only see menu items they have access to.
 
 ### Admin Features
 
@@ -933,22 +1021,55 @@ Fixed Amount: ₱500 off (discount_value = 500)
 - Auto-blocks customer access
 - Admin access maintained
 
-#### 11. **User Management** (`admin/super_admin.php`)
+#### 11. **Admin Management** (`admin/super_admin.php`)
 
-**Super Admin Only:**
-- View all admin users
-- Create new admin accounts
-- Edit admin user roles
-- Activate/deactivate admin accounts
-- Manage admin permissions
-- View admin last login
+**Access Level:** Super Admin only (automatic menu filtering based on role)
 
-#### 12. **Password Reset** (`admin/reset_password.php`)
+**Features:**
+- **View All Admins:**
+  - Total admin count
+  - Super Admin count
+  - Regular Admin count
+  - Moderator count
+  - Active/Inactive status breakdown
+  
+- **Create New Admin/Moderator:**
+  - Role-restricted creation (Super Admin can create Admins & Moderators, Admin can create Moderators only)
+  - Username and email validation
+  - Password strength requirements (min 6 characters)
+  - Full name entry
+  - Role assignment with restricted options based on current role
 
-**Super Admin Only:**
-- Reset admin passwords
-- Force password reset on next login
-- Prevent account lockouts
+- **Admin Account Management:**
+  - Edit admin details (name, email)
+  - Update admin role
+  - Activate/deactivate accounts
+  - View admin activity (total actions performed)
+  - View last activity timestamp
+  - Delete admin accounts (prevents self-deletion)
+
+- **Admin Statistics:**
+  - Last login tracking
+  - Activity metrics per admin
+  - Account creation timestamp
+
+**Role-Based Creation Restrictions:**
+- Super Admin: Can create Admins and Moderators
+- Admin: Can create Moderators only
+- Moderator: Cannot create any users
+
+#### 12. **Rider Management** (`admin/riders.php`)
+
+**Access Level:** Admin+ (Admin, Super Admin)
+
+**Features:**
+- View all riders with status
+- Create new rider accounts
+- Edit rider information
+- Activate/deactivate riders
+- View rider ratings and performance
+- Track rider delivery statistics
+- Update rider vehicle information
 
 ### Admin Authentication
 
@@ -968,10 +1089,32 @@ Fixed Amount: ₱500 off (discount_value = 500)
 - Session timeout: 1 hour
 - Automatic logout on browser close
 
+#### Role-Based Access Control
+```php
+// Session stores role on login
+$_SESSION['admin_role'] = $admin['role'];
+
+// Permission checks on protected pages
+if (!hasAdminPermission(RoleManager::PERMISSION_MANAGE_PRODUCTS)) {
+    header('Location: index.php');
+    exit;
+}
+
+// Dynamic menu filtering in sidebar
+if (hasAdminPermission(RoleManager::PERMISSION_MANAGE_PRODUCTS)) {
+    // Show menu item
+}
+```
+
 #### Security Features
 - Password hashing (bcrypt)
 - Session-based authentication
 - Admin-only routes protection
+- **Role-based access control (RBAC)** with granular permissions
+- Permission enforcement on all protected pages
+- Automatic sidebar menu filtering by role
+- Hierarchical role system (Super Admin → Admin → Moderator)
+- Restricted role creation (cannot create above current role)
 - Activity logging for all actions
 - IP address logging
 - User agent tracking

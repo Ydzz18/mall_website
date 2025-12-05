@@ -6,6 +6,11 @@ if (!isset($_SESSION['admin_id'])) {
 }
 
 require_once '../config.php';
+
+if (!hasAdminPermission(RoleManager::PERMISSION_MANAGE_ORDERS)) {
+    header('Location: index.php');
+    exit;
+}
 $conn = getDBConnection();
 
 $message = '';

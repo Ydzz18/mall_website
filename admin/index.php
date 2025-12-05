@@ -7,6 +7,12 @@ if (!isset($_SESSION['admin_id'])) {
     exit;
 }
 
+// Check permission
+if (!hasAdminPermission(RoleManager::PERMISSION_VIEW_DASHBOARD)) {
+    header('Location: logout.php');
+    exit;
+}
+
 // Get dashboard statistics
 $conn = getDBConnection();
 

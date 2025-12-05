@@ -1,53 +1,180 @@
-<aside class="admin-sidebar">
+<button class="mobile-menu-toggle" id="mobileMenuToggle">
+    <span id="menuIcon">☰</span>
+</button>
+
+<aside class="admin-sidebar" id="adminSidebar">
     <div class="admin-logo">NCCC Admin</div>
     <nav class="admin-nav">
+        <?php if (hasAdminPermission(RoleManager::PERMISSION_VIEW_DASHBOARD)): ?>
         <a href="index.php" class="nav-item <?php echo basename($_SERVER['PHP_SELF']) === 'index.php' ? 'active' : ''; ?>">
             <span class="nav-icon">📊</span>
             <span>Dashboard</span>
         </a>
+        <?php endif; ?>
+        
+        <?php if (hasAdminPermission(RoleManager::PERMISSION_MANAGE_ORDERS)): ?>
         <a href="orders.php" class="nav-item <?php echo basename($_SERVER['PHP_SELF']) === 'orders.php' ? 'active' : ''; ?>">
             <span class="nav-icon">📦</span>
             <span>Orders</span>
         </a>
+        <?php endif; ?>
+        
+        <?php if (hasAdminPermission(RoleManager::PERMISSION_MANAGE_DELIVERIES)): ?>
+        <a href="deliveries.php" class="nav-item <?php echo basename($_SERVER['PHP_SELF']) === 'deliveries.php' ? 'active' : ''; ?>">
+            <span class="nav-icon">🚚</span>
+            <span>Deliveries</span>
+        </a>
+        <?php endif; ?>
+        
+        <?php if (hasAdminPermission(RoleManager::PERMISSION_MANAGE_RIDERS)): ?>
+        <a href="riders.php" class="nav-item <?php echo basename($_SERVER['PHP_SELF']) === 'riders.php' ? 'active' : ''; ?>">
+            <span class="nav-icon">🏍️</span>
+            <span>Riders</span>
+        </a>
+        <?php endif; ?>
+        
+        <?php if (hasAdminPermission(RoleManager::PERMISSION_MANAGE_PRODUCTS)): ?>
         <a href="products.php" class="nav-item <?php echo basename($_SERVER['PHP_SELF']) === 'products.php' ? 'active' : ''; ?>">
             <span class="nav-icon">🛍️</span>
             <span>Products</span>
         </a>
+        <?php endif; ?>
+        
+        <?php if (hasAdminPermission(RoleManager::PERMISSION_MANAGE_CUSTOMERS)): ?>
         <a href="customers.php" class="nav-item <?php echo basename($_SERVER['PHP_SELF']) === 'customers.php' ? 'active' : ''; ?>">
             <span class="nav-icon">👥</span>
             <span>Customers</span>
         </a>
+        <?php endif; ?>
+        
+        <?php if (hasAdminPermission(RoleManager::PERMISSION_MANAGE_CATEGORIES)): ?>
         <a href="categories.php" class="nav-item <?php echo basename($_SERVER['PHP_SELF']) === 'categories.php' ? 'active' : ''; ?>">
             <span class="nav-icon">📑</span>
             <span>Categories</span>
         </a>
+        <?php endif; ?>
+        
+        <?php if (hasAdminPermission(RoleManager::PERMISSION_MANAGE_INVENTORY)): ?>
         <a href="inventory.php" class="nav-item <?php echo basename($_SERVER['PHP_SELF']) === 'inventory.php' ? 'active' : ''; ?>">
             <span class="nav-icon">📊</span>
             <span>Inventory</span>
         </a>
+        <?php endif; ?>
+        
+        <?php if (hasAdminPermission(RoleManager::PERMISSION_MANAGE_COUPONS)): ?>
         <a href="coupons.php" class="nav-item <?php echo basename($_SERVER['PHP_SELF']) === 'coupons.php' ? 'active' : ''; ?>">
             <span class="nav-icon">🎫</span>
             <span>Coupons</span>
         </a>
+        <?php endif; ?>
+        
+        <?php if (hasAdminPermission(RoleManager::PERMISSION_MANAGE_REVIEWS)): ?>
         <a href="reviews.php" class="nav-item <?php echo basename($_SERVER['PHP_SELF']) === 'reviews.php' ? 'active' : ''; ?>">
             <span class="nav-icon">⭐</span>
             <span>Reviews</span>
         </a>
+        <?php endif; ?>
+        
+        <?php if (hasAdminPermission(RoleManager::PERMISSION_VIEW_REPORTS)): ?>
         <a href="reports.php" class="nav-item <?php echo basename($_SERVER['PHP_SELF']) === 'reports.php' ? 'active' : ''; ?>">
             <span class="nav-icon">📈</span>
             <span>Reports</span>
         </a>
+        <?php endif; ?>
+        
+        <?php if (hasAdminPermission(RoleManager::PERMISSION_MANAGE_SETTINGS)): ?>
         <a href="settings.php" class="nav-item <?php echo basename($_SERVER['PHP_SELF']) === 'settings.php' ? 'active' : ''; ?>">
             <span class="nav-icon">⚙️</span>
             <span>Settings</span>
         </a>
+        <?php endif; ?>
+        
+        <?php if (hasAdminPermission(RoleManager::PERMISSION_MANAGE_RIDERS)): ?>
+        <a href="setup_riders.php" class="nav-item <?php echo basename($_SERVER['PHP_SELF']) === 'setup_riders.php' ? 'active' : ''; ?>">
+            <span class="nav-icon">🔧</span>
+            <span>Rider Setup</span>
+        </a>
+        <?php endif; ?>
+        
+        <?php if (hasAdminPermission(RoleManager::PERMISSION_VIEW_ACTIVITY_LOGS)): ?>
         <a href="activity_logs.php" class="nav-item <?php echo basename($_SERVER['PHP_SELF']) === 'activity_logs.php' ? 'active' : ''; ?>">
             <span class="nav-icon">📋</span>
             <span>Activity Logs</span>
         </a>
+        <?php endif; ?>
+        
+        <?php if (hasAdminPermission(RoleManager::PERMISSION_MANAGE_ADMINS)): ?>
+        <a href="super_admin.php" class="nav-item <?php echo basename($_SERVER['PHP_SELF']) === 'super_admin.php' ? 'active' : ''; ?>">
+            <span class="nav-icon">👑</span>
+            <span>Admin Management</span>
+        </a>
+        <?php endif; ?>
+        
         <a href="logout.php" class="nav-item">
             <span class="nav-icon">🚪</span>
             <span>Logout</span>
         </a>
     </nav>
 </aside>
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+
+<script>
+(function() {
+    function initMobileMenu() {
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const adminSidebar = document.getElementById('adminSidebar');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        const menuIcon = document.getElementById('menuIcon');
+        
+        if (!mobileMenuToggle || !adminSidebar || !mobileOverlay) {
+            console.error('Mobile menu elements not found');
+            return;
+        }
+        
+        function toggleMenu(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            const isOpen = adminSidebar.classList.contains('open');
+            
+            if (isOpen) {
+                adminSidebar.classList.remove('open');
+                mobileOverlay.classList.remove('active');
+                menuIcon.textContent = '☰';
+            } else {
+                adminSidebar.classList.add('open');
+                mobileOverlay.classList.add('active');
+                menuIcon.textContent = '✕';
+            }
+        }
+        
+        function closeMenu() {
+            adminSidebar.classList.remove('open');
+            mobileOverlay.classList.remove('active');
+            menuIcon.textContent = '☰';
+        }
+        
+        mobileMenuToggle.addEventListener('click', toggleMenu, false);
+        mobileOverlay.addEventListener('click', closeMenu, false);
+        
+        const navItems = adminSidebar.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                closeMenu();
+            }, false);
+        });
+        
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 968) {
+                closeMenu();
+            }
+        });
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMobileMenu);
+    } else {
+        initMobileMenu();
+    }
+})();
+</script>

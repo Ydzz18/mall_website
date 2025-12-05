@@ -1,5 +1,9 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+html, body {
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     background: #f0f4f8;
@@ -13,7 +17,7 @@ body {
 
 /* Sidebar */
 .admin-sidebar {
-    width: 260px;
+    width: 80px;
     background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
     color: white;
     position: fixed;
@@ -21,7 +25,12 @@ body {
     overflow-y: auto;
     border-right: 1px solid rgba(51, 65, 85, 0.3);
     z-index: 1000;
-    transition: transform 0.3s ease;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.admin-sidebar:hover {
+    width: 260px;
 }
 
 .admin-logo {
@@ -32,6 +41,13 @@ body {
     text-align: center;
     background: rgba(91, 33, 182, 0.1);
     background: linear-gradient(135deg, rgba(91, 33, 182, 0.1), rgba(6, 182, 212, 0.05));
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.admin-sidebar:hover .admin-logo {
+    opacity: 1;
 }
 
 .admin-nav {
@@ -39,15 +55,23 @@ body {
 }
 
 .nav-item {
-    padding: 14px 25px;
+    padding: 14px 20px;
     color: rgba(226, 232, 240, 0.7);
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 12px;
-    transition: all 0.25s;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     border-left: 3px solid transparent;
     margin: 2px 0;
+    min-height: 52px;
+    justify-content: center;
+    white-space: nowrap;
+}
+
+.admin-sidebar:hover .nav-item {
+    justify-content: flex-start;
+    padding: 14px 25px;
 }
 
 .nav-item:hover, .nav-item.active {
@@ -57,8 +81,26 @@ body {
 }
 
 .nav-icon {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     min-width: 24px;
+    flex-shrink: 0;
+}
+
+.nav-item span:last-child {
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 0;
+}
+
+.admin-sidebar:hover .nav-item span:last-child {
+    opacity: 1;
+    max-width: 100px;
+}
+
+.nav-item:hover span:last-child,
+.nav-item.active span:last-child {
+    opacity: 1;
+    max-width: 100px;
 }
 
 /* Mobile Menu Toggle */
@@ -76,6 +118,11 @@ body {
     cursor: pointer;
     font-size: 1.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-menu-toggle:active {
+    transform: scale(0.95);
 }
 
 .mobile-overlay {
@@ -86,16 +133,30 @@ body {
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    z-index: 998;
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.mobile-overlay.active {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 /* Main Content */
 .admin-main {
-    margin-left: 260px;
+    margin-left: 80px;
     flex: 1;
     padding: 30px;
     width: 100%;
     min-width: 0;
+    transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.admin-sidebar:hover ~ .admin-main {
+    margin-left: 260px;
 }
 
 .admin-header {
@@ -343,11 +404,31 @@ body {
 /* Tablets (max-width: 968px) */
 @media (max-width: 968px) {
     .admin-sidebar {
+        width: 260px;
         transform: translateX(-260px);
+        overflow-y: auto;
+    }
+    
+    .admin-sidebar:hover {
+        width: 260px;
     }
     
     .admin-sidebar.active {
         transform: translateX(0);
+    }
+    
+    .admin-logo {
+        opacity: 1;
+    }
+    
+    .nav-item {
+        justify-content: flex-start;
+        padding: 14px 25px;
+    }
+    
+    .nav-item span:last-child {
+        opacity: 1;
+        max-width: 100px;
     }
     
     .mobile-menu-toggle {
@@ -361,6 +442,10 @@ body {
     .admin-main {
         margin-left: 0;
         padding: 100px 20px 20px;
+    }
+    
+    .admin-wrapper:hover .admin-main {
+        margin-left: 0;
     }
     
     .admin-header {
@@ -939,8 +1024,93 @@ body {
     margin-top: 10px;
 }
 
-/* Mobile adjustments for filters */
+/* Mobile Sidebar Styles */
+@media (max-width: 968px) {
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .admin-sidebar {
+        width: 0 !important;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        overflow: hidden;
+        z-index: 1000;
+        transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        border-right: 1px solid rgba(51, 65, 85, 0.3);
+    }
+    
+    .admin-sidebar.open {
+        width: 260px !important;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+        overflow-y: auto;
+        visibility: visible;
+    }
+    
+    .admin-sidebar:hover {
+        width: 0 !important;
+    }
+    
+    .admin-sidebar.open .admin-logo {
+        opacity: 1 !important;
+    }
+    
+    .admin-sidebar.open .nav-item {
+        justify-content: flex-start;
+        padding: 14px 25px;
+    }
+    
+    .admin-sidebar.open .nav-item span:last-child {
+        opacity: 1 !important;
+        max-width: 100px;
+    }
+    
+    .admin-sidebar.open .nav-item.active span:last-child {
+        opacity: 0 !important;
+        max-width: 0;
+    }
+    
+    .admin-main {
+        margin-left: 0;
+        padding-top: 80px;
+    }
+    
+    .admin-sidebar:hover ~ .admin-main {
+        margin-left: 0;
+    }
+}
+
 @media (max-width: 640px) {
+    .mobile-menu-toggle {
+        top: 15px;
+        left: 15px;
+        padding: 10px 12px;
+        font-size: 1.2rem;
+    }
+    
+    .admin-main {
+        padding: 20px;
+        padding-top: 70px;
+    }
+    
+    .admin-header {
+        padding: 16px 20px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .admin-header h1 {
+        font-size: 1.3rem;
+    }
+    
+    .admin-user {
+        width: 100%;
+        gap: 10px;
+    }
+    
     .filter-grid {
         grid-template-columns: 1fr;
     }
@@ -962,5 +1132,13 @@ body {
     .filter-summary {
         flex-direction: column;
         align-items: flex-start;
+    }
+    
+    table {
+        font-size: 0.85rem;
+    }
+    
+    th, td {
+        padding: 10px;
     }
 }
