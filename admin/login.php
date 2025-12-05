@@ -270,6 +270,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                        required
                        placeholder="Enter your password">
             </div>
+<<<<<<< HEAD
+=======
+            
+               <div class="back-link">
+                   <a href="reset_password.php">Forgot Password?</a>
+               </div>
+            
+>>>>>>> abd58bf62e8dc875020e1b26bb184585e4ed1d43
             <button type="submit" class="btn-login" id="loginBtn">
                 Login to Dashboard
             </button>
@@ -278,6 +286,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="links-container">
             <a href="reset_password.php">🔑 Forgot Password?</a>
             <a href="../index.php">← Back to Store</a>
+        </div>
+        
+        <div class="demo-info">
+            <strong>📋 Default Admin Credentials:</strong>
+            <div class="demo-credentials">
+                <p><strong>Username:</strong> admin</p>
+                <p><strong>Password:</strong> admin123</p>
+            </div>
+            <p style="margin-top: 10px; font-size: 0.85rem; color: #666;">
+                ⚠️ Make sure to change the default password after first login!
+            </p>
         </div>
     </div>
     
