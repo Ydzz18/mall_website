@@ -1,4 +1,5 @@
 -- phpMyAdmin SQL Dump
+<<<<<<< HEAD
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
@@ -9,6 +10,17 @@
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
+=======
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Dec 01, 2025 at 12:46 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +31,11 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
+<<<<<<< HEAD
 -- Database: `if0_40532602_malls`
+=======
+-- Database: `nccc_malls`
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 --
 
 -- --------------------------------------------------------
@@ -48,6 +64,7 @@ CREATE TABLE `activity_logs` (
 --
 
 INSERT INTO `activity_logs` (`log_id`, `user_type`, `user_id`, `action_type`, `action_description`, `table_affected`, `record_id`, `old_values`, `new_values`, `ip_address`, `user_agent`, `created_at`) VALUES
+<<<<<<< HEAD
 (1, 'customer', 2, 'logout', 'Customer logged out', 'customers', 2, NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-01 11:45:24'),
 (2, 'admin', 1, 'admin_login', 'Admin logged in: Admin User', 'admin_users', 1, NULL, NULL, '112.202.115.240', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-01 12:05:11'),
 (3, 'admin', 1, 'product_image_add', 'Image added to product (ID: 51)', 'product_images', 278, NULL, '{\"image_url\":\"https:\\/\\/ph.garmin.com\\/m\\/ph\\/g\\/products\\/fenix-7x-pro-sapphire-carbongray-cf-lg.jpg\",\"is_primary\":1}', '112.202.115.240', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-02 00:13:18'),
@@ -463,6 +480,9 @@ INSERT INTO `activity_logs` (`log_id`, `user_type`, `user_id`, `action_type`, `a
 (409, 'admin', 2, 'admin_login', 'Admin logged in: System Administrator', 'admin_users', 2, NULL, NULL, '49.144.56.236', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-05 09:39:11'),
 (410, 'admin', 2, 'maintenance_mode_toggle', 'Maintenance mode enabled', 'site_settings', NULL, NULL, '{\"maintenance_mode\":\"0\"}', '112.202.101.113', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-05 09:42:34'),
 (411, 'admin', 2, 'maintenance_mode_toggle', 'Maintenance mode disabled', 'site_settings', NULL, NULL, '{\"maintenance_mode\":\"1\"}', '112.202.101.113', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-05 09:43:24');
+=======
+(1, 'customer', 2, 'logout', 'Customer logged out', 'customers', 2, NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-01 11:45:24');
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 -- --------------------------------------------------------
 
@@ -490,6 +510,7 @@ CREATE TABLE `addresses` (
 INSERT INTO `addresses` (`address_id`, `customer_id`, `address_type`, `is_default`, `street_address`, `city`, `state_province`, `postal_code`, `country`, `created_at`) VALUES
 (1, 3, 'billing', 1, '123', 'Puerto Princesa', 'Palawan', '5300', 'Philippines', '2025-11-24 02:54:32'),
 (2, 2, 'billing', 1, '123', 'Puerto Princesa', 'Palawan', '5300', 'Philippines', '2025-11-28 10:44:57'),
+<<<<<<< HEAD
 (3, 4, 'billing', 1, '123', 'Puerto Princesa', 'Palawan', '5300', 'Philippines', '2025-11-29 00:44:47'),
 (4, 5, 'billing', 0, 'asadf', 'asdfasdf', 'dfcvzxcv', 'qwetgsfdbzxc', 'Philippines', '2025-12-03 05:16:44'),
 (5, 5, 'billing', 1, 'asadf', 'asdfasdf', 'dfcvzxcv', 'qwetgsfdbzxc', 'Philippines', '2025-12-03 05:17:00');
@@ -516,6 +537,9 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`admin_id`, `username`, `password_hash`, `email`, `full_name`, `is_active`, `created_at`) VALUES
 (2, 'Ydzz', '$2y$10$O8l8wg8nM2JNPr8HU4B/wutyHt9hIG/Zcafv5nVxe0CY7R.t2pAv6', 'yayenydrian@gmail.com', 'Ydrian Yayen', 1, '2025-12-02 04:56:33');
+=======
+(3, 4, 'billing', 1, '123', 'Puerto Princesa', 'Palawan', '5300', 'Philippines', '2025-11-29 00:44:47');
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 -- --------------------------------------------------------
 
@@ -533,19 +557,28 @@ CREATE TABLE `admin_users` (
   `is_active` tinyint(1) DEFAULT 1,
   `last_login` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+<<<<<<< HEAD
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `reset_token` varchar(64) DEFAULT NULL,
   `reset_token_expiry` datetime DEFAULT NULL
+=======
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin_users`
 --
 
+<<<<<<< HEAD
 INSERT INTO `admin_users` (`admin_id`, `username`, `email`, `password_hash`, `full_name`, `role`, `is_active`, `last_login`, `created_at`, `updated_at`, `reset_token`, `reset_token_expiry`) VALUES
 (2, 'admin', 'admin@jrdmalls.com', '$2y$10$BS3i0G5xLmbdxmP4gciC3ORaUHLzkUlfjMvunlR7CnMG.afLNem/e', 'System Administrator', 'super_admin', 1, '2025-12-05 09:39:11', '2025-12-02 05:03:06', '2025-12-05 09:39:11', NULL, NULL),
 (3, 'Ydzz', 'yayenydrian@gmail.com', '$2y$10$uq77U5I.1w.6fdXbh5pxhu4M8l6LY8wFhr1.8UoQ9sASGGIFHLvh6', 'Ydrian Yayen', 'admin', 1, '2025-12-04 02:22:46', '2025-12-02 05:22:37', '2025-12-04 02:22:46', NULL, NULL),
 (4, 'adminigger', 'andrepagliawan0@gmail.com', '$2y$10$ZEovK1SpHQV20ZqGk0gIp.3AZTRr2bce1e6z4Y71odh7Bwe8s/O.2', 'Baba Boui', 'admin', 1, '2025-12-03 04:46:35', '2025-12-02 06:12:10', '2025-12-03 04:46:35', NULL, NULL);
+=======
+INSERT INTO `admin_users` (`admin_id`, `username`, `email`, `password_hash`, `full_name`, `role`, `is_active`, `last_login`, `created_at`, `updated_at`) VALUES
+(1, 'admin', 'admin@jrdmalls.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'System Administrator', 'super_admin', 1, NULL, '2025-12-01 10:59:22', '2025-12-01 10:59:22');
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 -- --------------------------------------------------------
 
@@ -608,7 +641,11 @@ CREATE TABLE `coupons` (
 --
 
 INSERT INTO `coupons` (`coupon_id`, `coupon_code`, `description`, `discount_type`, `discount_value`, `min_purchase_amount`, `max_discount_amount`, `usage_limit`, `usage_count`, `start_date`, `end_date`, `is_active`, `created_at`) VALUES
+<<<<<<< HEAD
 (2, '123', 'Test', 'percentage', '10.00', '10000.00', '1000.00', 2, 0, '2025-12-05', '2025-12-06', 1, '2025-12-05 04:58:40');
+=======
+(1, '1', 'Gadget', 'percentage', 10.00, 100.00, NULL, NULL, 0, '2025-11-28', '2025-11-29', 1, '2025-11-28 12:40:58');
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 -- --------------------------------------------------------
 
@@ -635,10 +672,16 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customer_id`, `email`, `password_hash`, `first_name`, `last_name`, `phone`, `date_of_birth`, `created_at`, `updated_at`, `is_active`, `last_login`) VALUES
+<<<<<<< HEAD
 (2, 'yayenydrian@gmail.com', '$2y$10$.VYqTcirLgMMy5zONfCPBuP3A/BOqN2ui9sy8tgtktgmMOqDl7GBW', 'Ydrian', 'Yayen', '09461478420', '2002-05-18', '2025-11-24 00:16:42', '2025-12-05 09:35:00', 1, '2025-12-05 09:35:00'),
 (3, 'johndoe@gmail.com', '$2y$10$UwyejG2ch57BFD.W5zxD5eDCGhmvfdjWncFQX5BfSs/5N/g9saymG', 'john', 'doe', '09123121231', NULL, '2025-11-24 02:52:43', '2025-11-24 02:52:52', 1, '2025-11-24 02:52:52'),
 (4, 'andrepagliawan@gmail.com', '$2y$10$A.kIRqkRC4wvR4Fj1TQvMeftFcGwtdnY9pW.NCgjTgMlUGHkKgj/G', 'Andre', 'Pagliawan', '09123121231', NULL, '2025-11-29 00:25:52', '2025-12-03 05:14:46', 1, '2025-11-29 00:26:05'),
 (5, 'andrepagliawan0@gmail.com', '$2y$10$WgxXd2FgAfCAOEq6lQvJG.I3alvEpEAyHrZ6v5b3bw5YVxvPid4y6', 'lick', 'mahballs', '09999999999', NULL, '2025-12-03 05:14:04', '2025-12-03 05:14:51', 0, '2025-12-03 05:14:32');
+=======
+(2, 'yayenydrian@gmail.com', '$2y$10$.VYqTcirLgMMy5zONfCPBuP3A/BOqN2ui9sy8tgtktgmMOqDl7GBW', 'Ydrian', 'Yayen', '09461478420', '2002-05-18', '2025-11-24 00:16:42', '2025-12-01 01:27:10', 1, '2025-12-01 01:27:10'),
+(3, 'johndoe@gmail.com', '$2y$10$UwyejG2ch57BFD.W5zxD5eDCGhmvfdjWncFQX5BfSs/5N/g9saymG', 'john', 'doe', '09123121231', NULL, '2025-11-24 02:52:43', '2025-11-24 02:52:52', 1, '2025-11-24 02:52:52'),
+(4, 'andrepagliawan@gmail.com', '$2y$10$A.kIRqkRC4wvR4Fj1TQvMeftFcGwtdnY9pW.NCgjTgMlUGHkKgj/G', 'Andre', 'Pagliawan', '09123121231', NULL, '2025-11-29 00:25:52', '2025-11-29 00:26:05', 1, '2025-11-29 00:26:05');
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 -- --------------------------------------------------------
 
@@ -694,6 +737,7 @@ INSERT INTO `inventory` (`inventory_id`, `product_id`, `quantity`, `reserved_qua
 (31, 31, 180, 15, 50, NULL, '2025-11-24 02:27:17'),
 (32, 32, 160, 12, 45, NULL, '2025-11-24 02:27:17'),
 (33, 33, 140, 10, 40, NULL, '2025-11-24 02:27:17'),
+<<<<<<< HEAD
 (34, 34, 200, 18, 55, NULL, '2025-11-24 02:27:17'),
 (35, 35, 85, 5, 20, NULL, '2025-12-01 20:46:00'),
 (36, 36, 120, 8, 30, NULL, '2025-12-01 20:46:00'),
@@ -905,6 +949,9 @@ INSERT INTO `inventory` (`inventory_id`, `product_id`, `quantity`, `reserved_qua
 (242, 242, 380, 30, 95, NULL, '2025-12-01 20:46:00'),
 (243, 243, 300, 20, 75, NULL, '2025-12-01 20:46:00'),
 (244, 244, 420, 35, 105, NULL, '2025-12-01 20:46:00');
+=======
+(34, 34, 200, 18, 55, NULL, '2025-11-24 02:27:17');
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 -- --------------------------------------------------------
 
@@ -930,9 +977,13 @@ CREATE TABLE `notifications` (
 INSERT INTO `notifications` (`notification_id`, `customer_id`, `order_id`, `type`, `title`, `message`, `is_read`, `created_at`) VALUES
 (1, 4, 12, 'order_status', 'Order Shipped', 'Your order #ORD-20251129-2A1E86D9 has been shipped! It\'s on its way to you.', 1, '2025-11-29 01:52:44'),
 (2, 2, 3, 'order_status', 'Order Cancelled', 'Your order #ORD-20251128-2057B79F has been cancelled.', 1, '2025-11-29 04:16:06'),
+<<<<<<< HEAD
 (3, 2, 13, 'order_status', 'Order Shipped', 'Your order #ORD-20251201-D6AEC454 has been shipped! It\'s on its way to you.', 1, '2025-12-01 07:07:29'),
 (4, 2, 14, 'order_status', 'Order Shipped', 'Your order #ORD-20251202-BC9BD637 has been shipped! It\'s on its way to you.', 1, '2025-12-02 05:58:20'),
 (5, 2, 20, 'order_status', 'Order Shipped', 'Your order #ORD-20251205-B2FBD260 has been shipped! It\'s on its way to you.', 1, '2025-12-05 06:08:05');
+=======
+(3, 2, 13, 'order_status', 'Order Shipped', 'Your order #ORD-20251201-D6AEC454 has been shipped! It\'s on its way to you.', 1, '2025-12-01 07:07:29');
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 -- --------------------------------------------------------
 
@@ -963,6 +1014,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `customer_id`, `order_number`, `order_status`, `subtotal`, `tax_amount`, `shipping_cost`, `total_amount`, `shipping_address_id`, `billing_address_id`, `payment_method`, `payment_status`, `notes`, `created_at`, `updated_at`) VALUES
+<<<<<<< HEAD
 (1, 2, 'ORD-20251128-27783FE6', 'cancelled', '49999.00', '5999.88', '0.00', '55998.00', 2, 2, 'Cash on Delivery', 'pending', '', '2025-11-28 10:45:23', '2025-11-28 11:45:42'),
 (2, 2, 'ORD-20251128-0E65360C', 'cancelled', '209997.00', '25199.64', '0.00', '235196.00', 2, 2, 'Credit Card', 'pending', '', '2025-11-28 11:40:01', '2025-11-28 11:45:41'),
 (3, 2, 'ORD-20251128-2057B79F', 'cancelled', '19498.00', '2339.76', '0.00', '21837.00', 2, 2, 'GCash', 'pending', '', '2025-11-28 11:50:00', '2025-11-29 04:16:06'),
@@ -986,6 +1038,21 @@ INSERT INTO `orders` (`order_id`, `customer_id`, `order_number`, `order_status`,
 (21, 2, 'ORD-20251205-755529A4', 'processing', '42999.00', '4299.90', '0.00', '47298.00', 2, 2, 'Cash on Delivery', 'pending', '', '2025-12-05 06:25:34', '2025-12-05 06:25:39'),
 (22, 2, 'ORD-20251205-23F63866', 'shipped', '25998.00', '2599.80', '0.00', '28597.00', 2, 2, 'Cash on Delivery', 'pending', '', '2025-12-05 06:31:50', '2025-12-05 06:42:21'),
 (23, 2, 'ORD-20251205-A6392FEF', 'processing', '12999.00', '1299.90', '0.00', '14298.00', 2, 2, 'Cash on Delivery', 'pending', '', '2025-12-05 06:51:35', '2025-12-05 06:51:39');
+=======
+(1, 2, 'ORD-20251128-27783FE6', 'cancelled', 49999.00, 5999.88, 0.00, 55998.00, 2, 2, 'Cash on Delivery', 'pending', '', '2025-11-28 10:45:23', '2025-11-28 11:45:42'),
+(2, 2, 'ORD-20251128-0E65360C', 'cancelled', 209997.00, 25199.64, 0.00, 235196.00, 2, 2, 'Credit Card', 'pending', '', '2025-11-28 11:40:01', '2025-11-28 11:45:41'),
+(3, 2, 'ORD-20251128-2057B79F', 'cancelled', 19498.00, 2339.76, 0.00, 21837.00, 2, 2, 'GCash', 'pending', '', '2025-11-28 11:50:00', '2025-11-29 04:16:06'),
+(4, 2, 'ORD-20251128-83F20F4B', 'pending', 19498.00, 2339.76, 0.00, 21837.00, 2, 2, 'GCash', 'pending', '', '2025-11-28 12:03:06', '2025-11-28 12:03:06'),
+(5, 2, 'ORD-20251128-F2B74647', 'pending', 19498.00, 2339.76, 0.00, 21837.00, 2, 2, 'GCash', 'pending', '', '2025-11-28 12:10:24', '2025-11-28 12:10:24'),
+(6, 2, 'ORD-20251128-313106AC', 'pending', 19498.00, 2339.76, 0.00, 21837.00, 2, 2, 'Cash on Delivery', 'pending', '', '2025-11-28 12:42:43', '2025-11-28 12:42:43'),
+(7, 2, 'ORD-20251129-BFA4D1CC', 'pending', 19498.00, 2339.76, 0.00, 21837.00, 2, 2, 'GCash', 'pending', '', '2025-11-28 23:49:05', '2025-11-28 23:49:05'),
+(8, 2, 'ORD-20251129-45AAC550', 'pending', 19498.00, 2339.76, 0.00, 21837.00, 2, 2, 'GCash', 'pending', '', '2025-11-28 23:52:14', '2025-11-28 23:52:14'),
+(9, 2, 'ORD-20251129-C2A4DEBB', 'pending', 19498.00, 2339.76, 0.00, 21837.00, 2, 2, 'Cash on Delivery', 'pending', '', '2025-11-29 00:03:43', '2025-11-29 00:03:43'),
+(10, 2, 'ORD-20251129-A288F9B8', 'processing', 19498.00, 2339.76, 0.00, 21837.00, 2, 2, 'GCash', 'completed', '', '2025-11-29 00:06:33', '2025-11-29 00:07:39'),
+(11, 2, 'ORD-20251129-A2573A98', 'shipped', 49999.00, 5999.88, 0.00, 55998.00, 2, 2, 'GCash', 'completed', '', '2025-11-29 00:10:25', '2025-11-29 00:20:41'),
+(12, 4, 'ORD-20251129-2A1E86D9', 'shipped', 99998.00, 11999.76, 0.00, 111997.00, 3, 3, 'GCash', 'completed', '', '2025-11-29 00:44:59', '2025-11-29 01:52:44'),
+(13, 2, 'ORD-20251201-D6AEC454', 'shipped', 99998.00, 9999.80, 0.00, 109997.00, 2, 2, 'Cash on Delivery', 'completed', '', '2025-12-01 01:27:39', '2025-12-01 07:07:41');
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 -- --------------------------------------------------------
 
@@ -1000,6 +1067,7 @@ CREATE TABLE `order_coupons` (
   `discount_applied` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+<<<<<<< HEAD
 --
 -- Dumping data for table `order_coupons`
 --
@@ -1007,6 +1075,8 @@ CREATE TABLE `order_coupons` (
 INSERT INTO `order_coupons` (`order_coupon_id`, `order_id`, `coupon_id`, `discount_applied`) VALUES
 (1, 16, 2, '1000.00');
 
+=======
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 -- --------------------------------------------------------
 
 --
@@ -1027,6 +1097,7 @@ CREATE TABLE `order_items` (
 --
 
 INSERT INTO `order_items` (`order_item_id`, `order_id`, `product_id`, `quantity`, `unit_price`, `subtotal`) VALUES
+<<<<<<< HEAD
 (1, 1, 1, 1, '49999.00', '49999.00'),
 (2, 2, 2, 3, '69999.00', '209997.00'),
 (3, 3, 3, 1, '14999.00', '14999.00'),
@@ -1058,6 +1129,29 @@ INSERT INTO `order_items` (`order_item_id`, `order_id`, `product_id`, `quantity`
 (29, 21, 41, 1, '42999.00', '42999.00'),
 (30, 22, 36, 2, '12999.00', '25998.00'),
 (31, 23, 36, 1, '12999.00', '12999.00');
+=======
+(1, 1, 1, 1, 49999.00, 49999.00),
+(2, 2, 2, 3, 69999.00, 209997.00),
+(3, 3, 3, 1, 14999.00, 14999.00),
+(4, 3, 5, 1, 4499.00, 4499.00),
+(5, 4, 3, 1, 14999.00, 14999.00),
+(6, 4, 5, 1, 4499.00, 4499.00),
+(7, 5, 3, 1, 14999.00, 14999.00),
+(8, 5, 5, 1, 4499.00, 4499.00),
+(9, 6, 3, 1, 14999.00, 14999.00),
+(10, 6, 5, 1, 4499.00, 4499.00),
+(11, 7, 3, 1, 14999.00, 14999.00),
+(12, 7, 5, 1, 4499.00, 4499.00),
+(13, 8, 3, 1, 14999.00, 14999.00),
+(14, 8, 5, 1, 4499.00, 4499.00),
+(15, 9, 3, 1, 14999.00, 14999.00),
+(16, 9, 5, 1, 4499.00, 4499.00),
+(17, 10, 3, 1, 14999.00, 14999.00),
+(18, 10, 5, 1, 4499.00, 4499.00),
+(19, 11, 1, 1, 49999.00, 49999.00),
+(20, 12, 1, 2, 49999.00, 99998.00),
+(21, 13, 1, 2, 49999.00, 99998.00);
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 -- --------------------------------------------------------
 
@@ -1095,6 +1189,7 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`payment_id`, `order_id`, `payment_method`, `transaction_id`, `amount`, `payment_status`, `payment_date`, `created_at`) VALUES
+<<<<<<< HEAD
 (1, 1, 'Cash on Delivery', NULL, '55998.88', 'pending', NULL, '2025-11-28 10:45:23'),
 (2, 2, 'Credit Card', NULL, '235196.64', 'pending', NULL, '2025-11-28 11:40:01'),
 (3, 3, 'GCash', NULL, '21837.76', 'pending', NULL, '2025-11-28 11:50:00'),
@@ -1118,6 +1213,21 @@ INSERT INTO `payments` (`payment_id`, `order_id`, `payment_method`, `transaction
 (21, 21, 'Cash on Delivery', 'COD-ORD-20251205-755529A4', '47298.90', 'pending', '2025-12-05 06:25:39', '2025-12-05 06:25:34'),
 (22, 22, 'Cash on Delivery', 'COD-ORD-20251205-23F63866', '28597.80', 'pending', '2025-12-05 06:31:53', '2025-12-05 06:31:50'),
 (23, 23, 'Cash on Delivery', 'COD-ORD-20251205-A6392FEF', '14298.90', 'pending', '2025-12-05 06:51:39', '2025-12-05 06:51:35');
+=======
+(1, 1, 'Cash on Delivery', NULL, 55998.88, 'pending', NULL, '2025-11-28 10:45:23'),
+(2, 2, 'Credit Card', NULL, 235196.64, 'pending', NULL, '2025-11-28 11:40:01'),
+(3, 3, 'GCash', NULL, 21837.76, 'pending', NULL, '2025-11-28 11:50:00'),
+(4, 4, 'GCash', NULL, 21837.76, 'pending', NULL, '2025-11-28 12:03:06'),
+(5, 5, 'GCash', NULL, 21837.76, 'pending', NULL, '2025-11-28 12:10:24'),
+(6, 6, 'Cash on Delivery', NULL, 21837.76, 'pending', NULL, '2025-11-28 12:42:43'),
+(7, 7, 'GCash', NULL, 21837.76, 'pending', NULL, '2025-11-28 23:49:05'),
+(8, 8, 'GCash', NULL, 21837.76, 'pending', NULL, '2025-11-28 23:52:14'),
+(9, 9, 'Cash on Delivery', NULL, 21837.76, 'pending', NULL, '2025-11-29 00:03:43'),
+(10, 10, 'GCash', 'TXN-20251129010739-77DDAF4E', 21837.76, 'completed', '2025-11-28 17:07:39', '2025-11-29 00:06:33'),
+(11, 11, 'GCash', 'TXN-20251129011035-5E35E5F7', 55998.88, 'completed', '2025-11-28 17:10:35', '2025-11-29 00:10:25'),
+(12, 12, 'GCash', 'TXN-20251129014517-0AA0838D', 111997.76, 'completed', '2025-11-28 17:45:17', '2025-11-29 00:44:59'),
+(13, 13, 'Cash on Delivery', 'COD-ORD-20251201-D6AEC454', 109997.80, 'completed', '2025-11-30 18:27:41', '2025-12-01 01:27:39');
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 -- --------------------------------------------------------
 
@@ -1147,6 +1257,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `category_id`, `product_name`, `description`, `price`, `sale_price`, `sku`, `brand`, `weight`, `dimensions`, `is_active`, `featured`, `created_at`, `updated_at`) VALUES
+<<<<<<< HEAD
 (1, 1, 'Samsung Galaxy S24 Ultra', '6.8-inch Dynamic AMOLED display, 200MP camera, 12GB RAM, 256GB storage', '54999.00', '49999.00', 'ELEC-SMSG-S24U-256', 'Samsung', '0.23', NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
 (2, 1, 'Apple iPhone 15 Pro Max', 'A17 Pro chip, Titanium design, 48MP camera, 256GB', '69999.00', NULL, 'ELEC-APPL-IP15PM-256', 'Apple', '0.22', NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
 (3, 1, 'Sony WH-1000XM5 Headphones', 'Premium noise cancelling wireless headphones with 30-hour battery', '16999.00', '14999.00', 'ELEC-SONY-WH1000XM5', 'Sony', '0.25', NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
@@ -1392,6 +1503,42 @@ INSERT INTO `products` (`product_id`, `category_id`, `product_name`, `descriptio
 (242, 34, 'UFC Banana Ketchup', '320g bottle, Filipino-style sweet ketchup', '42.00', '39.00', 'GROC-UFC-KET320', 'UFC', '0.32', '8 x 8 x 15 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
 (243, 34, 'Lady\'s Choice Mayonnaise', '220ml jar, real mayonnaise', '89.00', '85.00', 'GROC-LADY-MYO220', 'Lady\'s Choice', '0.22', '8 x 8 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
 (244, 34, 'Magi Magic Sarap', '8g sachet, all-purpose seasoning, 24 packs', '65.00', '59.00', 'GROC-MAGGI-MS24', 'Magi', '0.20', '20 x 15 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00');
+=======
+(1, 1, 'Samsung Galaxy S24 Ultra', '6.8-inch Dynamic AMOLED display, 200MP camera, 12GB RAM, 256GB storage', 54999.00, 49999.00, 'ELEC-SMSG-S24U-256', 'Samsung', 0.23, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(2, 1, 'Apple iPhone 15 Pro Max', 'A17 Pro chip, Titanium design, 48MP camera, 256GB', 69999.00, NULL, 'ELEC-APPL-IP15PM-256', 'Apple', 0.22, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(3, 1, 'Sony WH-1000XM5 Headphones', 'Premium noise cancelling wireless headphones with 30-hour battery', 16999.00, 14999.00, 'ELEC-SONY-WH1000XM5', 'Sony', 0.25, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(4, 1, 'Dell XPS 15 Laptop', '15.6\" 4K display, Intel i7-13700H, 16GB RAM, 512GB SSD, RTX 4050', 89999.00, NULL, 'ELEC-DELL-XPS15-I7', 'Dell', 1.86, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(5, 1, 'Logitech MX Master 3S Mouse', 'Wireless ergonomic mouse with 8K DPI sensor', 4999.00, 4499.00, 'ELEC-LOGI-MXM3S', 'Logitech', 0.14, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(6, 1, 'Samsung 55\" 4K Smart TV', 'Crystal UHD 4K display, Tizen OS, HDR10+', 32999.00, 29999.00, 'ELEC-SMSG-TV55-4K', 'Samsung', 15.50, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(7, 1, 'Anker PowerCore 20000mAh', 'High-capacity portable charger with fast charging', 2499.00, NULL, 'ELEC-ANKR-PC20K', 'Anker', 0.35, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(8, 1, 'Canon EOS R6 Mark II', 'Full-frame mirrorless camera, 24.2MP, 4K 60fps video', 149999.00, NULL, 'ELEC-CANN-R6M2', 'Canon', 0.67, NULL, 0, 1, '2025-11-24 02:27:17', '2025-12-01 07:08:50'),
+(9, 2, 'Levi\'s 501 Original Jeans', 'Classic straight fit denim jeans, 100% cotton', 3499.00, 2999.00, 'CLTH-LEVI-501-BLU-32', 'Levi\'s', 0.60, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(10, 2, 'Nike Dri-FIT Running Shirt', 'Moisture-wicking performance t-shirt, breathable fabric', 1499.00, NULL, 'CLTH-NIKE-DRIF-BLK-L', 'Nike', 0.15, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(11, 2, 'Adidas Ultraboost 23 Shoes', 'Premium running shoes with Boost cushioning technology', 8999.00, 7999.00, 'CLTH-ADID-UB23-WHT-10', 'Adidas', 0.75, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(12, 2, 'The North Face Resolve Jacket', 'Waterproof windbreaker with adjustable hood', 5999.00, NULL, 'CLTH-TNF-RSLV-GRN-M', 'The North Face', 0.40, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(13, 2, 'Uniqlo Heattech Thermal Wear', 'Heat-generating base layer for cold weather', 799.00, 599.00, 'CLTH-UNIQ-HEAT-GRY-M', 'Uniqlo', 0.20, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(14, 2, 'Ralph Lauren Polo Shirt', 'Classic fit cotton polo with signature pony logo', 2999.00, NULL, 'CLTH-RL-POLO-NVY-L', 'Ralph Lauren', 0.25, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(15, 2, 'H&M Cotton Chino Pants', 'Slim fit chinos with stretch fabric', 1299.00, 999.00, 'CLTH-HM-CHIN-KHK-32', 'H&M', 0.35, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(16, 3, 'Dyson V15 Detect Cordless Vacuum', 'Laser dust detection, 60-minute runtime, HEPA filtration', 29999.00, 27999.00, 'HOME-DYSO-V15DET', 'Dyson', 3.10, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(17, 3, 'Philips Hue Smart Bulb Starter Kit', '4-pack color-changing LED bulbs with bridge', 6999.00, NULL, 'HOME-PHIL-HUE-4PK', 'Philips', 0.50, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(18, 3, 'KitchenAid Stand Mixer', '5-quart tilt-head mixer with 10 speeds, includes accessories', 18999.00, 16999.00, 'HOME-KA-MIXER-RED', 'KitchenAid', 10.20, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(19, 3, 'Nespresso Vertuo Coffee Maker', 'One-touch espresso and coffee machine with frother', 8999.00, NULL, 'HOME-NESP-VERT-BLK', 'Nespresso', 4.50, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(20, 3, 'iRobot Roomba j7+', 'Self-emptying robot vacuum with object recognition', 39999.00, 35999.00, 'HOME-IRO-J7PLUS', 'iRobot', 3.40, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(21, 3, 'Black+Decker 20V Drill Kit', 'Cordless drill with 2 batteries and carrying case', 3999.00, NULL, 'HOME-BD-DRILL-20V', 'Black+Decker', 2.00, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(22, 3, 'Weber Genesis Gas Grill', '3-burner propane grill with side burner and storage', 34999.00, NULL, 'HOME-WEBR-GEN-3B', 'Weber', 65.00, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(23, 4, 'Yeti Tundra 45 Cooler', 'Rotomolded construction, bear-resistant, 28-can capacity', 19999.00, NULL, 'SPRT-YETI-T45-WHT', 'Yeti', 10.00, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(24, 4, 'Trek Marlin 7 Mountain Bike', '29-inch wheels, 21-speed, aluminum frame', 32999.00, 29999.00, 'SPRT-TREK-M7-BLU-M', 'Trek', 13.50, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(25, 4, 'Coleman Sundome Tent 4-Person', 'WeatherTec system, easy setup, fits 4 campers', 4999.00, NULL, 'SPRT-COLM-SD4-GRN', 'Coleman', 5.80, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(26, 4, 'TRX Home2 Suspension Trainer', 'Total body resistance training system with workout guide', 7999.00, 6999.00, 'SPRT-TRX-HM2-BLK', 'TRX', 1.20, NULL, 0, 0, '2025-11-24 02:27:17', '2025-12-01 07:08:44'),
+(27, 4, 'Bowflex SelectTech 552 Dumbbells', 'Adjustable dumbbells, 5-52.5 lbs per dumbbell', 24999.00, NULL, 'SPRT-BWFX-ST552', 'Bowflex', 25.00, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(28, 4, 'GoPro HERO12 Black', '5.3K60 video, HyperSmooth 6.0, waterproof to 33ft', 21999.00, 19999.00, 'SPRT-GPRO-H12-BLK', 'GoPro', 0.15, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(29, 4, 'Wilson Evolution Basketball', 'Official size, composite leather, indoor use', 2499.00, NULL, 'SPRT-WILS-EVO-BBAL', 'Wilson', 0.62, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(30, 5, 'Atomic Habits by James Clear', 'Proven framework for improving every day, hardcover', 899.00, 749.00, 'BOOK-ATML-HBIT-HC', 'Penguin Random House', 0.40, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(31, 5, 'The Psychology of Money', 'Timeless lessons on wealth and happiness by Morgan Housel', 699.00, NULL, 'BOOK-PSYC-MONY-PB', 'Harriman House', 0.35, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(32, 5, 'Educated: A Memoir', 'Tara Westover\'s powerful story of self-invention', 799.00, 649.00, 'BOOK-EDUC-MEMO-PB', 'Random House', 0.38, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(33, 5, 'The Lean Startup', 'How today\'s entrepreneurs build successful businesses', 999.00, NULL, 'BOOK-LEAN-STRT-HC', 'Crown Business', 0.45, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(34, 5, 'Sapiens: A Brief History', 'Yuval Noah Harari\'s journey through human history', 1299.00, 999.00, 'BOOK-SAPI-HIST-HC', 'Harper', 0.65, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17');
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 -- --------------------------------------------------------
 
@@ -1455,6 +1602,7 @@ INSERT INTO `product_images` (`image_id`, `product_id`, `image_url`, `is_primary
 (56, 28, 'https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=800', 1, 1, '2025-11-24 02:39:49'),
 (57, 28, 'https://images.unsplash.com/photo-1519638399535-1b036603ac77?w=800', 0, 2, '2025-11-24 02:39:49'),
 (58, 29, 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800', 1, 1, '2025-11-24 02:39:49'),
+<<<<<<< HEAD
 (59, 30, 'https://cdn2.penguin.com.au/covers/original/9781847941831.jpg', 1, 1, '2025-11-24 02:39:49'),
 (60, 31, 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=800', 1, 1, '2025-11-24 02:39:49'),
 (61, 32, 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1506026635i/35133922.jpg', 1, 1, '2025-11-24 02:39:49'),
@@ -1682,6 +1830,13 @@ INSERT INTO `product_images` (`image_id`, `product_id`, `image_url`, `is_primary
 (296, 190, 'https://boholgrocery.com/wp-content/uploads/2020/11/Purefoods-Tender-Juicy-Hotdog-Regular-Classic-230g.png', 0, 4, '2025-12-02 02:24:32'),
 (297, 36, 'https://images.samsung.com/is/image/samsung/assets/ph/galaxy-watch6/feature/galaxy-watch6-safety-mo.jpg', 0, 2, '2025-12-02 04:15:04'),
 (299, 38, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQN7QrWKsPQEfQYNjCLUtn174qEvoXEHJJA6w&s', 0, 2, '2025-12-02 04:22:57');
+=======
+(59, 30, 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=800', 1, 1, '2025-11-24 02:39:49'),
+(60, 31, 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=800', 1, 1, '2025-11-24 02:39:49'),
+(61, 32, 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800', 1, 1, '2025-11-24 02:39:49'),
+(62, 33, 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=800', 1, 1, '2025-11-24 02:39:49'),
+(63, 34, 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=800', 1, 1, '2025-11-24 02:39:49');
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 -- --------------------------------------------------------
 
@@ -1694,6 +1849,7 @@ CREATE TABLE `reviews` (
   `product_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `order_id` int(11) DEFAULT NULL,
+<<<<<<< HEAD
   `rating` int(11) NOT NULL,
   `title` varchar(200),
   `comment` text,
@@ -1704,6 +1860,15 @@ CREATE TABLE `reviews` (
   PRIMARY KEY (`review_id`),
   KEY `product_id` (`product_id`),
   KEY `customer_id` (`customer_id`)
+=======
+  `rating` int(11) NOT NULL CHECK (`rating` >= 1 and `rating` <= 5),
+  `title` varchar(100) DEFAULT NULL,
+  `comment` text NOT NULL,
+  `is_verified_purchase` tinyint(1) DEFAULT 0,
+  `is_approved` tinyint(1) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1754,6 +1919,7 @@ INSERT INTO `shipping` (`shipping_id`, `order_id`, `carrier`, `tracking_number`,
 (10, 10, NULL, NULL, 'Standard', NULL, NULL, NULL, 'preparing', '2025-11-29 00:06:33', '2025-11-29 00:06:33'),
 (11, 11, NULL, NULL, 'Standard', '2025-11-29 00:20:41', NULL, NULL, 'shipped', '2025-11-29 00:10:25', '2025-11-29 00:20:41'),
 (12, 12, NULL, NULL, 'Standard', '2025-11-29 01:52:44', NULL, NULL, 'shipped', '2025-11-29 00:44:59', '2025-11-29 01:52:44'),
+<<<<<<< HEAD
 (13, 13, NULL, NULL, 'Standard', '2025-12-01 07:07:29', NULL, NULL, 'shipped', '2025-12-01 01:27:39', '2025-12-01 07:07:29'),
 (14, 14, NULL, NULL, 'Standard', '2025-12-02 05:58:20', NULL, NULL, 'shipped', '2025-12-02 05:57:17', '2025-12-02 05:58:20'),
 (15, 15, NULL, NULL, 'Standard', NULL, NULL, NULL, 'preparing', '2025-12-03 05:17:21', '2025-12-03 05:17:21'),
@@ -1765,6 +1931,9 @@ INSERT INTO `shipping` (`shipping_id`, `order_id`, `carrier`, `tracking_number`,
 (21, 21, NULL, NULL, 'Standard', NULL, NULL, NULL, 'preparing', '2025-12-05 06:25:34', '2025-12-05 06:25:34'),
 (22, 22, NULL, NULL, 'Standard', NULL, NULL, NULL, 'preparing', '2025-12-05 06:31:50', '2025-12-05 06:31:50'),
 (23, 23, NULL, NULL, 'Standard', NULL, NULL, NULL, 'preparing', '2025-12-05 06:51:35', '2025-12-05 06:51:35');
+=======
+(13, 13, NULL, NULL, 'Standard', '2025-12-01 07:07:29', NULL, NULL, 'shipped', '2025-12-01 01:27:39', '2025-12-01 07:07:29');
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 -- --------------------------------------------------------
 
@@ -1820,7 +1989,11 @@ INSERT INTO `site_settings` (`setting_key`, `setting_value`, `setting_type`, `de
 ('gmail_sender_name', 'JRD Malls', 'text', 'Email sender name', '2025-12-01 01:07:40'),
 ('gmail_sender_password', 'kcooqodzgkvynodo', 'password', 'Gmail app password (16 characters)', '2025-12-01 01:07:40'),
 ('items_per_page', '9', 'number', 'Products per page', '2025-12-01 10:36:49'),
+<<<<<<< HEAD
 ('maintenance_mode', '0', 'checkbox', 'Maintenance mode', '2025-12-05 09:43:24'),
+=======
+('maintenance_mode', '0', 'checkbox', 'Maintenance mode', '2025-11-28 03:29:00'),
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 ('require_email_verification', '1', 'checkbox', 'Require email verification', '2025-11-28 03:29:00'),
 ('shipping_cost', '5.99', 'number', 'Standard shipping cost', '2025-11-24 13:58:30'),
 ('site_email', 'jrd.malls@gmail.com', 'email', 'Contact email', '2025-12-01 00:26:48'),
@@ -1847,8 +2020,12 @@ CREATE TABLE `wishlist` (
 
 INSERT INTO `wishlist` (`wishlist_id`, `customer_id`, `product_id`, `added_at`) VALUES
 (1, 3, 1, '2025-11-24 02:53:26'),
+<<<<<<< HEAD
 (2, 2, 1, '2025-11-29 00:10:05'),
 (3, 2, 42, '2025-12-05 04:59:36');
+=======
+(2, 2, 1, '2025-11-29 00:10:05');
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- Indexes for dumped tables
@@ -1874,6 +2051,7 @@ ALTER TABLE `addresses`
   ADD KEY `customer_id` (`customer_id`);
 
 --
+<<<<<<< HEAD
 -- Indexes for table `admins`
 --
 ALTER TABLE `admins`
@@ -1881,6 +2059,8 @@ ALTER TABLE `admins`
   ADD UNIQUE KEY `username` (`username`);
 
 --
+=======
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 -- Indexes for table `admin_users`
 --
 ALTER TABLE `admin_users`
@@ -1986,6 +2166,19 @@ ALTER TABLE `product_images`
   ADD KEY `product_id` (`product_id`);
 
 --
+<<<<<<< HEAD
+=======
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`review_id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `customer_id` (`customer_id`),
+  ADD KEY `order_id` (`order_id`),
+  ADD KEY `idx_approved` (`is_approved`);
+
+--
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 -- Indexes for table `shipping`
 --
 ALTER TABLE `shipping`
@@ -2022,12 +2215,17 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `activity_logs`
 --
 ALTER TABLE `activity_logs`
+<<<<<<< HEAD
   MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=412;
+=======
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `addresses`
 --
 ALTER TABLE `addresses`
+<<<<<<< HEAD
   MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
@@ -2035,12 +2233,19 @@ ALTER TABLE `addresses`
 --
 ALTER TABLE `admins`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+=======
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `admin_users`
 --
 ALTER TABLE `admin_users`
+<<<<<<< HEAD
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+=======
+  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -2052,43 +2257,71 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
+<<<<<<< HEAD
   MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+=======
+  MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
+<<<<<<< HEAD
   MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+=======
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
+<<<<<<< HEAD
   MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
+=======
+  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
+<<<<<<< HEAD
   MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+=======
+  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
+<<<<<<< HEAD
   MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+=======
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `order_coupons`
 --
 ALTER TABLE `order_coupons`
+<<<<<<< HEAD
   MODIFY `order_coupon_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+=======
+  MODIFY `order_coupon_id` int(11) NOT NULL AUTO_INCREMENT;
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
+<<<<<<< HEAD
   MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+=======
+  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `order_notes`
@@ -2100,43 +2333,71 @@ ALTER TABLE `order_notes`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
+<<<<<<< HEAD
   MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+=======
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
+<<<<<<< HEAD
   MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
+=======
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
+<<<<<<< HEAD
   MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=300;
+=======
+  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
+<<<<<<< HEAD
   MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT;
+=======
+  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `shipping`
 --
 ALTER TABLE `shipping`
+<<<<<<< HEAD
   MODIFY `shipping_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+=======
+  MODIFY `shipping_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
+<<<<<<< HEAD
   MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+=======
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
+<<<<<<< HEAD
   MODIFY `wishlist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+=======
+  MODIFY `wishlist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- Constraints for dumped tables
@@ -2214,6 +2475,17 @@ ALTER TABLE `product_images`
   ADD CONSTRAINT `product_images_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE;
 
 --
+<<<<<<< HEAD
+=======
+-- Constraints for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `reviews_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE SET NULL;
+
+--
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 -- Constraints for table `shipping`
 --
 ALTER TABLE `shipping`

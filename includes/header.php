@@ -9,10 +9,15 @@
                 <ul>
                     <li><a href="index.php">Home</a></li>
                     <li><a href="shop.php">Shop</a></li>
+<<<<<<< HEAD
                     <?php if (isLoggedIn()): 
                         require_once 'includes/notifications.php';
                         $unread_count = getUnreadNotificationCount($_SESSION['customer_id']);
                     ?>
+=======
+                    <li><a href="track_order.php">Track Order</a></li>
+                    <?php if (isLoggedIn()): ?>
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
                         <li><a href="cart.php">Cart</a></li>
                         <li><a href="orders.php">My Orders</a></li>
                         <li style="position: relative;">

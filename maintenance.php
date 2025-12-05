@@ -4,8 +4,11 @@ require_once 'config.php';
 // Check if maintenance mode is actually enabled
 // If not, redirect to homepage
 $conn = getDBConnection();
+<<<<<<< HEAD
 $contact_info = array();
 
+=======
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 if ($conn) {
     $result = $conn->query("SELECT setting_value FROM site_settings WHERE setting_key = 'maintenance_mode'");
     if ($result && $row = $result->fetch_assoc()) {
@@ -21,6 +24,7 @@ if ($conn) {
             exit;
         }
     }
+<<<<<<< HEAD
     
     // Fetch contact information from database
     $contact_result = $conn->query("SELECT setting_key, setting_value FROM site_settings WHERE setting_key IN ('support_email', 'support_phone', 'support_hours')");
@@ -33,6 +37,10 @@ if ($conn) {
     $conn->close();
 }
 ?>
+=======
+    $conn->close();
+}
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 // Check if admin is logged in - allow them to access site
 if (isset($_SESSION['admin_id'])) {
@@ -304,6 +312,7 @@ if (isset($_SESSION['admin_id'])) {
         
         <div class="contact-info">
             <h3>Need Immediate Assistance?</h3>
+<<<<<<< HEAD
             <?php if (!empty($contact_info['support_email'])): ?>
                 <p><strong>📧 Email:</strong> <a href="mailto:<?php echo htmlspecialchars($contact_info['support_email']); ?>"><?php echo htmlspecialchars($contact_info['support_email']); ?></a></p>
             <?php endif; ?>
@@ -313,6 +322,11 @@ if (isset($_SESSION['admin_id'])) {
             <?php if (!empty($contact_info['support_hours'])): ?>
                 <p><strong>⏰ Support Hours:</strong> <?php echo htmlspecialchars($contact_info['support_hours']); ?></p>
             <?php endif; ?>
+=======
+            <p><strong>📧 Email:</strong> <a href="mailto:support@ncccmalls.com">support@ncccmalls.com</a></p>
+            <p><strong>📞 Phone:</strong> <a href="tel:+12345678900">+1 234 567 8900</a></p>
+            <p><strong>⏰ Support Hours:</strong> Mon-Fri, 9AM-6PM EST</p>
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
         </div>
     </div>
 </body>

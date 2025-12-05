@@ -2,9 +2,12 @@
 // Set timezone to Philippine Standard Time (GMT+8)
 date_default_timezone_set('Asia/Manila');
 
+<<<<<<< HEAD
 // Include rating functions
 require_once __DIR__ . '/includes/rating_functions.php';
 
+=======
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 // Set UTF-8 header at the very beginning
 if (!headers_sent()) {
     header('Content-Type: text/html; charset=utf-8');
@@ -41,6 +44,7 @@ if (!in_array($current_file, $allowed_files)) {
         }
     }
 }
+<<<<<<< HEAD
 
 // Database configuration
 //define('DB_HOST', 'sql100.infinityfree.com');
@@ -52,6 +56,14 @@ define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'malls');
+=======
+
+// Database configuration
+define('DB_HOST', 'sql100.infinityfree.com');
+define('DB_USER', 'if0_40532602');
+define('DB_PASS', 'NblOpzQzps');
+define('DB_NAME', 'if0_40532602_malls');
+>>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 // Connect to database
 function getDBConnection() {

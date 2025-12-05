@@ -4,6 +4,8 @@ require_once 'config.php';
 $error = '';
 $success = '';
 
+/* The above PHP code snippet is handling a user registration form submission. Here is a breakdown of
+what the code is doing: */
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
