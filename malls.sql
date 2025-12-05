@@ -1,26 +1,13 @@
 -- phpMyAdmin SQL Dump
-<<<<<<< HEAD
--- version 4.9.0.1
--- https://www.phpmyadmin.net/
---
--- Host: sql100.infinityfree.com
--- Generation Time: Dec 05, 2025 at 11:34 AM
--- Server version: 10.6.22-MariaDB
--- PHP Version: 7.2.22
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-=======
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 01, 2025 at 12:46 PM
+-- Generation Time: Dec 05, 2025 at 08:25 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -31,11 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
-<<<<<<< HEAD
--- Database: `if0_40532602_malls`
-=======
--- Database: `nccc_malls`
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
+-- Database: `malls`
 --
 
 -- --------------------------------------------------------
@@ -64,7 +47,6 @@ CREATE TABLE `activity_logs` (
 --
 
 INSERT INTO `activity_logs` (`log_id`, `user_type`, `user_id`, `action_type`, `action_description`, `table_affected`, `record_id`, `old_values`, `new_values`, `ip_address`, `user_agent`, `created_at`) VALUES
-<<<<<<< HEAD
 (1, 'customer', 2, 'logout', 'Customer logged out', 'customers', 2, NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-01 11:45:24'),
 (2, 'admin', 1, 'admin_login', 'Admin logged in: Admin User', 'admin_users', 1, NULL, NULL, '112.202.115.240', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-01 12:05:11'),
 (3, 'admin', 1, 'product_image_add', 'Image added to product (ID: 51)', 'product_images', 278, NULL, '{\"image_url\":\"https:\\/\\/ph.garmin.com\\/m\\/ph\\/g\\/products\\/fenix-7x-pro-sapphire-carbongray-cf-lg.jpg\",\"is_primary\":1}', '112.202.115.240', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-02 00:13:18'),
@@ -479,10 +461,10 @@ INSERT INTO `activity_logs` (`log_id`, `user_type`, `user_id`, `action_type`, `a
 (408, 'admin', 2, 'admin_login', 'Admin logged in: System Administrator', 'admin_users', 2, NULL, NULL, '112.202.101.113', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-05 09:38:41'),
 (409, 'admin', 2, 'admin_login', 'Admin logged in: System Administrator', 'admin_users', 2, NULL, NULL, '49.144.56.236', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-05 09:39:11'),
 (410, 'admin', 2, 'maintenance_mode_toggle', 'Maintenance mode enabled', 'site_settings', NULL, NULL, '{\"maintenance_mode\":\"0\"}', '112.202.101.113', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-05 09:42:34'),
-(411, 'admin', 2, 'maintenance_mode_toggle', 'Maintenance mode disabled', 'site_settings', NULL, NULL, '{\"maintenance_mode\":\"1\"}', '112.202.101.113', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-05 09:43:24');
-=======
-(1, 'customer', 2, 'logout', 'Customer logged out', 'customers', 2, NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36', '2025-12-01 11:45:24');
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
+(411, 'admin', 2, 'maintenance_mode_toggle', 'Maintenance mode disabled', 'site_settings', NULL, NULL, '{\"maintenance_mode\":\"1\"}', '112.202.101.113', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-05 09:43:24'),
+(412, 'customer', 2, 'login', 'Customer logged in successfully', 'customers', 2, NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-05 17:08:53'),
+(413, 'customer', 2, 'logout', 'Customer logged out', 'customers', 2, NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-05 17:32:36'),
+(414, 'admin', 2, 'admin_login', 'Admin logged in: System Administrator', 'admin_users', 2, NULL, NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', '2025-12-05 17:53:06');
 
 -- --------------------------------------------------------
 
@@ -510,7 +492,6 @@ CREATE TABLE `addresses` (
 INSERT INTO `addresses` (`address_id`, `customer_id`, `address_type`, `is_default`, `street_address`, `city`, `state_province`, `postal_code`, `country`, `created_at`) VALUES
 (1, 3, 'billing', 1, '123', 'Puerto Princesa', 'Palawan', '5300', 'Philippines', '2025-11-24 02:54:32'),
 (2, 2, 'billing', 1, '123', 'Puerto Princesa', 'Palawan', '5300', 'Philippines', '2025-11-28 10:44:57'),
-<<<<<<< HEAD
 (3, 4, 'billing', 1, '123', 'Puerto Princesa', 'Palawan', '5300', 'Philippines', '2025-11-29 00:44:47'),
 (4, 5, 'billing', 0, 'asadf', 'asdfasdf', 'dfcvzxcv', 'qwetgsfdbzxc', 'Philippines', '2025-12-03 05:16:44'),
 (5, 5, 'billing', 1, 'asadf', 'asdfasdf', 'dfcvzxcv', 'qwetgsfdbzxc', 'Philippines', '2025-12-03 05:17:00');
@@ -537,9 +518,6 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`admin_id`, `username`, `password_hash`, `email`, `full_name`, `is_active`, `created_at`) VALUES
 (2, 'Ydzz', '$2y$10$O8l8wg8nM2JNPr8HU4B/wutyHt9hIG/Zcafv5nVxe0CY7R.t2pAv6', 'yayenydrian@gmail.com', 'Ydrian Yayen', 1, '2025-12-02 04:56:33');
-=======
-(3, 4, 'billing', 1, '123', 'Puerto Princesa', 'Palawan', '5300', 'Philippines', '2025-11-29 00:44:47');
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 -- --------------------------------------------------------
 
@@ -557,28 +535,19 @@ CREATE TABLE `admin_users` (
   `is_active` tinyint(1) DEFAULT 1,
   `last_login` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-<<<<<<< HEAD
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `reset_token` varchar(64) DEFAULT NULL,
   `reset_token_expiry` datetime DEFAULT NULL
-=======
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `admin_users`
 --
 
-<<<<<<< HEAD
 INSERT INTO `admin_users` (`admin_id`, `username`, `email`, `password_hash`, `full_name`, `role`, `is_active`, `last_login`, `created_at`, `updated_at`, `reset_token`, `reset_token_expiry`) VALUES
-(2, 'admin', 'admin@jrdmalls.com', '$2y$10$BS3i0G5xLmbdxmP4gciC3ORaUHLzkUlfjMvunlR7CnMG.afLNem/e', 'System Administrator', 'super_admin', 1, '2025-12-05 09:39:11', '2025-12-02 05:03:06', '2025-12-05 09:39:11', NULL, NULL),
+(2, 'admin', 'admin@jrdmalls.com', '$2y$10$BS3i0G5xLmbdxmP4gciC3ORaUHLzkUlfjMvunlR7CnMG.afLNem/e', 'System Administrator', 'super_admin', 1, '2025-12-05 17:53:06', '2025-12-02 05:03:06', '2025-12-05 17:53:06', NULL, NULL),
 (3, 'Ydzz', 'yayenydrian@gmail.com', '$2y$10$uq77U5I.1w.6fdXbh5pxhu4M8l6LY8wFhr1.8UoQ9sASGGIFHLvh6', 'Ydrian Yayen', 'admin', 1, '2025-12-04 02:22:46', '2025-12-02 05:22:37', '2025-12-04 02:22:46', NULL, NULL),
 (4, 'adminigger', 'andrepagliawan0@gmail.com', '$2y$10$ZEovK1SpHQV20ZqGk0gIp.3AZTRr2bce1e6z4Y71odh7Bwe8s/O.2', 'Baba Boui', 'admin', 1, '2025-12-03 04:46:35', '2025-12-02 06:12:10', '2025-12-03 04:46:35', NULL, NULL);
-=======
-INSERT INTO `admin_users` (`admin_id`, `username`, `email`, `password_hash`, `full_name`, `role`, `is_active`, `last_login`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@jrdmalls.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'System Administrator', 'super_admin', 1, NULL, '2025-12-01 10:59:22', '2025-12-01 10:59:22');
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 -- --------------------------------------------------------
 
@@ -641,11 +610,7 @@ CREATE TABLE `coupons` (
 --
 
 INSERT INTO `coupons` (`coupon_id`, `coupon_code`, `description`, `discount_type`, `discount_value`, `min_purchase_amount`, `max_discount_amount`, `usage_limit`, `usage_count`, `start_date`, `end_date`, `is_active`, `created_at`) VALUES
-<<<<<<< HEAD
-(2, '123', 'Test', 'percentage', '10.00', '10000.00', '1000.00', 2, 0, '2025-12-05', '2025-12-06', 1, '2025-12-05 04:58:40');
-=======
-(1, '1', 'Gadget', 'percentage', 10.00, 100.00, NULL, NULL, 0, '2025-11-28', '2025-11-29', 1, '2025-11-28 12:40:58');
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
+(2, '123', 'Test', 'percentage', 10.00, 10000.00, 1000.00, 2, 0, '2025-12-05', '2025-12-06', 1, '2025-12-05 04:58:40');
 
 -- --------------------------------------------------------
 
@@ -672,16 +637,47 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customer_id`, `email`, `password_hash`, `first_name`, `last_name`, `phone`, `date_of_birth`, `created_at`, `updated_at`, `is_active`, `last_login`) VALUES
-<<<<<<< HEAD
-(2, 'yayenydrian@gmail.com', '$2y$10$.VYqTcirLgMMy5zONfCPBuP3A/BOqN2ui9sy8tgtktgmMOqDl7GBW', 'Ydrian', 'Yayen', '09461478420', '2002-05-18', '2025-11-24 00:16:42', '2025-12-05 09:35:00', 1, '2025-12-05 09:35:00'),
+(2, 'yayenydrian@gmail.com', '$2y$10$.VYqTcirLgMMy5zONfCPBuP3A/BOqN2ui9sy8tgtktgmMOqDl7GBW', 'Ydrian', 'Yayen', '09461478420', '2002-05-18', '2025-11-24 00:16:42', '2025-12-05 17:08:53', 1, '2025-12-05 17:08:53'),
 (3, 'johndoe@gmail.com', '$2y$10$UwyejG2ch57BFD.W5zxD5eDCGhmvfdjWncFQX5BfSs/5N/g9saymG', 'john', 'doe', '09123121231', NULL, '2025-11-24 02:52:43', '2025-11-24 02:52:52', 1, '2025-11-24 02:52:52'),
 (4, 'andrepagliawan@gmail.com', '$2y$10$A.kIRqkRC4wvR4Fj1TQvMeftFcGwtdnY9pW.NCgjTgMlUGHkKgj/G', 'Andre', 'Pagliawan', '09123121231', NULL, '2025-11-29 00:25:52', '2025-12-03 05:14:46', 1, '2025-11-29 00:26:05'),
 (5, 'andrepagliawan0@gmail.com', '$2y$10$WgxXd2FgAfCAOEq6lQvJG.I3alvEpEAyHrZ6v5b3bw5YVxvPid4y6', 'lick', 'mahballs', '09999999999', NULL, '2025-12-03 05:14:04', '2025-12-03 05:14:51', 0, '2025-12-03 05:14:32');
-=======
-(2, 'yayenydrian@gmail.com', '$2y$10$.VYqTcirLgMMy5zONfCPBuP3A/BOqN2ui9sy8tgtktgmMOqDl7GBW', 'Ydrian', 'Yayen', '09461478420', '2002-05-18', '2025-11-24 00:16:42', '2025-12-01 01:27:10', 1, '2025-12-01 01:27:10'),
-(3, 'johndoe@gmail.com', '$2y$10$UwyejG2ch57BFD.W5zxD5eDCGhmvfdjWncFQX5BfSs/5N/g9saymG', 'john', 'doe', '09123121231', NULL, '2025-11-24 02:52:43', '2025-11-24 02:52:52', 1, '2025-11-24 02:52:52'),
-(4, 'andrepagliawan@gmail.com', '$2y$10$A.kIRqkRC4wvR4Fj1TQvMeftFcGwtdnY9pW.NCgjTgMlUGHkKgj/G', 'Andre', 'Pagliawan', '09123121231', NULL, '2025-11-29 00:25:52', '2025-11-29 00:26:05', 1, '2025-11-29 00:26:05');
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivery_assignments`
+--
+
+CREATE TABLE `delivery_assignments` (
+  `assignment_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `rider_id` int(11) DEFAULT NULL,
+  `delivery_status` enum('pending_assignment','assigned','picked_up','in_transit','delivered','failed','returned') DEFAULT 'pending_assignment',
+  `assigned_at` timestamp NULL DEFAULT NULL,
+  `picked_up_at` timestamp NULL DEFAULT NULL,
+  `delivered_at` timestamp NULL DEFAULT NULL,
+  `failure_reason` text DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `delivery_logs`
+--
+
+CREATE TABLE `delivery_logs` (
+  `log_id` int(11) NOT NULL,
+  `assignment_id` int(11) NOT NULL,
+  `rider_id` int(11) NOT NULL,
+  `status_from` varchar(50) DEFAULT NULL,
+  `status_to` varchar(50) NOT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -737,7 +733,6 @@ INSERT INTO `inventory` (`inventory_id`, `product_id`, `quantity`, `reserved_qua
 (31, 31, 180, 15, 50, NULL, '2025-11-24 02:27:17'),
 (32, 32, 160, 12, 45, NULL, '2025-11-24 02:27:17'),
 (33, 33, 140, 10, 40, NULL, '2025-11-24 02:27:17'),
-<<<<<<< HEAD
 (34, 34, 200, 18, 55, NULL, '2025-11-24 02:27:17'),
 (35, 35, 85, 5, 20, NULL, '2025-12-01 20:46:00'),
 (36, 36, 120, 8, 30, NULL, '2025-12-01 20:46:00'),
@@ -949,9 +944,6 @@ INSERT INTO `inventory` (`inventory_id`, `product_id`, `quantity`, `reserved_qua
 (242, 242, 380, 30, 95, NULL, '2025-12-01 20:46:00'),
 (243, 243, 300, 20, 75, NULL, '2025-12-01 20:46:00'),
 (244, 244, 420, 35, 105, NULL, '2025-12-01 20:46:00');
-=======
-(34, 34, 200, 18, 55, NULL, '2025-11-24 02:27:17');
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 -- --------------------------------------------------------
 
@@ -977,13 +969,9 @@ CREATE TABLE `notifications` (
 INSERT INTO `notifications` (`notification_id`, `customer_id`, `order_id`, `type`, `title`, `message`, `is_read`, `created_at`) VALUES
 (1, 4, 12, 'order_status', 'Order Shipped', 'Your order #ORD-20251129-2A1E86D9 has been shipped! It\'s on its way to you.', 1, '2025-11-29 01:52:44'),
 (2, 2, 3, 'order_status', 'Order Cancelled', 'Your order #ORD-20251128-2057B79F has been cancelled.', 1, '2025-11-29 04:16:06'),
-<<<<<<< HEAD
 (3, 2, 13, 'order_status', 'Order Shipped', 'Your order #ORD-20251201-D6AEC454 has been shipped! It\'s on its way to you.', 1, '2025-12-01 07:07:29'),
 (4, 2, 14, 'order_status', 'Order Shipped', 'Your order #ORD-20251202-BC9BD637 has been shipped! It\'s on its way to you.', 1, '2025-12-02 05:58:20'),
 (5, 2, 20, 'order_status', 'Order Shipped', 'Your order #ORD-20251205-B2FBD260 has been shipped! It\'s on its way to you.', 1, '2025-12-05 06:08:05');
-=======
-(3, 2, 13, 'order_status', 'Order Shipped', 'Your order #ORD-20251201-D6AEC454 has been shipped! It\'s on its way to you.', 1, '2025-12-01 07:07:29');
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 -- --------------------------------------------------------
 
@@ -1014,31 +1002,6 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `customer_id`, `order_number`, `order_status`, `subtotal`, `tax_amount`, `shipping_cost`, `total_amount`, `shipping_address_id`, `billing_address_id`, `payment_method`, `payment_status`, `notes`, `created_at`, `updated_at`) VALUES
-<<<<<<< HEAD
-(1, 2, 'ORD-20251128-27783FE6', 'cancelled', '49999.00', '5999.88', '0.00', '55998.00', 2, 2, 'Cash on Delivery', 'pending', '', '2025-11-28 10:45:23', '2025-11-28 11:45:42'),
-(2, 2, 'ORD-20251128-0E65360C', 'cancelled', '209997.00', '25199.64', '0.00', '235196.00', 2, 2, 'Credit Card', 'pending', '', '2025-11-28 11:40:01', '2025-11-28 11:45:41'),
-(3, 2, 'ORD-20251128-2057B79F', 'cancelled', '19498.00', '2339.76', '0.00', '21837.00', 2, 2, 'GCash', 'pending', '', '2025-11-28 11:50:00', '2025-11-29 04:16:06'),
-(4, 2, 'ORD-20251128-83F20F4B', 'pending', '19498.00', '2339.76', '0.00', '21837.00', 2, 2, 'GCash', 'pending', '', '2025-11-28 12:03:06', '2025-11-28 12:03:06'),
-(5, 2, 'ORD-20251128-F2B74647', 'pending', '19498.00', '2339.76', '0.00', '21837.00', 2, 2, 'GCash', 'pending', '', '2025-11-28 12:10:24', '2025-11-28 12:10:24'),
-(6, 2, 'ORD-20251128-313106AC', 'pending', '19498.00', '2339.76', '0.00', '21837.00', 2, 2, 'Cash on Delivery', 'pending', '', '2025-11-28 12:42:43', '2025-11-28 12:42:43'),
-(7, 2, 'ORD-20251129-BFA4D1CC', 'pending', '19498.00', '2339.76', '0.00', '21837.00', 2, 2, 'GCash', 'pending', '', '2025-11-28 23:49:05', '2025-11-28 23:49:05'),
-(8, 2, 'ORD-20251129-45AAC550', 'pending', '19498.00', '2339.76', '0.00', '21837.00', 2, 2, 'GCash', 'pending', '', '2025-11-28 23:52:14', '2025-11-28 23:52:14'),
-(9, 2, 'ORD-20251129-C2A4DEBB', 'pending', '19498.00', '2339.76', '0.00', '21837.00', 2, 2, 'Cash on Delivery', 'pending', '', '2025-11-29 00:03:43', '2025-11-29 00:03:43'),
-(10, 2, 'ORD-20251129-A288F9B8', 'processing', '19498.00', '2339.76', '0.00', '21837.00', 2, 2, 'GCash', 'completed', '', '2025-11-29 00:06:33', '2025-11-29 00:07:39'),
-(11, 2, 'ORD-20251129-A2573A98', 'shipped', '49999.00', '5999.88', '0.00', '55998.00', 2, 2, 'GCash', 'completed', '', '2025-11-29 00:10:25', '2025-11-29 00:20:41'),
-(12, 4, 'ORD-20251129-2A1E86D9', 'shipped', '99998.00', '11999.76', '0.00', '111997.00', 3, 3, 'GCash', 'completed', '', '2025-11-29 00:44:59', '2025-11-29 01:52:44'),
-(13, 2, 'ORD-20251201-D6AEC454', 'shipped', '99998.00', '9999.80', '0.00', '109997.00', 2, 2, 'Cash on Delivery', 'completed', '', '2025-12-01 01:27:39', '2025-12-01 07:07:41'),
-(14, 2, 'ORD-20251202-BC9BD637', 'shipped', '45999.00', '4599.90', '0.00', '50598.00', 2, 2, 'Credit Card', 'completed', '', '2025-12-02 05:57:17', '2025-12-02 05:58:20'),
-(15, 5, 'ORD-20251203-B9B1255F', 'processing', '63998.00', '6399.80', '0.00', '70397.00', 5, 5, 'Cash on Delivery', 'pending', '', '2025-12-03 05:17:21', '2025-12-03 05:17:25'),
-(16, 2, 'ORD-20251205-1BB37862', 'processing', '14998.00', '1499.80', '0.00', '16497.00', 2, 2, 'Cash on Delivery', 'pending', '', '2025-12-05 05:01:32', '2025-12-05 05:01:51'),
-(17, 2, 'ORD-20251205-22D742E2', 'processing', '1999.00', '199.90', '0.00', '2198.00', 2, 2, 'Cash on Delivery', 'pending', '', '2025-12-05 05:13:54', '2025-12-05 05:13:58'),
-(18, 2, 'ORD-20251205-A7A9ECA8', 'processing', '25998.00', '2599.80', '0.00', '28597.00', 2, 2, 'Cash on Delivery', 'pending', '', '2025-12-05 05:18:29', '2025-12-05 05:18:32'),
-(19, 2, 'ORD-20251205-1264ECE9', 'processing', '14999.00', '1499.90', '0.00', '16498.00', 2, 2, 'Cash on Delivery', 'pending', '', '2025-12-05 05:46:34', '2025-12-05 05:46:37'),
-(20, 2, 'ORD-20251205-B2FBD260', 'shipped', '31999.00', '3199.90', '0.00', '35198.00', 2, 2, 'Cash on Delivery', 'pending', '', '2025-12-05 05:52:53', '2025-12-05 06:08:05'),
-(21, 2, 'ORD-20251205-755529A4', 'processing', '42999.00', '4299.90', '0.00', '47298.00', 2, 2, 'Cash on Delivery', 'pending', '', '2025-12-05 06:25:34', '2025-12-05 06:25:39'),
-(22, 2, 'ORD-20251205-23F63866', 'shipped', '25998.00', '2599.80', '0.00', '28597.00', 2, 2, 'Cash on Delivery', 'pending', '', '2025-12-05 06:31:50', '2025-12-05 06:42:21'),
-(23, 2, 'ORD-20251205-A6392FEF', 'processing', '12999.00', '1299.90', '0.00', '14298.00', 2, 2, 'Cash on Delivery', 'pending', '', '2025-12-05 06:51:35', '2025-12-05 06:51:39');
-=======
 (1, 2, 'ORD-20251128-27783FE6', 'cancelled', 49999.00, 5999.88, 0.00, 55998.00, 2, 2, 'Cash on Delivery', 'pending', '', '2025-11-28 10:45:23', '2025-11-28 11:45:42'),
 (2, 2, 'ORD-20251128-0E65360C', 'cancelled', 209997.00, 25199.64, 0.00, 235196.00, 2, 2, 'Credit Card', 'pending', '', '2025-11-28 11:40:01', '2025-11-28 11:45:41'),
 (3, 2, 'ORD-20251128-2057B79F', 'cancelled', 19498.00, 2339.76, 0.00, 21837.00, 2, 2, 'GCash', 'pending', '', '2025-11-28 11:50:00', '2025-11-29 04:16:06'),
@@ -1051,8 +1014,17 @@ INSERT INTO `orders` (`order_id`, `customer_id`, `order_number`, `order_status`,
 (10, 2, 'ORD-20251129-A288F9B8', 'processing', 19498.00, 2339.76, 0.00, 21837.00, 2, 2, 'GCash', 'completed', '', '2025-11-29 00:06:33', '2025-11-29 00:07:39'),
 (11, 2, 'ORD-20251129-A2573A98', 'shipped', 49999.00, 5999.88, 0.00, 55998.00, 2, 2, 'GCash', 'completed', '', '2025-11-29 00:10:25', '2025-11-29 00:20:41'),
 (12, 4, 'ORD-20251129-2A1E86D9', 'shipped', 99998.00, 11999.76, 0.00, 111997.00, 3, 3, 'GCash', 'completed', '', '2025-11-29 00:44:59', '2025-11-29 01:52:44'),
-(13, 2, 'ORD-20251201-D6AEC454', 'shipped', 99998.00, 9999.80, 0.00, 109997.00, 2, 2, 'Cash on Delivery', 'completed', '', '2025-12-01 01:27:39', '2025-12-01 07:07:41');
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
+(13, 2, 'ORD-20251201-D6AEC454', 'shipped', 99998.00, 9999.80, 0.00, 109997.00, 2, 2, 'Cash on Delivery', 'completed', '', '2025-12-01 01:27:39', '2025-12-01 07:07:41'),
+(14, 2, 'ORD-20251202-BC9BD637', 'shipped', 45999.00, 4599.90, 0.00, 50598.00, 2, 2, 'Credit Card', 'completed', '', '2025-12-02 05:57:17', '2025-12-02 05:58:20'),
+(15, 5, 'ORD-20251203-B9B1255F', 'processing', 63998.00, 6399.80, 0.00, 70397.00, 5, 5, 'Cash on Delivery', 'pending', '', '2025-12-03 05:17:21', '2025-12-03 05:17:25'),
+(16, 2, 'ORD-20251205-1BB37862', 'processing', 14998.00, 1499.80, 0.00, 16497.00, 2, 2, 'Cash on Delivery', 'pending', '', '2025-12-05 05:01:32', '2025-12-05 05:01:51'),
+(17, 2, 'ORD-20251205-22D742E2', 'processing', 1999.00, 199.90, 0.00, 2198.00, 2, 2, 'Cash on Delivery', 'pending', '', '2025-12-05 05:13:54', '2025-12-05 05:13:58'),
+(18, 2, 'ORD-20251205-A7A9ECA8', 'processing', 25998.00, 2599.80, 0.00, 28597.00, 2, 2, 'Cash on Delivery', 'pending', '', '2025-12-05 05:18:29', '2025-12-05 05:18:32'),
+(19, 2, 'ORD-20251205-1264ECE9', 'processing', 14999.00, 1499.90, 0.00, 16498.00, 2, 2, 'Cash on Delivery', 'pending', '', '2025-12-05 05:46:34', '2025-12-05 05:46:37'),
+(20, 2, 'ORD-20251205-B2FBD260', 'shipped', 31999.00, 3199.90, 0.00, 35198.00, 2, 2, 'Cash on Delivery', 'pending', '', '2025-12-05 05:52:53', '2025-12-05 06:08:05'),
+(21, 2, 'ORD-20251205-755529A4', 'processing', 42999.00, 4299.90, 0.00, 47298.00, 2, 2, 'Cash on Delivery', 'pending', '', '2025-12-05 06:25:34', '2025-12-05 06:25:39'),
+(22, 2, 'ORD-20251205-23F63866', 'shipped', 25998.00, 2599.80, 0.00, 28597.00, 2, 2, 'Cash on Delivery', 'pending', '', '2025-12-05 06:31:50', '2025-12-05 06:42:21'),
+(23, 2, 'ORD-20251205-A6392FEF', 'processing', 12999.00, 1299.90, 0.00, 14298.00, 2, 2, 'Cash on Delivery', 'pending', '', '2025-12-05 06:51:35', '2025-12-05 06:51:39');
 
 -- --------------------------------------------------------
 
@@ -1067,16 +1039,13 @@ CREATE TABLE `order_coupons` (
   `discount_applied` decimal(10,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-<<<<<<< HEAD
 --
 -- Dumping data for table `order_coupons`
 --
 
 INSERT INTO `order_coupons` (`order_coupon_id`, `order_id`, `coupon_id`, `discount_applied`) VALUES
-(1, 16, 2, '1000.00');
+(1, 16, 2, 1000.00);
 
-=======
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 -- --------------------------------------------------------
 
 --
@@ -1097,39 +1066,6 @@ CREATE TABLE `order_items` (
 --
 
 INSERT INTO `order_items` (`order_item_id`, `order_id`, `product_id`, `quantity`, `unit_price`, `subtotal`) VALUES
-<<<<<<< HEAD
-(1, 1, 1, 1, '49999.00', '49999.00'),
-(2, 2, 2, 3, '69999.00', '209997.00'),
-(3, 3, 3, 1, '14999.00', '14999.00'),
-(4, 3, 5, 1, '4499.00', '4499.00'),
-(5, 4, 3, 1, '14999.00', '14999.00'),
-(6, 4, 5, 1, '4499.00', '4499.00'),
-(7, 5, 3, 1, '14999.00', '14999.00'),
-(8, 5, 5, 1, '4499.00', '4499.00'),
-(9, 6, 3, 1, '14999.00', '14999.00'),
-(10, 6, 5, 1, '4499.00', '4499.00'),
-(11, 7, 3, 1, '14999.00', '14999.00'),
-(12, 7, 5, 1, '4499.00', '4499.00'),
-(13, 8, 3, 1, '14999.00', '14999.00'),
-(14, 8, 5, 1, '4499.00', '4499.00'),
-(15, 9, 3, 1, '14999.00', '14999.00'),
-(16, 9, 5, 1, '4499.00', '4499.00'),
-(17, 10, 3, 1, '14999.00', '14999.00'),
-(18, 10, 5, 1, '4499.00', '4499.00'),
-(19, 11, 1, 1, '49999.00', '49999.00'),
-(20, 12, 1, 2, '49999.00', '99998.00'),
-(21, 13, 1, 2, '49999.00', '99998.00'),
-(22, 14, 39, 1, '45999.00', '45999.00'),
-(23, 15, 35, 2, '31999.00', '63998.00'),
-(24, 16, 42, 2, '7999.00', '15998.00'),
-(25, 17, 40, 1, '1999.00', '1999.00'),
-(26, 18, 36, 2, '12999.00', '25998.00'),
-(27, 19, 37, 1, '14999.00', '14999.00'),
-(28, 20, 35, 1, '31999.00', '31999.00'),
-(29, 21, 41, 1, '42999.00', '42999.00'),
-(30, 22, 36, 2, '12999.00', '25998.00'),
-(31, 23, 36, 1, '12999.00', '12999.00');
-=======
 (1, 1, 1, 1, 49999.00, 49999.00),
 (2, 2, 2, 3, 69999.00, 209997.00),
 (3, 3, 3, 1, 14999.00, 14999.00),
@@ -1150,8 +1086,17 @@ INSERT INTO `order_items` (`order_item_id`, `order_id`, `product_id`, `quantity`
 (18, 10, 5, 1, 4499.00, 4499.00),
 (19, 11, 1, 1, 49999.00, 49999.00),
 (20, 12, 1, 2, 49999.00, 99998.00),
-(21, 13, 1, 2, 49999.00, 99998.00);
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
+(21, 13, 1, 2, 49999.00, 99998.00),
+(22, 14, 39, 1, 45999.00, 45999.00),
+(23, 15, 35, 2, 31999.00, 63998.00),
+(24, 16, 42, 2, 7999.00, 15998.00),
+(25, 17, 40, 1, 1999.00, 1999.00),
+(26, 18, 36, 2, 12999.00, 25998.00),
+(27, 19, 37, 1, 14999.00, 14999.00),
+(28, 20, 35, 1, 31999.00, 31999.00),
+(29, 21, 41, 1, 42999.00, 42999.00),
+(30, 22, 36, 2, 12999.00, 25998.00),
+(31, 23, 36, 1, 12999.00, 12999.00);
 
 -- --------------------------------------------------------
 
@@ -1189,31 +1134,6 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`payment_id`, `order_id`, `payment_method`, `transaction_id`, `amount`, `payment_status`, `payment_date`, `created_at`) VALUES
-<<<<<<< HEAD
-(1, 1, 'Cash on Delivery', NULL, '55998.88', 'pending', NULL, '2025-11-28 10:45:23'),
-(2, 2, 'Credit Card', NULL, '235196.64', 'pending', NULL, '2025-11-28 11:40:01'),
-(3, 3, 'GCash', NULL, '21837.76', 'pending', NULL, '2025-11-28 11:50:00'),
-(4, 4, 'GCash', NULL, '21837.76', 'pending', NULL, '2025-11-28 12:03:06'),
-(5, 5, 'GCash', NULL, '21837.76', 'pending', NULL, '2025-11-28 12:10:24'),
-(6, 6, 'Cash on Delivery', NULL, '21837.76', 'pending', NULL, '2025-11-28 12:42:43'),
-(7, 7, 'GCash', NULL, '21837.76', 'pending', NULL, '2025-11-28 23:49:05'),
-(8, 8, 'GCash', NULL, '21837.76', 'pending', NULL, '2025-11-28 23:52:14'),
-(9, 9, 'Cash on Delivery', NULL, '21837.76', 'pending', NULL, '2025-11-29 00:03:43'),
-(10, 10, 'GCash', 'TXN-20251129010739-77DDAF4E', '21837.76', 'completed', '2025-11-28 17:07:39', '2025-11-29 00:06:33'),
-(11, 11, 'GCash', 'TXN-20251129011035-5E35E5F7', '55998.88', 'completed', '2025-11-28 17:10:35', '2025-11-29 00:10:25'),
-(12, 12, 'GCash', 'TXN-20251129014517-0AA0838D', '111997.76', 'completed', '2025-11-28 17:45:17', '2025-11-29 00:44:59'),
-(13, 13, 'Cash on Delivery', 'COD-ORD-20251201-D6AEC454', '109997.80', 'completed', '2025-11-30 18:27:41', '2025-12-01 01:27:39'),
-(14, 14, 'Credit Card', 'TXN-20251202135748-E1BDC18E', '50598.90', 'completed', '2025-12-02 05:57:48', '2025-12-02 05:57:17'),
-(15, 15, 'Cash on Delivery', 'COD-ORD-20251203-B9B1255F', '70397.80', 'pending', '2025-12-03 05:17:25', '2025-12-03 05:17:21'),
-(16, 16, 'Cash on Delivery', 'COD-ORD-20251205-1BB37862', '16497.80', 'pending', '2025-12-05 05:01:51', '2025-12-05 05:01:32'),
-(17, 17, 'Cash on Delivery', 'COD-ORD-20251205-22D742E2', '2198.90', 'pending', '2025-12-05 05:13:58', '2025-12-05 05:13:54'),
-(18, 18, 'Cash on Delivery', 'COD-ORD-20251205-A7A9ECA8', '28597.80', 'pending', '2025-12-05 05:18:32', '2025-12-05 05:18:29'),
-(19, 19, 'Cash on Delivery', 'COD-ORD-20251205-1264ECE9', '16498.90', 'pending', '2025-12-05 05:51:14', '2025-12-05 05:46:34'),
-(20, 20, 'Cash on Delivery', 'COD-ORD-20251205-B2FBD260', '35198.90', 'pending', '2025-12-05 05:52:58', '2025-12-05 05:52:53'),
-(21, 21, 'Cash on Delivery', 'COD-ORD-20251205-755529A4', '47298.90', 'pending', '2025-12-05 06:25:39', '2025-12-05 06:25:34'),
-(22, 22, 'Cash on Delivery', 'COD-ORD-20251205-23F63866', '28597.80', 'pending', '2025-12-05 06:31:53', '2025-12-05 06:31:50'),
-(23, 23, 'Cash on Delivery', 'COD-ORD-20251205-A6392FEF', '14298.90', 'pending', '2025-12-05 06:51:39', '2025-12-05 06:51:35');
-=======
 (1, 1, 'Cash on Delivery', NULL, 55998.88, 'pending', NULL, '2025-11-28 10:45:23'),
 (2, 2, 'Credit Card', NULL, 235196.64, 'pending', NULL, '2025-11-28 11:40:01'),
 (3, 3, 'GCash', NULL, 21837.76, 'pending', NULL, '2025-11-28 11:50:00'),
@@ -1226,8 +1146,17 @@ INSERT INTO `payments` (`payment_id`, `order_id`, `payment_method`, `transaction
 (10, 10, 'GCash', 'TXN-20251129010739-77DDAF4E', 21837.76, 'completed', '2025-11-28 17:07:39', '2025-11-29 00:06:33'),
 (11, 11, 'GCash', 'TXN-20251129011035-5E35E5F7', 55998.88, 'completed', '2025-11-28 17:10:35', '2025-11-29 00:10:25'),
 (12, 12, 'GCash', 'TXN-20251129014517-0AA0838D', 111997.76, 'completed', '2025-11-28 17:45:17', '2025-11-29 00:44:59'),
-(13, 13, 'Cash on Delivery', 'COD-ORD-20251201-D6AEC454', 109997.80, 'completed', '2025-11-30 18:27:41', '2025-12-01 01:27:39');
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
+(13, 13, 'Cash on Delivery', 'COD-ORD-20251201-D6AEC454', 109997.80, 'completed', '2025-11-30 18:27:41', '2025-12-01 01:27:39'),
+(14, 14, 'Credit Card', 'TXN-20251202135748-E1BDC18E', 50598.90, 'completed', '2025-12-02 05:57:48', '2025-12-02 05:57:17'),
+(15, 15, 'Cash on Delivery', 'COD-ORD-20251203-B9B1255F', 70397.80, 'pending', '2025-12-03 05:17:25', '2025-12-03 05:17:21'),
+(16, 16, 'Cash on Delivery', 'COD-ORD-20251205-1BB37862', 16497.80, 'pending', '2025-12-05 05:01:51', '2025-12-05 05:01:32'),
+(17, 17, 'Cash on Delivery', 'COD-ORD-20251205-22D742E2', 2198.90, 'pending', '2025-12-05 05:13:58', '2025-12-05 05:13:54'),
+(18, 18, 'Cash on Delivery', 'COD-ORD-20251205-A7A9ECA8', 28597.80, 'pending', '2025-12-05 05:18:32', '2025-12-05 05:18:29'),
+(19, 19, 'Cash on Delivery', 'COD-ORD-20251205-1264ECE9', 16498.90, 'pending', '2025-12-05 05:51:14', '2025-12-05 05:46:34'),
+(20, 20, 'Cash on Delivery', 'COD-ORD-20251205-B2FBD260', 35198.90, 'pending', '2025-12-05 05:52:58', '2025-12-05 05:52:53'),
+(21, 21, 'Cash on Delivery', 'COD-ORD-20251205-755529A4', 47298.90, 'pending', '2025-12-05 06:25:39', '2025-12-05 06:25:34'),
+(22, 22, 'Cash on Delivery', 'COD-ORD-20251205-23F63866', 28597.80, 'pending', '2025-12-05 06:31:53', '2025-12-05 06:31:50'),
+(23, 23, 'Cash on Delivery', 'COD-ORD-20251205-A6392FEF', 14298.90, 'pending', '2025-12-05 06:51:39', '2025-12-05 06:51:35');
 
 -- --------------------------------------------------------
 
@@ -1257,253 +1186,6 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `category_id`, `product_name`, `description`, `price`, `sale_price`, `sku`, `brand`, `weight`, `dimensions`, `is_active`, `featured`, `created_at`, `updated_at`) VALUES
-<<<<<<< HEAD
-(1, 1, 'Samsung Galaxy S24 Ultra', '6.8-inch Dynamic AMOLED display, 200MP camera, 12GB RAM, 256GB storage', '54999.00', '49999.00', 'ELEC-SMSG-S24U-256', 'Samsung', '0.23', NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(2, 1, 'Apple iPhone 15 Pro Max', 'A17 Pro chip, Titanium design, 48MP camera, 256GB', '69999.00', NULL, 'ELEC-APPL-IP15PM-256', 'Apple', '0.22', NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(3, 1, 'Sony WH-1000XM5 Headphones', 'Premium noise cancelling wireless headphones with 30-hour battery', '16999.00', '14999.00', 'ELEC-SONY-WH1000XM5', 'Sony', '0.25', NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(4, 1, 'Dell XPS 15 Laptop', '15.6\" 4K display, Intel i7-13700H, 16GB RAM, 512GB SSD, RTX 4050', '89999.00', NULL, 'ELEC-DELL-XPS15-I7', 'Dell', '1.86', NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(5, 1, 'Logitech MX Master 3S Mouse', 'Wireless ergonomic mouse with 8K DPI sensor', '4999.00', '4499.00', 'ELEC-LOGI-MXM3S', 'Logitech', '0.14', NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(6, 1, 'Samsung 55\" 4K Smart TV', 'Crystal UHD 4K display, Tizen OS, HDR10+', '32999.00', '29999.00', 'ELEC-SMSG-TV55-4K', 'Samsung', '15.50', NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(7, 1, 'Anker PowerCore 20000mAh', 'High-capacity portable charger with fast charging', '2499.00', NULL, 'ELEC-ANKR-PC20K', 'Anker', '0.35', NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(8, 1, 'Canon EOS R6 Mark II', 'Full-frame mirrorless camera, 24.2MP, 4K 60fps video', '149999.00', NULL, 'ELEC-CANN-R6M2', 'Canon', '0.67', NULL, 0, 1, '2025-11-24 02:27:17', '2025-12-01 07:08:50'),
-(9, 2, 'Levi\'s 501 Original Jeans', 'Classic straight fit denim jeans, 100% cotton', '3499.00', '2999.00', 'CLTH-LEVI-501-BLU-32', 'Levi\'s', '0.60', NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(10, 2, 'Nike Dri-FIT Running Shirt', 'Moisture-wicking performance t-shirt, breathable fabric', '1499.00', NULL, 'CLTH-NIKE-DRIF-BLK-L', 'Nike', '0.15', NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(11, 2, 'Adidas Ultraboost 23 Shoes', 'Premium running shoes with Boost cushioning technology', '8999.00', '7999.00', 'CLTH-ADID-UB23-WHT-10', 'Adidas', '0.75', NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(12, 2, 'The North Face Resolve Jacket', 'Waterproof windbreaker with adjustable hood', '5999.00', NULL, 'CLTH-TNF-RSLV-GRN-M', 'The North Face', '0.40', NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(13, 2, 'Uniqlo Heattech Thermal Wear', 'Heat-generating base layer for cold weather', '799.00', '599.00', 'CLTH-UNIQ-HEAT-GRY-M', 'Uniqlo', '0.20', NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(14, 2, 'Ralph Lauren Polo Shirt', 'Classic fit cotton polo with signature pony logo', '2999.00', NULL, 'CLTH-RL-POLO-NVY-L', 'Ralph Lauren', '0.25', NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(15, 2, 'H&M Cotton Chino Pants', 'Slim fit chinos with stretch fabric', '1299.00', '999.00', 'CLTH-HM-CHIN-KHK-32', 'H&M', '0.35', NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(16, 3, 'Dyson V15 Detect Cordless Vacuum', 'Laser dust detection, 60-minute runtime, HEPA filtration', '29999.00', '27999.00', 'HOME-DYSO-V15DET', 'Dyson', '3.10', NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(17, 3, 'Philips Hue Smart Bulb Starter Kit', '4-pack color-changing LED bulbs with bridge', '6999.00', NULL, 'HOME-PHIL-HUE-4PK', 'Philips', '0.50', NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(18, 3, 'KitchenAid Stand Mixer', '5-quart tilt-head mixer with 10 speeds, includes accessories', '18999.00', '16999.00', 'HOME-KA-MIXER-RED', 'KitchenAid', '10.20', NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(19, 3, 'Nespresso Vertuo Coffee Maker', 'One-touch espresso and coffee machine with frother', '8999.00', NULL, 'HOME-NESP-VERT-BLK', 'Nespresso', '4.50', NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(20, 3, 'iRobot Roomba j7+', 'Self-emptying robot vacuum with object recognition', '39999.00', '35999.00', 'HOME-IRO-J7PLUS', 'iRobot', '3.40', NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(21, 3, 'Black+Decker 20V Drill Kit', 'Cordless drill with 2 batteries and carrying case', '3999.00', NULL, 'HOME-BD-DRILL-20V', 'Black+Decker', '2.00', NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(22, 3, 'Weber Genesis Gas Grill', '3-burner propane grill with side burner and storage', '34999.00', NULL, 'HOME-WEBR-GEN-3B', 'Weber', '65.00', NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(23, 1, 'Yeti Tundra 45 Cooler', 'Rotomolded construction, bear-resistant, 28-can capacity', '19999.00', NULL, 'SPRT-YETI-T45-WHT', '0', '10.00', NULL, 1, 1, '2025-11-24 02:27:17', '2025-12-03 05:09:10'),
-(24, 1, 'Trek Marlin 7 Mountain Bike', '29-inch wheels, 21-speed, aluminum frame', '32999.00', '29999.00', 'SPRT-TREK-M7-BLU-M', '0', '13.50', NULL, 1, 1, '2025-11-24 02:27:17', '2025-12-03 05:09:16'),
-(25, 1, 'Coleman Sundome Tent 4-Person', 'WeatherTec system, easy setup, fits 4 campers', '4999.00', NULL, 'SPRT-COLM-SD4-GRN', '0', '5.80', NULL, 1, 0, '2025-11-24 02:27:17', '2025-12-03 05:09:30'),
-(26, 4, 'TRX Home2 Suspension Trainer', 'Total body resistance training system with workout guide', '7999.00', '6999.00', 'SPRT-TRX-HM2-BLK', 'TRX', '1.20', NULL, 0, 0, '2025-11-24 02:27:17', '2025-12-01 07:08:44'),
-(27, 1, 'Bowflex SelectTech 552 Dumbbells', 'Adjustable dumbbells, 5-52.5 lbs per dumbbell', '24999.00', NULL, 'SPRT-BWFX-ST552', '0', '25.00', NULL, 1, 1, '2025-11-24 02:27:17', '2025-12-03 05:09:39'),
-(28, 1, 'GoPro HERO12 Black', '5.3K60 video, HyperSmooth 6.0, waterproof to 33ft', '21999.00', '19999.00', 'SPRT-GPRO-H12-BLK', '0', '0.15', NULL, 1, 1, '2025-11-24 02:27:17', '2025-12-03 05:09:46'),
-(29, 1, 'Wilson Evolution Basketball', 'Official size, composite leather, indoor use', '2499.00', NULL, 'SPRT-WILS-EVO-BBAL', '0', '0.62', NULL, 1, 0, '2025-11-24 02:27:17', '2025-12-03 05:09:51'),
-(30, 5, 'Atomic Habits by James Clear', 'Proven framework for improving every day, hardcover', '899.00', '749.00', 'BOOK-ATML-HBIT-HC', 'Penguin Random House', '0.40', NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(31, 5, 'The Psychology of Money', 'Timeless lessons on wealth and happiness by Morgan Housel', '699.00', NULL, 'BOOK-PSYC-MONY-PB', 'Harriman House', '0.35', NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(32, 5, 'Educated: A Memoir', 'Tara Westover\'s powerful story of self-invention', '799.00', '649.00', 'BOOK-EDUC-MEMO-PB', 'Random House', '0.38', NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(33, 5, 'The Lean Startup', 'How today\'s entrepreneurs build successful businesses', '999.00', NULL, 'BOOK-LEAN-STRT-HC', 'Crown Business', '0.45', NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(34, 5, 'Sapiens: A Brief History', 'Yuval Noah Harari\'s journey through human history', '1299.00', '999.00', 'BOOK-SAPI-HIST-HC', 'Harper', '0.65', NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(35, 1, 'Apple iPad Air 5th Gen', 'M1 chip, 10.9-inch Liquid Retina display, 64GB, Wi-Fi', '34999.00', '31999.00', 'ELEC-APPL-IPA5-64', 'Apple', '0.46', '24.8 x 17.8 x 0.6 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(36, 1, 'Samsung Galaxy Watch 6', '44mm, Bluetooth, health monitoring, sleep tracking', '14999.00', '12999.00', 'ELEC-SMSG-GW6-44', 'Samsung', '0.33', '44 x 44 x 9 mm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(37, 1, 'Bose QuietComfort 45', 'Noise cancelling headphones, 24-hour battery life', '16999.00', '14999.00', 'ELEC-BOSE-QC45-BK', 'Bose', '0.24', '18 x 16 x 8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(38, 1, 'Microsoft Surface Pro 9', '13-inch 2-in-1 laptop, Intel i5, 8GB RAM, 256GB SSD', '69999.00', '64999.00', 'ELEC-MSFT-SP9-I5', 'Microsoft', '0.88', '28.7 x 20.9 x 0.9 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(39, 1, 'Google Pixel 8 Pro', '6.7-inch display, Tensor G3 chip, 128GB, camera system', '49999.00', '45999.00', 'ELEC-GOOG-P8P-128', 'Google', '0.21', '16.3 x 7.6 x 0.9 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(40, 1, 'Amazon Echo Dot 5th Gen', 'Smart speaker with Alexa, improved audio quality', '2499.00', '1999.00', 'ELEC-AMZN-EDOT5-BL', 'Amazon', '0.30', '10 x 10 x 9 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(41, 1, 'DJI Mini 3 Pro Drone', '4K camera, 34-min flight time, under 249g weight', '45999.00', '42999.00', 'ELEC-DJI-M3P-FLY', 'DJI', '0.25', '14.5 x 8.6 x 3.4 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(42, 1, 'Fitbit Charge 6', 'Advanced health & fitness tracker, GPS, Spotify', '8999.00', '7999.00', 'ELEC-FBIT-CRG6-BK', 'Fitbit', '0.03', '3.7 x 1.8 x 1.2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(43, 1, 'Razer BlackWidow V4', 'Mechanical gaming keyboard, RGB lighting, green switches', '8999.00', '7999.00', 'ELEC-RAZR-BWV4-GN', 'Razer', '1.10', '44.5 x 15.3 x 3.5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(44, 1, 'LG UltraWide Monitor 34\"', '34-inch curved QHD monitor, 144Hz, HDR10', '34999.00', '31999.00', 'ELEC-LG-34UW-CURV', 'LG', '6.80', '81.5 x 36.5 x 24.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(45, 1, 'HP Envy x360 Laptop', '15.6-inch touchscreen, AMD Ryzen 7, 16GB RAM, 512GB', '54999.00', '49999.00', 'ELEC-HP-ENVY-R7', 'HP', '1.78', '35.8 x 24.2 x 1.8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(46, 1, 'JBL Flip 6 Speaker', 'Portable Bluetooth speaker, waterproof, 12-hour battery', '6999.00', '5999.00', 'ELEC-JBL-FLP6-BL', 'JBL', '0.55', '17.8 x 7.2 x 7.2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(47, 1, 'Nintendo Switch OLED', '7-inch OLED screen, 64GB, enhanced audio, white joy-cons', '19999.00', '17999.00', 'ELEC-NINT-SWOL-WH', 'Nintendo', '0.42', '24.2 x 10.2 x 1.4 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(48, 1, 'SanDisk 1TB Extreme SSD', 'Portable SSD, 1050MB/s read, water and dust resistant', '8999.00', '7999.00', 'ELEC-SAND-1TB-EXT', 'SanDisk', '0.04', '9.6 x 5 x 0.9 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(49, 1, 'Belkin Wireless Charger', '15W fast wireless charging pad, iPhone/android compatible', '2999.00', '2499.00', 'ELEC-BELK-WCHG15', 'Belkin', '0.10', '10 x 10 x 1 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(50, 1, 'ASUS ROG Gaming Laptop', '16-inch QHD, Intel i9, RTX 4070, 32GB RAM, 1TB SSD', '129999.00', '119999.00', 'ELEC-ASUS-ROG-I9', 'ASUS', '2.30', '35.5 x 24.3 x 2.1 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(51, 1, 'Garmin Fenix 7X', 'Multisport GPS watch, solar charging, 28-day battery', '44999.00', '41999.00', 'ELEC-GARM-FNX7X', 'Garmin', '0.09', '5.1 x 5.1 x 1.8 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(52, 1, 'Sonos One Speaker', 'Smart speaker with Alexa, rich sound, multi-room audio', '14999.00', '12999.00', 'ELEC-SONO-ONE-BK', 'Sonos', '1.85', '16.1 x 11.9 x 11.9 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(53, 1, 'Wyze Cam v3 Pro', '2K security camera, color night vision, weatherproof', '3999.00', '3499.00', 'ELEC-WYZE-CAMV3P', 'Wyze', '0.18', '5.1 x 5.1 x 3.2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(54, 1, 'Logitech G Pro X Headset', 'Professional gaming headset, Blue VO!CE mic, 50mm drivers', '9999.00', '8999.00', 'ELEC-LOGI-GPX-BK', 'Logitech', '0.32', '19 x 17 x 8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(55, 1, 'Corsair K70 Keyboard', 'Mechanical keyboard, Cherry MX Red, RGB, aluminum frame', '8999.00', '7999.00', 'ELEC-CORS-K70-RED', 'Corsair', '1.20', '43.8 x 16.6 x 3.5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(56, 1, 'Epson EcoTank Printer', 'Wireless color printer, cartridge-free, 2-year ink supply', '14999.00', '12999.00', 'ELEC-EPSN-ET4760', 'Epson', '6.80', '37.5 x 34.7 x 18.7 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(57, 1, 'SteelSeries Aerox 5', 'Wireless gaming mouse, 18K CPI, 180-hour battery', '6999.00', '5999.00', 'ELEC-STEL-AX5-WL', 'SteelSeries', '0.07', '12.7 x 6.6 x 3.9 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(58, 1, 'HyperX Cloud II Headset', '7.1 virtual surround sound, memory foam ear cushions', '5999.00', '4999.00', 'ELEC-HYPR-CLD2-RD', 'HyperX', '0.32', '19 x 18 x 9 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(59, 1, 'Anker 737 Power Bank', '24,000mAh, 140W output, GaNPrime technology', '7999.00', '6999.00', 'ELEC-ANKR-737-PB', 'Anker', '0.40', '10.8 x 5.4 x 2.5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(60, 1, 'TP-Link Deco Mesh WiFi', 'Whole home coverage, 5,500 sq ft, 3-pack system', '12999.00', '11999.00', 'ELEC-TPLN-DECO-X60', 'TP-Link', '0.50', '10 x 10 x 15 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(61, 1, 'Acer Predator Monitor', '27-inch 4K, 144Hz, 1ms response, G-Sync compatible', '39999.00', '36999.00', 'ELEC-ACER-PRED27', 'Acer', '5.60', '61.2 x 36.9 x 22.7 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(62, 1, 'GoPro MAX 360 Camera', '360-degree capture, waterproof, 5.6K30 video', '29999.00', '27999.00', 'ELEC-GPRO-MAX360', 'GoPro', '0.16', '6.6 x 5.6 x 2.7 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(63, 1, 'Samsung Galaxy Tab S9', '11-inch AMOLED, Snapdragon 8 Gen 2, 256GB, S Pen included', '45999.00', '42999.00', 'ELEC-SMSG-TABS9', 'Samsung', '0.50', '25.4 x 16.5 x 0.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(64, 1, 'Apple AirPods Pro 2', 'Active noise cancellation, spatial audio, MagSafe case', '14999.00', '13999.00', 'ELEC-APPL-APRP2', 'Apple', '0.05', '6 x 4 x 2 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(65, 2, 'Under Armour Sportstyle Hoodie', 'Cotton-polyester blend, relaxed fit, kangaroo pocket', '2999.00', '2599.00', 'CLTH-UA-HOOD-GRY-L', 'Under Armour', '0.45', NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(66, 2, 'Calvin Klein Slim Fit Suit', 'Modern slim fit suit, wool blend, includes jacket and pants', '12999.00', '11999.00', 'CLTH-CK-SUIT-BLK-40', 'Calvin Klein', '1.80', NULL, 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(67, 2, 'Columbia Fleece Jacket', 'Full-zip fleece jacket, moisture-wicking, lightweight', '3999.00', '3499.00', 'CLTH-COL-FLCE-BLU-M', 'Columbia', '0.35', NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(68, 2, 'Patagonia Better Sweater', '100% recycled polyester fleece, full-zip, quarter-zip', '6999.00', '6499.00', 'CLTH-PATG-BSWT-GRN-L', 'Patagonia', '0.55', NULL, 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(69, 2, 'Lacoste Classic Polo', 'Iconic crocodile logo, pique cotton, regular fit', '3499.00', '2999.00', 'CLTH-LACO-POLO-WHT-M', 'Lacoste', '0.25', NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(70, 2, 'Tommy Hilfiger Denim Jacket', 'Classic denim jacket, distressed wash, button front', '4999.00', '4499.00', 'CLTH-TOMY-DJKT-BLU-L', 'Tommy Hilfiger', '0.60', NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(71, 2, 'New Balance Fresh Foam Shoes', 'Running shoes, Fresh Foam midsole, rubber outsole', '5999.00', '5499.00', 'CLTH-NBAL-FRSH-10', 'New Balance', '0.70', NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(72, 2, 'Champion Reverse Weave Hoodie', 'Heavyweight cotton, oversized fit, embroidered logo', '3999.00', '3499.00', 'CLTH-CHMP-RWH-BLK-XL', 'Champion', '0.75', NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(73, 2, 'Vans Old Skool Sneakers', 'Classic skate shoes, canvas and suede, side stripe', '3499.00', '2999.00', 'CLTH-VANS-OS-BLK-9', 'Vans', '0.65', NULL, 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(74, 2, 'Nike Air Max 270', 'Lifestyle shoes, Max Air unit, breathable mesh', '7999.00', '6999.00', 'CLTH-NIKE-AM270-10', 'Nike', '0.68', NULL, 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(75, 2, 'Converse Chuck Taylor All Star', 'Classic high-top canvas shoes, rubber toe cap', '2499.00', '2199.00', 'CLTH-CONV-CTAS-HI', 'Converse', '0.55', NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(76, 2, 'Levi\'s Trucker Jacket', 'Classic denim jacket, slim fit, button closure', '4499.00', '3999.00', 'CLTH-LEVI-TRKR-MED', 'Levi\'s', '0.65', NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(77, 2, 'Hugo Boss Dress Shirt', 'Non-iron cotton, regular fit, button-down collar', '2999.00', '2699.00', 'CLTH-HUGO-DRSH-WHT-16', 'Hugo Boss', '0.20', NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(78, 2, 'Puma Cali Sport Sneakers', 'Women\'s fashion sneakers, leather upper, platform sole', '3999.00', '3499.00', 'CLTH-PUMA-CALI-8', 'Puma', '0.58', NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(79, 2, 'Reebok Nano X3', 'Cross-training shoes, Floatride Energy foam, durable', '5999.00', '5499.00', 'CLTH-REEB-NANO-10', 'Reebok', '0.72', NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(80, 2, 'Michael Kors Tote Bag', 'Leather tote bag, gold-tone hardware, zip closure', '8999.00', '7999.00', 'CLTH-MKRS-TOTE-BLK', 'Michael Kors', '0.85', '35 x 28 x 15 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(81, 2, 'Ray-Ban Aviator Sunglasses', 'Classic aviator style, polarized lenses, metal frame', '7999.00', '7499.00', 'CLTH-RAYB-AVT-GLD', 'Ray-Ban', '0.03', '14 x 5 x 2 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(82, 2, 'Skechers Go Walk Shoes', 'Slip-on walking shoes, lightweight, memory foam', '2999.00', '2699.00', 'CLTH-SKCH-GWALK-9', 'Skechers', '0.45', NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(83, 2, 'Oakley Flak Jacket Sunglasses', 'Sport sunglasses, PRIZM lenses, durable frame', '6999.00', '6499.00', 'CLTH-OAKL-FLAK-BLK', 'Oakley', '0.04', '13 x 6 x 2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(84, 2, 'The North Face Apex Flex', 'Soft shell jacket, windproof, stretch fabric', '7999.00', '7499.00', 'CLTH-TNF-APEX-M', 'The North Face', '0.48', NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(85, 2, 'Timberland Premium Boots', 'Waterproof leather boots, seam-sealed construction', '9999.00', '8999.00', 'CLTH-TMBL-PREM-10', 'Timberland', '1.20', NULL, 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(86, 2, 'Fossil Gen 6 Smartwatch', 'Smartwatch with Wear OS, heart rate, GPS, 44mm', '12999.00', '11999.00', 'CLTH-FOSL-GEN6-BK', 'Fossil', '0.08', '4.4 x 4.4 x 1.3 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(87, 2, 'Coach Signature Wallet', 'Leather wallet, multiple card slots, bill compartment', '4999.00', '4499.00', 'CLTH-COCH-WLT-BRN', 'Coach', '0.12', '10 x 8 x 1 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(88, 2, 'Arcteryx Beta AR Jacket', 'Gore-Tex Pro shell, storm hood, lightweight', '19999.00', '18999.00', 'CLTH-ARCT-BETA-L', 'Arcteryx', '0.42', NULL, 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(89, 2, 'Salomon Speedcross 5', 'Trail running shoes, aggressive grip, waterproof', '7999.00', '7499.00', 'CLTH-SALO-SPD5-10', 'Salomon', '0.65', NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(90, 2, 'Brooks Ghost 15', 'Neutral running shoes, DNA LOFT cushioning', '6999.00', '6499.00', 'CLTH-BROK-GHST-10', 'Brooks', '0.68', NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(91, 2, 'Marmot PreCip Jacket', 'Rain jacket, waterproof breathable, pit zips', '5999.00', '5499.00', 'CLTH-MARM-PREC-M', 'Marmot', '0.32', NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(92, 2, 'ASICS Gel-Kayano 30', 'Stability running shoes, Gel technology, breathable', '8999.00', '8499.00', 'CLTH-ASIC-KYNO-10', 'ASICS', '0.72', NULL, 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(93, 2, 'Oakley Holbrook Sunglasses', 'Classic square frame, PRIZM lenses, lightweight', '5999.00', '5499.00', 'CLTH-OAKL-HLBK-MT', 'Oakley', '0.03', '13 x 5 x 2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(94, 2, 'Mizuno Wave Rider 27', 'Neutral running shoes, Wave plate technology', '7999.00', '7499.00', 'CLTH-MIZU-WAVE-10', 'Mizuno', '0.70', NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(95, 3, 'Ninja Foodi Air Fryer', '8-in-1 air fryer, dehydrator, roast, bake, grill', '9999.00', '8999.00', 'HOME-NINJ-FOODI8', 'Ninja', '5.80', '35 x 33 x 35 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(96, 3, 'Instant Pot Duo Nova', '7-in-1 electric pressure cooker, 6-quart capacity', '6999.00', '6499.00', 'HOME-INST-DUO6QT', 'Instant Pot', '5.20', '30 x 30 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(97, 3, 'Breville Barista Express', 'Espresso machine with grinder, milk frother, 15 bar', '39999.00', '37999.00', 'HOME-BREV-BAREXP', 'Breville', '12.50', '32 x 33 x 40 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(98, 3, 'Vitamix 5200 Blender', 'Professional-grade blender, 2.2 HP motor, 64oz jar', '29999.00', '27999.00', 'HOME-VITA-5200-BL', 'Vitamix', '6.20', '46 x 20 x 25 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(99, 3, 'Cuisinart Food Processor', '14-cup capacity, dough blade, slicing/shredding discs', '8999.00', '8499.00', 'HOME-CUIS-FP14C', 'Cuisinart', '4.80', '25 x 35 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(100, 3, 'Shark Navigator Vacuum', 'Upright vacuum, lift-away pod, HEPA filter, corded', '9999.00', '8999.00', 'HOME-SHRK-NAV-LA', 'Shark', '6.50', '45 x 30 x 25 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(101, 3, 'Keurig K-Elite Coffee Maker', 'Single-serve coffee maker, iced coffee setting, 75oz', '8999.00', '8499.00', 'HOME-KEUR-KELITE', 'Keurig', '4.20', '33 x 25 x 38 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(102, 3, 'Lodge Cast Iron Skillet', 'Pre-seasoned cast iron, 10.25-inch, oven safe', '1999.00', '1799.00', 'HOME-LODG-CISK10', 'Lodge', '2.10', '26 x 26 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(103, 3, 'Zojirushi Rice Cooker', '5.5-cup capacity, fuzzy logic, multiple settings', '7999.00', '7499.00', 'HOME-ZOJI-RC55-FL', 'Zojirushi', '3.50', '29 x 24 x 22 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(104, 3, 'All-Clad Stainless Pan Set', '3-piece stainless steel cookware set, induction ready', '14999.00', '13999.00', 'HOME-ALLCLAD-3PC', 'All-Clad', '4.80', 'Varies', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(105, 3, 'OXO Good Grips Tools', '14-piece kitchen tool set, comfortable handles', '2999.00', '2699.00', 'HOME-OXO-14PC-KT', 'OXO', '1.80', '40 x 25 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(106, 3, 'Crock-Pot Slow Cooker', '7-quart programmable slow cooker, digital timer', '3999.00', '3699.00', 'HOME-CROCK-P7QT', 'Crock-Pot', '4.50', '35 x 35 x 28 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(107, 3, 'KitchenAid Food Chopper', '3.5-cup food chopper, two-speed control, easy clean', '1999.00', '1799.00', 'HOME-KA-CHOP-35', 'KitchenAid', '1.50', '18 x 18 x 24 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(108, 3, 'Hamilton Beach Toaster Oven', '6-slice capacity, convection bake, broil, toast', '2999.00', '2699.00', 'HOME-HAMB-TOV6S', 'Hamilton Beach', '5.20', '45 x 35 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(109, 3, 'Wusthof Classic Knife Set', '8-piece German steel knife set, block included', '12999.00', '11999.00', 'HOME-WUST-CLASSIC8', 'Wusthof', '3.20', '30 x 20 x 15 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(110, 3, 'Rubbermaid Food Storage', '40-piece food storage set, BPA-free, microwave safe', '1999.00', '1799.00', 'HOME-RUBR-FS40PC', 'Rubbermaid', '2.50', '35 x 25 x 15 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(111, 3, 'Simplehuman Trash Can', 'Sensor can, stainless steel, 50-liter capacity', '6999.00', '6499.00', 'HOME-SIMP-SEN50', 'Simplehuman', '4.80', '30 x 30 x 60 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(112, 3, 'Mr. Coffee Espresso Maker', '15-bar pump espresso machine, milk frother', '4999.00', '4499.00', 'HOME-MRCOF-ESP15', 'Mr. Coffee', '3.50', '25 x 20 x 35 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(113, 3, 'Farberware Cookware Set', '12-piece non-stick cookware set, dishwasher safe', '5999.00', '5499.00', 'HOME-FARB-12PC-NST', 'Farberware', '8.50', 'Varies', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(114, 3, 'Pyrex Glass Storage Set', '18-piece glass storage set, freezer to oven safe', '2999.00', '2699.00', 'HOME-PYREX-18PC', 'Pyrex', '5.20', '35 x 25 x 20 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(115, 3, 'Oster Blender', '6-speed blender, 48oz glass jar, ice crush function', '1999.00', '1799.00', 'HOME-OSTR-BLND6S', 'Oster', '3.20', '22 x 18 x 38 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(116, 3, 'Sunbeam Stand Mixer', '4.5-quart stand mixer, 5 speeds, includes attachments', '4999.00', '4499.00', 'HOME-SUNB-SMIX45', 'Sunbeam', '6.80', '35 x 25 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(117, 3, 'Cuisinart Griddler', '4-in-1 contact grill, panini press, open grill', '5999.00', '5499.00', 'HOME-CUIS-GRDLR', 'Cuisinart', '5.50', '35 x 30 x 20 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(118, 3, 'Weber Charcoal Grill', '22-inch kettle grill, porcelain-enameled bowl', '4999.00', '4499.00', 'HOME-WEBR-KETTLE22', 'Weber', '18.50', '50 x 50 x 100 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(119, 3, 'GreenPan Cookware Set', '8-piece ceramic non-stick set, healthy cooking', '7999.00', '7499.00', 'HOME-GRNPN-8PC-CER', 'GreenPan', '6.50', 'Varies', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(120, 3, 'Blackstone Griddle', '36-inch outdoor griddle, 4 burners, stainless steel', '19999.00', '18999.00', 'HOME-BLSTN-GRD36', 'Blackstone', '45.00', '140 x 70 x 90 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(121, 3, 'Anova Sous Vide', 'Precision cooker, WiFi/Bluetooth, restaurant quality', '6999.00', '6499.00', 'HOME-ANOVA-SV-WIFI', 'Anova', '0.80', '38 x 6 x 6 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(122, 3, 'Magic Bullet Blender', '17-piece set, personal blender, 250-watt motor', '1999.00', '1799.00', 'HOME-MGBLT-17PC', 'Magic Bullet', '2.50', '25 x 25 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(123, 3, 'Cuisinart Coffee Maker', '14-cup programmable coffee maker, auto shut-off', '2999.00', '2699.00', 'HOME-CUIS-CM14C', 'Cuisinart', '3.20', '35 x 25 x 35 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(124, 3, 'T-fal Cookware Set', '12-piece non-stick set, thermo-spot heat indicator', '4999.00', '4499.00', 'HOME-TFAL-12PC-NS', 'T-fal', '7.50', 'Varies', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(125, 1, 'Razer BlackWidow V4 Pro', 'Mechanical gaming keyboard, Razer Yellow switches, RGB', '12999.00', '11999.00', 'SPRT-RAZR-BW4PRO', '0', '1.35', '45 x 15 x 4 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:47:20'),
-(126, 1, 'Garmin Forerunner 955', 'GPS running watch, multi-band GNSS, training metrics', '34999.00', '32999.00', 'SPRT-GARM-FR955', '0', '0.05', '4.6 x 4.6 x 1.3 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:48:05'),
-(127, 1, 'HyperX Cloud Alpha', 'Gaming headset, dual chamber drivers, detachable mic', '6999.00', '6499.00', 'SPRT-HYPR-CLDA', '0', '0.33', '20 x 18 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:48:13'),
-(128, 1, 'Corsair Vengeance RAM', '32GB DDR5 6000MHz, RGB lighting, Intel XMP 3.0', '8999.00', '8499.00', 'SPRT-CORS-VEN32', '0', '0.08', '13.3 x 4.9 x 0.8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:48:21'),
-(129, 1, 'Logitech G502 X Plus', 'Lightspeed wireless gaming mouse, LIGHTFORCE hybrid', '9999.00', '8999.00', 'SPRT-LOGI-G502X', '0', '0.10', '13.2 x 7.5 x 4.1 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:48:33'),
-(130, 1, 'SteelSeries Arctis Nova Pro', 'Wireless gaming headset, active noise cancellation', '19999.00', '18999.00', 'SPRT-STEL-ANOVA', '0', '0.38', '21 x 19 x 10 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:48:47'),
-(131, 1, 'ASUS ROG Strix Monitor', '27-inch 4K gaming monitor, 160Hz, HDR600, G-Sync', '49999.00', '46999.00', 'SPRT-ASUS-ROG27', '0', '6.50', '61 x 37 x 23 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:48:59'),
-(132, 1, 'NZXT Kraken AIO Cooler', '240mm AIO liquid cooler, RGB pump, 2x 120mm fans', '8999.00', '8499.00', 'SPRT-NZXT-KRK240', '0', '1.20', '27 x 12 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:50:11'),
-(133, 1, 'EVGA Supernova PSU', '850W 80+ Gold power supply, fully modular, 10-year', '9999.00', '9499.00', 'SPRT-EVGA-SN850', '0', '1.80', '15 x 15 x 8.6 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:50:25'),
-(134, 1, 'Samsung 980 Pro SSD', '2TB NVMe M.2 SSD, PCIe 4.0, 7000MB/s read', '12999.00', '11999.00', 'SPRT-SAMS-980P2T', '0', '0.01', '8 x 2.2 x 0.2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:50:32'),
-(135, 1, 'Cooler Master Case', 'Mid-tower ATX case, tempered glass, RGB fans', '6999.00', '6499.00', 'SPRT-CMST-MT500', '0', '8.20', '49 x 23 x 47 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:50:39'),
-(136, 1, 'Thrustmaster T300RS', 'Force feedback racing wheel, GT edition, 1080° rotation', '19999.00', '18999.00', 'SPRT-THRU-T300RS', '0', '4.50', '45 x 35 x 30 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:50:45'),
-(137, 1, 'Elgato Stream Deck', '15-key programmable stream deck, LCD keys', '6999.00', '6499.00', 'SPRT-ELGT-SDECK15', '0', '0.30', '12 x 8 x 3 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:50:54'),
-(138, 1, 'Blue Yeti Microphone', 'USB condenser microphone, multiple pattern selection', '8999.00', '8499.00', 'SPRT-BLUE-YETI-BLK', '0', '1.20', '12 x 12 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:51:07'),
-(139, 1, 'Logitech C920 Webcam', '1080p webcam, auto light correction, built-in mic', '4999.00', '4499.00', 'SPRT-LOGI-C920HD', '0', '0.16', '9.5 x 2.5 x 2.5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:51:22'),
-(140, 1, 'Razer Viper V2 Pro', 'Ultra-lightweight wireless mouse, 58g, 30K DPI', '9999.00', '8999.00', 'SPRT-RAZR-VP2PRO', '0', '0.06', '12.6 x 6.7 x 3.8 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:51:37'),
-(141, 1, 'SteelSeries QcK Mousepad', 'XXL gaming mousepad, cloth surface, non-slip base', '1999.00', '1799.00', 'SPRT-STEL-QCKXXL', '0', '0.45', '90 x 40 x 0.4 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:51:43'),
-(142, 1, 'Corsair K100 Keyboard', 'Optical-mechanical keyboard, 4000Hz polling, PBT keys', '14999.00', '13999.00', 'SPRT-CORS-K100', '0', '1.35', '46 x 16 x 4 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:52:06'),
-(143, 1, 'HyperX Pulsefire Mouse', 'Gaming mouse, 16000 DPI, RGB lighting, 6 buttons', '3999.00', '3499.00', 'SPRT-HYPR-PULSE', '0', '0.09', '12.4 x 6.8 x 3.9 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:52:12'),
-(144, 1, 'NVIDIA RTX 4080', '16GB GDDR6X graphics card, DLSS 3, ray tracing', '89999.00', '84999.00', 'SPRT-NVDA-408016', '0', '2.10', '30 x 13 x 6 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:52:17'),
-(145, 1, 'AMD Ryzen 9 7950X', '16-core 32-thread processor, 5.7GHz boost, AM5 socket', '49999.00', '47999.00', 'SPRT-AMD-R97950', '0', '0.05', '4 x 4 x 1 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:52:24'),
-(146, 1, 'Intel Core i9-14900K', '24-core processor, 5.8GHz boost, LGA1700 socket', '45999.00', '43999.00', 'SPRT-INTL-I914900', '0', '0.05', '4.5 x 3.5 x 0.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 05:02:10'),
-(147, 1, 'ASUS ROG Motherboard', 'Z790 motherboard, DDR5, WiFi 6E, PCIe 5.0', '29999.00', '28999.00', 'SPRT-ASUS-Z790E', '0', '1.20', '30 x 24 x 6 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 05:02:34'),
-(148, 1, 'G.Skill Trident RAM', '64GB DDR5 6400MHz, RGB, CL32 latency', '15999.00', '14999.00', 'SPRT-GSKL-TRI64', '0', '0.12', '13.3 x 4.9 x 0.8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 05:03:26'),
-(149, 1, 'Seagate FireCuda SSD', '4TB NVMe Gen4 SSD, 7300MB/s, heatsink included', '19999.00', '18999.00', 'SPRT-SEAG-FC4TB', '0', '0.02', '8 x 2.2 x 0.2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 05:03:34'),
-(150, 1, 'be quiet! Dark Rock 4', 'Air CPU cooler, 200W TDP, silent wings fans', '5999.00', '5699.00', 'SPRT-BQUI-DRK4', '0', '1.10', '13.6 x 13.6 x 16.3 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 05:03:39'),
-(151, 1, 'Lian Li Case Fans', '3-pack 120mm RGB fans, daisy chain, PWM control', '3999.00', '3699.00', 'SPRT-LIAN-FAN3PK', '0', '0.45', '12 x 12 x 2.5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 05:03:46'),
-(152, 1, 'Fractal Design Case', 'ATX mid-tower, tempered glass, silent optimized', '7999.00', '7499.00', 'SPRT-FRAC-DESIGN', '0', '9.20', '54 x 23 x 45 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 05:10:05'),
-(153, 1, 'MSI Gaming Monitor', '32-inch QHD, 165Hz, 1ms, HDR400, curved', '29999.00', '27999.00', 'SPRT-MSI-MON32Q', '0', '6.20', '71 x 52 x 24 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 05:08:49'),
-(154, 1, 'Glorious Model O Mouse', 'Wireless gaming mouse, honeycomb shell, 67g weight', '5999.00', '5499.00', 'SPRT-GLOR-MODELO', '0', '0.07', '12.8 x 6.7 x 3.7 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 05:08:58'),
-(155, 5, 'The Four Agreements', 'Practical guide to personal freedom by Don Miguel Ruiz', '899.00', '799.00', 'BOOK-FOUR-AGRM-PB', 'Amber-Allen', '0.25', '21 x 14 x 1.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(156, 5, 'Thinking, Fast and Slow', 'Daniel Kahneman\'s groundbreaking work on decision-making', '1299.00', '1199.00', 'BOOK-THINK-FS-HC', 'Farrar, Straus and Giroux', '0.68', '24 x 16 x 3 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(157, 5, 'The 7 Habits of Highly Effective People', 'Stephen R. Covey\'s classic on personal and professional effectiveness', '1099.00', '999.00', 'BOOK-7HABITS-HC', 'Simon & Schuster', '0.45', '23 x 15 x 2.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(158, 5, 'The Power of Now', 'Spiritual guide to living in the present moment by Eckhart Tolle', '999.00', '899.00', 'BOOK-POWER-NOW-PB', 'New World Library', '0.32', '21 x 14 x 2 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(159, 5, 'How to Win Friends and Influence People', 'Dale Carnegie\'s timeless classic on human relations', '899.00', '799.00', 'BOOK-WIN-FRNDS-PB', 'Gallery Books', '0.28', '21 x 14 x 1.8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(160, 5, 'The Subtle Art of Not Giving a F*ck', 'Counterintuitive approach to living a good life by Mark Manson', '999.00', '899.00', 'BOOK-SUBTLE-ART-PB', 'HarperOne', '0.30', '21 x 14 x 2 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(161, 5, 'Rich Dad Poor Dad', 'Robert Kiyosaki\'s guide to financial literacy and wealth building', '899.00', '799.00', 'BOOK-RICH-DAD-PB', 'Plata Publishing', '0.26', '21 x 14 x 1.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(162, 5, 'The Alchemist', 'Paulo Coelho\'s magical story about following your dreams', '799.00', '699.00', 'BOOK-ALCHMIST-PB', 'HarperOne', '0.22', '20 x 13 x 1.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(163, 5, 'Man\'s Search for Meaning', 'Viktor Frankl\'s profound memoir and psychological exploration', '899.00', '799.00', 'BOOK-MANS-SRCH-PB', 'Beacon Press', '0.20', '21 x 14 x 1.2 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(164, 5, 'The 48 Laws of Power', 'Robert Greene\'s distillation of 3,000 years of power dynamics', '1299.00', '1199.00', 'BOOK-48LAWS-HC', 'Penguin Books', '0.85', '24 x 16 x 3.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(165, 5, 'Deep Work', 'Rules for focused success in a distracted world by Cal Newport', '999.00', '899.00', 'BOOK-DEEP-WORK-HC', 'Grand Central Publishing', '0.42', '21 x 14 x 2.5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(166, 5, 'The 5 Love Languages', 'Gary Chapman\'s guide to expressing heartfelt commitment', '799.00', '699.00', 'BOOK-5LOVE-LANG-PB', 'Northfield Publishing', '0.24', '21 x 14 x 1.5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(167, 5, 'The Intelligent Investor', 'Benjamin Graham\'s definitive book on value investing', '1499.00', '1399.00', 'BOOK-INTEL-INV-HC', 'Harper Business', '0.75', '24 x 16 x 3 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(168, 5, 'Mindset: The New Psychology of Success', 'Carol Dweck\'s groundbreaking work on growth mindset', '999.00', '899.00', 'BOOK-MINDSET-PB', 'Ballantine Books', '0.30', '21 x 14 x 2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(169, 5, 'The Body Keeps the Score', 'Bessel van der Kolk on trauma, memory, and healing', '1199.00', '1099.00', 'BOOK-BODY-SCORE-PB', 'Penguin Books', '0.40', '23 x 15 x 2.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(170, 5, 'Atomic Habits Journal', 'Companion journal to build good habits and break bad ones', '699.00', '599.00', 'BOOK-ATML-JRNL-PB', 'Avery', '0.35', '23 x 18 x 1.5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(171, 5, 'The Miracle Morning', 'Hal Elrod\'s proven method to transform your life before 8AM', '899.00', '799.00', 'BOOK-MIRAC-MORN-PB', 'Hal Elrod International', '0.28', '21 x 14 x 1.8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(172, 5, 'Start with Why', 'Simon Sinek on how great leaders inspire action', '999.00', '899.00', 'BOOK-START-WHY-PB', 'Portfolio', '0.32', '21 x 14 x 2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(173, 5, 'The 10X Rule', 'Grant Cardone\'s principle of massive action', '899.00', '799.00', 'BOOK-10X-RULE-HC', 'Wiley', '0.38', '23 x 15 x 2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(174, 5, 'Can\'t Hurt Me', 'David Goggins\' story of transforming pain into power', '1099.00', '999.00', 'BOOK-CANT-HURT-HC', 'Lioncrest Publishing', '0.45', '24 x 16 x 2.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(175, 5, 'The Art of War', 'Sun Tzu\'s ancient military strategy applied to modern life', '599.00', '499.00', 'BOOK-ART-WAR-PB', 'Shambhala', '0.18', '20 x 13 x 1 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(176, 5, 'Meditations', 'Marcus Aurelius\' personal writings on Stoic philosophy', '799.00', '699.00', 'BOOK-MEDIT-PB', 'Penguin Classics', '0.22', '20 x 13 x 1.5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(177, 5, 'Principles: Life and Work', 'Ray Dalio\'s unconventional principles for success', '1499.00', '1399.00', 'BOOK-PRIN-LIFE-HC', 'Simon & Schuster', '0.85', '24 x 16 x 3.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(178, 5, 'Extreme Ownership', 'Jocko Willink and Leif Babin on leadership lessons from Navy SEALs', '1199.00', '1099.00', 'BOOK-EXTREME-OWN-HC', 'St. Martin\'s Press', '0.42', '24 x 16 x 2.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(179, 5, 'The Compound Effect', 'Darren Hardy on multiplying your success one step at a time', '899.00', '799.00', 'BOOK-COMPOUND-PB', 'Vanguard Press', '0.26', '21 x 14 x 1.8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(180, 5, 'Thinking in Systems', 'Donella Meadows\' primer on systems thinking', '1099.00', '999.00', 'BOOK-THINK-SYS-PB', 'Chelsea Green Publishing', '0.35', '23 x 15 x 2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(181, 5, 'Essentialism', 'Greg McKeown on disciplined pursuit of less', '999.00', '899.00', 'BOOK-ESSENTIAL-PB', 'Crown Business', '0.30', '21 x 14 x 2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(182, 5, 'The Courage to Be Disliked', 'Japanese phenomenon on finding happiness and freedom', '899.00', '799.00', 'BOOK-COURAGE-DIS-PB', 'Atria Books', '0.25', '21 x 14 x 1.8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(183, 5, 'The Millionaire Fastlane', 'MJ DeMarco on cracking the code to wealth', '1099.00', '999.00', 'BOOK-MILL-FAST-PB', 'Viperion Publishing', '0.38', '23 x 15 x 2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(184, 5, 'The 5 AM Club', 'Robin Sharma on mastering your morning and elevating your life', '999.00', '899.00', 'BOOK-5AM-CLUB-HC', 'HarperCollins', '0.42', '24 x 16 x 2.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(185, 29, 'Nestle Nido Fortified Milk', 'Full cream milk powder, 1.8kg tin, for kids and adults', '899.00', '849.00', 'GROC-NEST-NIDO18', 'Nestle', '1.80', '15 x 15 x 20 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(186, 29, 'Bear Brand Sterilized Milk', '324ml can, 6-pack, full cream, no sugar added', '299.00', '279.00', 'GROC-BEAR-MLK6PK', 'Bear Brand', '2.00', '30 x 20 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(187, 29, 'Century Tuna Flakes in Oil', '155g can, hot & spicy variant, drained weight 95g', '49.00', '45.00', 'GROC-CENT-TUNA-OIL', 'Century', '0.16', '8 x 8 x 4 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(188, 29, 'Argentina Corned Beef', '150g can, luncheon meat, ready to eat', '55.00', '52.00', 'GROC-ARGI-CB150', 'Argentina', '0.15', '8 x 8 x 4 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(189, 29, 'San Marino Corned Tuna', '180g can, Spanish style, in vegetable oil', '65.00', '59.00', 'GROC-SANM-CTUNA', 'San Marino', '0.18', '8 x 8 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(190, 29, 'Purefoods Classic Hotdog', '1kg pack, regular size, 100% pure beef', '199.00', '189.00', 'GROC-PURE-HOTDOG', 'Purefoods', '1.00', '25 x 15 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(191, 29, 'Magnolia Fresh Milk', '1L carton, full cream, UHT processed', '89.00', '85.00', 'GROC-MAGN-MILK1L', 'Magnolia', '1.00', '10 x 10 x 20 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(192, 29, 'Selecta Ice Cream 1.5L', 'Cookies and cream flavor, family size', '249.00', '229.00', 'GROC-SELC-IC15L', 'Selecta', '1.50', '20 x 20 x 15 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(193, 29, 'Nestle All-Purpose Cream', '250ml tetra pack, for cooking and desserts', '59.00', '55.00', 'GROC-NEST-APC250', 'Nestle', '0.25', '8 x 8 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(194, 29, 'Alaska Evaporated Milk', '370ml can, full cream, for cooking and drinks', '45.00', '42.00', 'GROC-ALAS-EVAP370', 'Alaska', '0.37', '8 x 8 x 12 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(195, 29, 'Birch Tree Fortified Milk', '300g sachet, choco flavor, for kids', '129.00', '119.00', 'GROC-BIRCH-FORT300', 'Birch Tree', '0.30', '20 x 15 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(196, 29, 'Knorr Pork Cube', '8g per cube, 6 cubes pack, flavor seasoning', '25.00', '23.00', 'GROC-KNORR-PORK6', 'Knorr', '0.05', '10 x 5 x 2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(197, 29, 'Lady\'s Choice Mayonnaise', '220ml jar, real mayonnaise, creamy texture', '89.00', '85.00', 'GROC-LADY-MAYO220', 'Lady\'s Choice', '0.22', '8 x 8 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(198, 29, 'CDO Karne Norte', '150g can, Filipino-style corned beef', '52.00', '49.00', 'GROC-CDO-KN150', 'CDO', '0.15', '8 x 8 x 4 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(199, 29, '555 Sardines in Tomato Sauce', '155g can, Spanish style, spicy variant', '28.00', '25.00', 'GROC-555-SARD155', '555', '0.16', '8 x 8 x 4 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(200, 29, 'Mega Sardines in Oil', '155g can, natural oil, chili added', '32.00', '29.00', 'GROC-MEGA-SARD155', 'Mega', '0.16', '8 x 8 x 4 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(201, 29, 'Swift Meatloaf', '250g can, ready to eat, for sandwiches and meals', '65.00', '59.00', 'GROC-SWIFT-MLOAF', 'Swift', '0.25', '10 x 10 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(202, 29, 'Nestle Yogurt Drink', '90ml bottle, strawberry flavor, 6-pack', '149.00', '139.00', 'GROC-NEST-YOG6PK', 'Nestle', '0.55', '25 x 15 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(203, 29, 'Happy Peanuts Salted', '100g pack, roasted, salted peanuts', '35.00', '32.00', 'GROC-HAPPY-PNUT100', 'Happy', '0.10', '15 x 10 x 3 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(204, 29, 'Magnolia Chicken Nuggets', '500g pack, breaded, ready to cook', '199.00', '189.00', 'GROC-MAGN-NUG500', 'Magnolia', '0.50', '20 x 15 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(205, 31, 'Del Monte Pineapple Slices', '432g can, in syrup, natural sweetness', '65.00', '59.00', 'GROC-DELM-PINE432', 'Del Monte', '0.43', '10 x 10 x 8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(206, 31, 'Libby\'s Vienna Sausage', '340g can, mini sausages in brine', '89.00', '85.00', 'GROC-LIBB-VIENA340', 'Libby\'s', '0.34', '10 x 10 x 8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(207, 31, 'Hunt\'s Tomato Sauce', '227g can, no preservatives, for cooking', '35.00', '32.00', 'GROC-HUNT-TOM227', 'Hunt\'s', '0.23', '8 x 8 x 6 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(208, 31, 'Spam Lite', '340g can, less fat, less sodium', '199.00', '189.00', 'GROC-SPAM-LITE340', 'Spam', '0.34', '12 x 8 x 4 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(209, 31, 'Pampanga\'s Best Tocino', '250g pack, sweet cured pork, ready to cook', '129.00', '119.00', 'GROC-PAMP-TOC250', 'Pampanga\'s Best', '0.25', '20 x 15 x 3 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(210, 31, 'Purefoods Tender Juicy Hotdog', '1kg pack, jumbo size, skinless', '219.00', '209.00', 'GROC-PURE-TJ1KG', 'Purefoods', '1.00', '25 x 15 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(211, 31, 'CDO Funtastyk Young Pork Tocino', '250g pack, sweet style, easy to cook', '89.00', '85.00', 'GROC-CDO-FYT250', 'CDO', '0.25', '20 x 15 x 3 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(212, 31, 'Argentina Beef Loaf', '150g can, luncheon meat variant', '48.00', '45.00', 'GROC-ARGI-BLOAF150', 'Argentina', '0.15', '8 x 8 x 4 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(213, 31, 'San Marino Corned Beef Chili', '150g can, spicy variant with chili', '58.00', '55.00', 'GROC-SANM-CBCHILI', 'San Marino', '0.15', '8 x 8 x 4 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(214, 31, 'Century Tuna Sweet & Spicy', '180g can, flakes in sweet spicy sauce', '55.00', '52.00', 'GROC-CENT-TUNA-SS', 'Century', '0.18', '8 x 8 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(215, 32, 'Lucky Me Pancit Canton', '80g pack, chili-mansi flavor, 10 packs bundle', '99.00', '89.00', 'GROC-LUCKY-PC10', 'Lucky Me', '0.80', '25 x 15 x 10 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(216, 32, 'Indomie Mi Goreng', '85g pack, Indonesian style, 5 packs', '89.00', '85.00', 'GROC-INDO-MG5PK', 'Indomie', '0.43', '20 x 15 x 5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(217, 32, 'Lucky Me Instant Mami', '65g pack, chicken flavor, 10 packs bundle', '85.00', '79.00', 'GROC-LUCKY-MAMI10', 'Lucky Me', '0.65', '25 x 15 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(218, 32, 'Nissin Cup Noodles', '68g cup, seafood flavor, 6 cups pack', '149.00', '139.00', 'GROC-NISS-CUP6PK', 'Nissin', '0.41', '25 x 20 x 15 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(219, 32, 'Payless Pancit Canton', '60g pack, extra hot chili flavor, 10 packs', '89.00', '85.00', 'GROC-PAYL-PC10', 'Payless', '0.60', '25 x 15 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(220, 32, 'Lucky Me Supreme La Paz Batchoy', '70g pack, Ilonggo style, 6 packs', '109.00', '99.00', 'GROC-LUCKY-LPB6', 'Lucky Me', '0.42', '20 x 15 x 8 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(221, 32, 'Maggi Magic Sarap', '8g sachet, all-purpose seasoning, 12 packs', '35.00', '32.00', 'GROC-MAGGI-MS12', 'Maggi', '0.10', '15 x 10 x 3 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(222, 32, 'San Remo Pasta', '500g pack, spaghetti, durum wheat semolina', '89.00', '85.00', 'GROC-SANR-SPG500', 'San Remo', '0.50', '25 x 15 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(223, 32, 'Barilla Spaghetti', '500g pack, Italian durum wheat, #5 thickness', '129.00', '119.00', 'GROC-BARIL-SPG500', 'Barilla', '0.50', '25 x 15 x 5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(224, 32, 'Quickchow Instant Noodles', '55g pack, beef flavor, 10 packs bundle', '75.00', '69.00', 'GROC-QUICK-CHW10', 'Quickchow', '0.55', '25 x 15 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(225, 33, 'Nescafe Classic', '50g jar, instant coffee, 100% pure soluble', '89.00', '85.00', 'GROC-NESC-CLASS50', 'Nescafe', '0.05', '8 x 8 x 10 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(226, 33, 'Great Taste White Coffee', '30g sachet, 3-in-1, 10 sachets pack', '65.00', '59.00', 'GROC-GT-WHITE10', 'Great Taste', '0.30', '20 x 15 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(227, 33, 'Kopiko Brown Coffee', '25g sachet, 3-in-1, 20 sachets pack', '89.00', '85.00', 'GROC-KOPIKO-BRN20', 'Kopiko', '0.50', '25 x 15 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(228, 33, 'Coca-Cola 1.5L', 'Regular flavor, plastic bottle', '65.00', '59.00', 'GROC-COKE-15L', 'Coca-Cola', '1.50', '10 x 10 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(229, 33, 'Pepsi 1.5L', 'Regular cola, plastic bottle', '62.00', '58.00', 'GROC-PEPSI-15L', 'Pepsi', '1.50', '10 x 10 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(230, 33, 'Royal 1.5L', 'Orange flavor, carbonated soft drink', '60.00', '56.00', 'GROC-ROYAL-15L', 'Royal', '1.50', '10 x 10 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(231, 33, 'Mountain Dew 1.5L', 'Citrus flavor, caffeinated soft drink', '65.00', '59.00', 'GROC-MTNDEW-15L', 'Mountain Dew', '1.50', '10 x 10 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(232, 33, 'Sprite 1.5L', 'Lemon-lime flavor, caffeine-free', '62.00', '58.00', 'GROC-SPRITE-15L', 'Sprite', '1.50', '10 x 10 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00');
-INSERT INTO `products` (`product_id`, `category_id`, `product_name`, `description`, `price`, `sale_price`, `sku`, `brand`, `weight`, `dimensions`, `is_active`, `featured`, `created_at`, `updated_at`) VALUES
-(233, 33, 'C2 Green Tea', '500ml bottle, apple flavor, 6 bottles pack', '149.00', '139.00', 'GROC-C2-GTEA6PK', 'C2', '3.00', '30 x 20 x 15 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(234, 33, 'Bear Brand Sterilized Milk', '110ml bottle, chocolate flavor, 6 bottles', '89.00', '85.00', 'GROC-BEAR-CHOC6', 'Bear Brand', '0.66', '20 x 15 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(235, 34, 'Datu Puti Soy Sauce', '340ml bottle, naturally brewed', '25.00', '23.00', 'GROC-DATU-SOY340', 'Datu Puti', '0.34', '8 x 8 x 20 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(236, 34, 'Silver Swan Soy Sauce', '350ml bottle, premium quality', '28.00', '25.00', 'GROC-SILV-SOY350', 'Silver Swan', '0.35', '8 x 8 x 20 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(237, 34, 'Datu Puti Vinegar', '340ml bottle, sukang maasim', '22.00', '20.00', 'GROC-DATU-VIN340', 'Datu Puti', '0.34', '8 x 8 x 20 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(238, 34, 'Marca Piña Patis', '350ml bottle, fish sauce, premium quality', '35.00', '32.00', 'GROC-MARCA-PAT350', 'Marca Piña', '0.35', '8 x 8 x 20 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(239, 34, 'Mang Tomas All-Purpose Sauce', '325g bottle, for lechon and grilled meats', '55.00', '52.00', 'GROC-MANG-TOMAS325', 'Mang Tomas', '0.33', '8 x 8 x 15 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(240, 34, 'Jufran Banana Sauce', '320g bottle, sweet style, for hotdogs and burgers', '48.00', '45.00', 'GROC-JUFRAN-BAN320', 'Jufran', '0.32', '8 x 8 x 15 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(241, 34, 'Heinz Tomato Ketchup', '320g bottle, made from ripe tomatoes', '65.00', '59.00', 'GROC-HEINZ-KET320', 'Heinz', '0.32', '8 x 8 x 15 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(242, 34, 'UFC Banana Ketchup', '320g bottle, Filipino-style sweet ketchup', '42.00', '39.00', 'GROC-UFC-KET320', 'UFC', '0.32', '8 x 8 x 15 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(243, 34, 'Lady\'s Choice Mayonnaise', '220ml jar, real mayonnaise', '89.00', '85.00', 'GROC-LADY-MYO220', 'Lady\'s Choice', '0.22', '8 x 8 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
-(244, 34, 'Magi Magic Sarap', '8g sachet, all-purpose seasoning, 24 packs', '65.00', '59.00', 'GROC-MAGGI-MS24', 'Magi', '0.20', '20 x 15 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00');
-=======
 (1, 1, 'Samsung Galaxy S24 Ultra', '6.8-inch Dynamic AMOLED display, 200MP camera, 12GB RAM, 256GB storage', 54999.00, 49999.00, 'ELEC-SMSG-S24U-256', 'Samsung', 0.23, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
 (2, 1, 'Apple iPhone 15 Pro Max', 'A17 Pro chip, Titanium design, 48MP camera, 256GB', 69999.00, NULL, 'ELEC-APPL-IP15PM-256', 'Apple', 0.22, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
 (3, 1, 'Sony WH-1000XM5 Headphones', 'Premium noise cancelling wireless headphones with 30-hour battery', 16999.00, 14999.00, 'ELEC-SONY-WH1000XM5', 'Sony', 0.25, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
@@ -1526,19 +1208,229 @@ INSERT INTO `products` (`product_id`, `category_id`, `product_name`, `descriptio
 (20, 3, 'iRobot Roomba j7+', 'Self-emptying robot vacuum with object recognition', 39999.00, 35999.00, 'HOME-IRO-J7PLUS', 'iRobot', 3.40, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
 (21, 3, 'Black+Decker 20V Drill Kit', 'Cordless drill with 2 batteries and carrying case', 3999.00, NULL, 'HOME-BD-DRILL-20V', 'Black+Decker', 2.00, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
 (22, 3, 'Weber Genesis Gas Grill', '3-burner propane grill with side burner and storage', 34999.00, NULL, 'HOME-WEBR-GEN-3B', 'Weber', 65.00, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(23, 4, 'Yeti Tundra 45 Cooler', 'Rotomolded construction, bear-resistant, 28-can capacity', 19999.00, NULL, 'SPRT-YETI-T45-WHT', 'Yeti', 10.00, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(24, 4, 'Trek Marlin 7 Mountain Bike', '29-inch wheels, 21-speed, aluminum frame', 32999.00, 29999.00, 'SPRT-TREK-M7-BLU-M', 'Trek', 13.50, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(25, 4, 'Coleman Sundome Tent 4-Person', 'WeatherTec system, easy setup, fits 4 campers', 4999.00, NULL, 'SPRT-COLM-SD4-GRN', 'Coleman', 5.80, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(23, 1, 'Yeti Tundra 45 Cooler', 'Rotomolded construction, bear-resistant, 28-can capacity', 19999.00, NULL, 'SPRT-YETI-T45-WHT', '0', 10.00, NULL, 1, 1, '2025-11-24 02:27:17', '2025-12-03 05:09:10'),
+(24, 1, 'Trek Marlin 7 Mountain Bike', '29-inch wheels, 21-speed, aluminum frame', 32999.00, 29999.00, 'SPRT-TREK-M7-BLU-M', '0', 13.50, NULL, 1, 1, '2025-11-24 02:27:17', '2025-12-03 05:09:16'),
+(25, 1, 'Coleman Sundome Tent 4-Person', 'WeatherTec system, easy setup, fits 4 campers', 4999.00, NULL, 'SPRT-COLM-SD4-GRN', '0', 5.80, NULL, 1, 0, '2025-11-24 02:27:17', '2025-12-03 05:09:30'),
 (26, 4, 'TRX Home2 Suspension Trainer', 'Total body resistance training system with workout guide', 7999.00, 6999.00, 'SPRT-TRX-HM2-BLK', 'TRX', 1.20, NULL, 0, 0, '2025-11-24 02:27:17', '2025-12-01 07:08:44'),
-(27, 4, 'Bowflex SelectTech 552 Dumbbells', 'Adjustable dumbbells, 5-52.5 lbs per dumbbell', 24999.00, NULL, 'SPRT-BWFX-ST552', 'Bowflex', 25.00, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(28, 4, 'GoPro HERO12 Black', '5.3K60 video, HyperSmooth 6.0, waterproof to 33ft', 21999.00, 19999.00, 'SPRT-GPRO-H12-BLK', 'GoPro', 0.15, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(29, 4, 'Wilson Evolution Basketball', 'Official size, composite leather, indoor use', 2499.00, NULL, 'SPRT-WILS-EVO-BBAL', 'Wilson', 0.62, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(27, 1, 'Bowflex SelectTech 552 Dumbbells', 'Adjustable dumbbells, 5-52.5 lbs per dumbbell', 24999.00, NULL, 'SPRT-BWFX-ST552', '0', 25.00, NULL, 1, 1, '2025-11-24 02:27:17', '2025-12-03 05:09:39'),
+(28, 1, 'GoPro HERO12 Black', '5.3K60 video, HyperSmooth 6.0, waterproof to 33ft', 21999.00, 19999.00, 'SPRT-GPRO-H12-BLK', '0', 0.15, NULL, 1, 1, '2025-11-24 02:27:17', '2025-12-03 05:09:46'),
+(29, 1, 'Wilson Evolution Basketball', 'Official size, composite leather, indoor use', 2499.00, NULL, 'SPRT-WILS-EVO-BBAL', '0', 0.62, NULL, 1, 0, '2025-11-24 02:27:17', '2025-12-03 05:09:51'),
 (30, 5, 'Atomic Habits by James Clear', 'Proven framework for improving every day, hardcover', 899.00, 749.00, 'BOOK-ATML-HBIT-HC', 'Penguin Random House', 0.40, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
 (31, 5, 'The Psychology of Money', 'Timeless lessons on wealth and happiness by Morgan Housel', 699.00, NULL, 'BOOK-PSYC-MONY-PB', 'Harriman House', 0.35, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
 (32, 5, 'Educated: A Memoir', 'Tara Westover\'s powerful story of self-invention', 799.00, 649.00, 'BOOK-EDUC-MEMO-PB', 'Random House', 0.38, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
 (33, 5, 'The Lean Startup', 'How today\'s entrepreneurs build successful businesses', 999.00, NULL, 'BOOK-LEAN-STRT-HC', 'Crown Business', 0.45, NULL, 1, 0, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
-(34, 5, 'Sapiens: A Brief History', 'Yuval Noah Harari\'s journey through human history', 1299.00, 999.00, 'BOOK-SAPI-HIST-HC', 'Harper', 0.65, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17');
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
+(34, 5, 'Sapiens: A Brief History', 'Yuval Noah Harari\'s journey through human history', 1299.00, 999.00, 'BOOK-SAPI-HIST-HC', 'Harper', 0.65, NULL, 1, 1, '2025-11-24 02:27:17', '2025-11-24 02:27:17'),
+(35, 1, 'Apple iPad Air 5th Gen', 'M1 chip, 10.9-inch Liquid Retina display, 64GB, Wi-Fi', 34999.00, 31999.00, 'ELEC-APPL-IPA5-64', 'Apple', 0.46, '24.8 x 17.8 x 0.6 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(36, 1, 'Samsung Galaxy Watch 6', '44mm, Bluetooth, health monitoring, sleep tracking', 14999.00, 12999.00, 'ELEC-SMSG-GW6-44', 'Samsung', 0.33, '44 x 44 x 9 mm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(37, 1, 'Bose QuietComfort 45', 'Noise cancelling headphones, 24-hour battery life', 16999.00, 14999.00, 'ELEC-BOSE-QC45-BK', 'Bose', 0.24, '18 x 16 x 8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(38, 1, 'Microsoft Surface Pro 9', '13-inch 2-in-1 laptop, Intel i5, 8GB RAM, 256GB SSD', 69999.00, 64999.00, 'ELEC-MSFT-SP9-I5', 'Microsoft', 0.88, '28.7 x 20.9 x 0.9 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(39, 1, 'Google Pixel 8 Pro', '6.7-inch display, Tensor G3 chip, 128GB, camera system', 49999.00, 45999.00, 'ELEC-GOOG-P8P-128', 'Google', 0.21, '16.3 x 7.6 x 0.9 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(40, 1, 'Amazon Echo Dot 5th Gen', 'Smart speaker with Alexa, improved audio quality', 2499.00, 1999.00, 'ELEC-AMZN-EDOT5-BL', 'Amazon', 0.30, '10 x 10 x 9 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(41, 1, 'DJI Mini 3 Pro Drone', '4K camera, 34-min flight time, under 249g weight', 45999.00, 42999.00, 'ELEC-DJI-M3P-FLY', 'DJI', 0.25, '14.5 x 8.6 x 3.4 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(42, 1, 'Fitbit Charge 6', 'Advanced health & fitness tracker, GPS, Spotify', 8999.00, 7999.00, 'ELEC-FBIT-CRG6-BK', 'Fitbit', 0.03, '3.7 x 1.8 x 1.2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(43, 1, 'Razer BlackWidow V4', 'Mechanical gaming keyboard, RGB lighting, green switches', 8999.00, 7999.00, 'ELEC-RAZR-BWV4-GN', 'Razer', 1.10, '44.5 x 15.3 x 3.5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(44, 1, 'LG UltraWide Monitor 34\"', '34-inch curved QHD monitor, 144Hz, HDR10', 34999.00, 31999.00, 'ELEC-LG-34UW-CURV', 'LG', 6.80, '81.5 x 36.5 x 24.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(45, 1, 'HP Envy x360 Laptop', '15.6-inch touchscreen, AMD Ryzen 7, 16GB RAM, 512GB', 54999.00, 49999.00, 'ELEC-HP-ENVY-R7', 'HP', 1.78, '35.8 x 24.2 x 1.8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(46, 1, 'JBL Flip 6 Speaker', 'Portable Bluetooth speaker, waterproof, 12-hour battery', 6999.00, 5999.00, 'ELEC-JBL-FLP6-BL', 'JBL', 0.55, '17.8 x 7.2 x 7.2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(47, 1, 'Nintendo Switch OLED', '7-inch OLED screen, 64GB, enhanced audio, white joy-cons', 19999.00, 17999.00, 'ELEC-NINT-SWOL-WH', 'Nintendo', 0.42, '24.2 x 10.2 x 1.4 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(48, 1, 'SanDisk 1TB Extreme SSD', 'Portable SSD, 1050MB/s read, water and dust resistant', 8999.00, 7999.00, 'ELEC-SAND-1TB-EXT', 'SanDisk', 0.04, '9.6 x 5 x 0.9 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(49, 1, 'Belkin Wireless Charger', '15W fast wireless charging pad, iPhone/android compatible', 2999.00, 2499.00, 'ELEC-BELK-WCHG15', 'Belkin', 0.10, '10 x 10 x 1 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(50, 1, 'ASUS ROG Gaming Laptop', '16-inch QHD, Intel i9, RTX 4070, 32GB RAM, 1TB SSD', 129999.00, 119999.00, 'ELEC-ASUS-ROG-I9', 'ASUS', 2.30, '35.5 x 24.3 x 2.1 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(51, 1, 'Garmin Fenix 7X', 'Multisport GPS watch, solar charging, 28-day battery', 44999.00, 41999.00, 'ELEC-GARM-FNX7X', 'Garmin', 0.09, '5.1 x 5.1 x 1.8 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(52, 1, 'Sonos One Speaker', 'Smart speaker with Alexa, rich sound, multi-room audio', 14999.00, 12999.00, 'ELEC-SONO-ONE-BK', 'Sonos', 1.85, '16.1 x 11.9 x 11.9 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(53, 1, 'Wyze Cam v3 Pro', '2K security camera, color night vision, weatherproof', 3999.00, 3499.00, 'ELEC-WYZE-CAMV3P', 'Wyze', 0.18, '5.1 x 5.1 x 3.2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(54, 1, 'Logitech G Pro X Headset', 'Professional gaming headset, Blue VO!CE mic, 50mm drivers', 9999.00, 8999.00, 'ELEC-LOGI-GPX-BK', 'Logitech', 0.32, '19 x 17 x 8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(55, 1, 'Corsair K70 Keyboard', 'Mechanical keyboard, Cherry MX Red, RGB, aluminum frame', 8999.00, 7999.00, 'ELEC-CORS-K70-RED', 'Corsair', 1.20, '43.8 x 16.6 x 3.5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(56, 1, 'Epson EcoTank Printer', 'Wireless color printer, cartridge-free, 2-year ink supply', 14999.00, 12999.00, 'ELEC-EPSN-ET4760', 'Epson', 6.80, '37.5 x 34.7 x 18.7 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(57, 1, 'SteelSeries Aerox 5', 'Wireless gaming mouse, 18K CPI, 180-hour battery', 6999.00, 5999.00, 'ELEC-STEL-AX5-WL', 'SteelSeries', 0.07, '12.7 x 6.6 x 3.9 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(58, 1, 'HyperX Cloud II Headset', '7.1 virtual surround sound, memory foam ear cushions', 5999.00, 4999.00, 'ELEC-HYPR-CLD2-RD', 'HyperX', 0.32, '19 x 18 x 9 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(59, 1, 'Anker 737 Power Bank', '24,000mAh, 140W output, GaNPrime technology', 7999.00, 6999.00, 'ELEC-ANKR-737-PB', 'Anker', 0.40, '10.8 x 5.4 x 2.5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(60, 1, 'TP-Link Deco Mesh WiFi', 'Whole home coverage, 5,500 sq ft, 3-pack system', 12999.00, 11999.00, 'ELEC-TPLN-DECO-X60', 'TP-Link', 0.50, '10 x 10 x 15 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(61, 1, 'Acer Predator Monitor', '27-inch 4K, 144Hz, 1ms response, G-Sync compatible', 39999.00, 36999.00, 'ELEC-ACER-PRED27', 'Acer', 5.60, '61.2 x 36.9 x 22.7 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(62, 1, 'GoPro MAX 360 Camera', '360-degree capture, waterproof, 5.6K30 video', 29999.00, 27999.00, 'ELEC-GPRO-MAX360', 'GoPro', 0.16, '6.6 x 5.6 x 2.7 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(63, 1, 'Samsung Galaxy Tab S9', '11-inch AMOLED, Snapdragon 8 Gen 2, 256GB, S Pen included', 45999.00, 42999.00, 'ELEC-SMSG-TABS9', 'Samsung', 0.50, '25.4 x 16.5 x 0.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(64, 1, 'Apple AirPods Pro 2', 'Active noise cancellation, spatial audio, MagSafe case', 14999.00, 13999.00, 'ELEC-APPL-APRP2', 'Apple', 0.05, '6 x 4 x 2 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(65, 2, 'Under Armour Sportstyle Hoodie', 'Cotton-polyester blend, relaxed fit, kangaroo pocket', 2999.00, 2599.00, 'CLTH-UA-HOOD-GRY-L', 'Under Armour', 0.45, NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(66, 2, 'Calvin Klein Slim Fit Suit', 'Modern slim fit suit, wool blend, includes jacket and pants', 12999.00, 11999.00, 'CLTH-CK-SUIT-BLK-40', 'Calvin Klein', 1.80, NULL, 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(67, 2, 'Columbia Fleece Jacket', 'Full-zip fleece jacket, moisture-wicking, lightweight', 3999.00, 3499.00, 'CLTH-COL-FLCE-BLU-M', 'Columbia', 0.35, NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(68, 2, 'Patagonia Better Sweater', '100% recycled polyester fleece, full-zip, quarter-zip', 6999.00, 6499.00, 'CLTH-PATG-BSWT-GRN-L', 'Patagonia', 0.55, NULL, 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(69, 2, 'Lacoste Classic Polo', 'Iconic crocodile logo, pique cotton, regular fit', 3499.00, 2999.00, 'CLTH-LACO-POLO-WHT-M', 'Lacoste', 0.25, NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(70, 2, 'Tommy Hilfiger Denim Jacket', 'Classic denim jacket, distressed wash, button front', 4999.00, 4499.00, 'CLTH-TOMY-DJKT-BLU-L', 'Tommy Hilfiger', 0.60, NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(71, 2, 'New Balance Fresh Foam Shoes', 'Running shoes, Fresh Foam midsole, rubber outsole', 5999.00, 5499.00, 'CLTH-NBAL-FRSH-10', 'New Balance', 0.70, NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(72, 2, 'Champion Reverse Weave Hoodie', 'Heavyweight cotton, oversized fit, embroidered logo', 3999.00, 3499.00, 'CLTH-CHMP-RWH-BLK-XL', 'Champion', 0.75, NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(73, 2, 'Vans Old Skool Sneakers', 'Classic skate shoes, canvas and suede, side stripe', 3499.00, 2999.00, 'CLTH-VANS-OS-BLK-9', 'Vans', 0.65, NULL, 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(74, 2, 'Nike Air Max 270', 'Lifestyle shoes, Max Air unit, breathable mesh', 7999.00, 6999.00, 'CLTH-NIKE-AM270-10', 'Nike', 0.68, NULL, 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(75, 2, 'Converse Chuck Taylor All Star', 'Classic high-top canvas shoes, rubber toe cap', 2499.00, 2199.00, 'CLTH-CONV-CTAS-HI', 'Converse', 0.55, NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(76, 2, 'Levi\'s Trucker Jacket', 'Classic denim jacket, slim fit, button closure', 4499.00, 3999.00, 'CLTH-LEVI-TRKR-MED', 'Levi\'s', 0.65, NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(77, 2, 'Hugo Boss Dress Shirt', 'Non-iron cotton, regular fit, button-down collar', 2999.00, 2699.00, 'CLTH-HUGO-DRSH-WHT-16', 'Hugo Boss', 0.20, NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(78, 2, 'Puma Cali Sport Sneakers', 'Women\'s fashion sneakers, leather upper, platform sole', 3999.00, 3499.00, 'CLTH-PUMA-CALI-8', 'Puma', 0.58, NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(79, 2, 'Reebok Nano X3', 'Cross-training shoes, Floatride Energy foam, durable', 5999.00, 5499.00, 'CLTH-REEB-NANO-10', 'Reebok', 0.72, NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(80, 2, 'Michael Kors Tote Bag', 'Leather tote bag, gold-tone hardware, zip closure', 8999.00, 7999.00, 'CLTH-MKRS-TOTE-BLK', 'Michael Kors', 0.85, '35 x 28 x 15 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(81, 2, 'Ray-Ban Aviator Sunglasses', 'Classic aviator style, polarized lenses, metal frame', 7999.00, 7499.00, 'CLTH-RAYB-AVT-GLD', 'Ray-Ban', 0.03, '14 x 5 x 2 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(82, 2, 'Skechers Go Walk Shoes', 'Slip-on walking shoes, lightweight, memory foam', 2999.00, 2699.00, 'CLTH-SKCH-GWALK-9', 'Skechers', 0.45, NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(83, 2, 'Oakley Flak Jacket Sunglasses', 'Sport sunglasses, PRIZM lenses, durable frame', 6999.00, 6499.00, 'CLTH-OAKL-FLAK-BLK', 'Oakley', 0.04, '13 x 6 x 2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(84, 2, 'The North Face Apex Flex', 'Soft shell jacket, windproof, stretch fabric', 7999.00, 7499.00, 'CLTH-TNF-APEX-M', 'The North Face', 0.48, NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(85, 2, 'Timberland Premium Boots', 'Waterproof leather boots, seam-sealed construction', 9999.00, 8999.00, 'CLTH-TMBL-PREM-10', 'Timberland', 1.20, NULL, 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(86, 2, 'Fossil Gen 6 Smartwatch', 'Smartwatch with Wear OS, heart rate, GPS, 44mm', 12999.00, 11999.00, 'CLTH-FOSL-GEN6-BK', 'Fossil', 0.08, '4.4 x 4.4 x 1.3 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(87, 2, 'Coach Signature Wallet', 'Leather wallet, multiple card slots, bill compartment', 4999.00, 4499.00, 'CLTH-COCH-WLT-BRN', 'Coach', 0.12, '10 x 8 x 1 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(88, 2, 'Arcteryx Beta AR Jacket', 'Gore-Tex Pro shell, storm hood, lightweight', 19999.00, 18999.00, 'CLTH-ARCT-BETA-L', 'Arcteryx', 0.42, NULL, 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(89, 2, 'Salomon Speedcross 5', 'Trail running shoes, aggressive grip, waterproof', 7999.00, 7499.00, 'CLTH-SALO-SPD5-10', 'Salomon', 0.65, NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(90, 2, 'Brooks Ghost 15', 'Neutral running shoes, DNA LOFT cushioning', 6999.00, 6499.00, 'CLTH-BROK-GHST-10', 'Brooks', 0.68, NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(91, 2, 'Marmot PreCip Jacket', 'Rain jacket, waterproof breathable, pit zips', 5999.00, 5499.00, 'CLTH-MARM-PREC-M', 'Marmot', 0.32, NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(92, 2, 'ASICS Gel-Kayano 30', 'Stability running shoes, Gel technology, breathable', 8999.00, 8499.00, 'CLTH-ASIC-KYNO-10', 'ASICS', 0.72, NULL, 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(93, 2, 'Oakley Holbrook Sunglasses', 'Classic square frame, PRIZM lenses, lightweight', 5999.00, 5499.00, 'CLTH-OAKL-HLBK-MT', 'Oakley', 0.03, '13 x 5 x 2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(94, 2, 'Mizuno Wave Rider 27', 'Neutral running shoes, Wave plate technology', 7999.00, 7499.00, 'CLTH-MIZU-WAVE-10', 'Mizuno', 0.70, NULL, 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(95, 3, 'Ninja Foodi Air Fryer', '8-in-1 air fryer, dehydrator, roast, bake, grill', 9999.00, 8999.00, 'HOME-NINJ-FOODI8', 'Ninja', 5.80, '35 x 33 x 35 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(96, 3, 'Instant Pot Duo Nova', '7-in-1 electric pressure cooker, 6-quart capacity', 6999.00, 6499.00, 'HOME-INST-DUO6QT', 'Instant Pot', 5.20, '30 x 30 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(97, 3, 'Breville Barista Express', 'Espresso machine with grinder, milk frother, 15 bar', 39999.00, 37999.00, 'HOME-BREV-BAREXP', 'Breville', 12.50, '32 x 33 x 40 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(98, 3, 'Vitamix 5200 Blender', 'Professional-grade blender, 2.2 HP motor, 64oz jar', 29999.00, 27999.00, 'HOME-VITA-5200-BL', 'Vitamix', 6.20, '46 x 20 x 25 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(99, 3, 'Cuisinart Food Processor', '14-cup capacity, dough blade, slicing/shredding discs', 8999.00, 8499.00, 'HOME-CUIS-FP14C', 'Cuisinart', 4.80, '25 x 35 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(100, 3, 'Shark Navigator Vacuum', 'Upright vacuum, lift-away pod, HEPA filter, corded', 9999.00, 8999.00, 'HOME-SHRK-NAV-LA', 'Shark', 6.50, '45 x 30 x 25 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(101, 3, 'Keurig K-Elite Coffee Maker', 'Single-serve coffee maker, iced coffee setting, 75oz', 8999.00, 8499.00, 'HOME-KEUR-KELITE', 'Keurig', 4.20, '33 x 25 x 38 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(102, 3, 'Lodge Cast Iron Skillet', 'Pre-seasoned cast iron, 10.25-inch, oven safe', 1999.00, 1799.00, 'HOME-LODG-CISK10', 'Lodge', 2.10, '26 x 26 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(103, 3, 'Zojirushi Rice Cooker', '5.5-cup capacity, fuzzy logic, multiple settings', 7999.00, 7499.00, 'HOME-ZOJI-RC55-FL', 'Zojirushi', 3.50, '29 x 24 x 22 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(104, 3, 'All-Clad Stainless Pan Set', '3-piece stainless steel cookware set, induction ready', 14999.00, 13999.00, 'HOME-ALLCLAD-3PC', 'All-Clad', 4.80, 'Varies', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(105, 3, 'OXO Good Grips Tools', '14-piece kitchen tool set, comfortable handles', 2999.00, 2699.00, 'HOME-OXO-14PC-KT', 'OXO', 1.80, '40 x 25 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(106, 3, 'Crock-Pot Slow Cooker', '7-quart programmable slow cooker, digital timer', 3999.00, 3699.00, 'HOME-CROCK-P7QT', 'Crock-Pot', 4.50, '35 x 35 x 28 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(107, 3, 'KitchenAid Food Chopper', '3.5-cup food chopper, two-speed control, easy clean', 1999.00, 1799.00, 'HOME-KA-CHOP-35', 'KitchenAid', 1.50, '18 x 18 x 24 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(108, 3, 'Hamilton Beach Toaster Oven', '6-slice capacity, convection bake, broil, toast', 2999.00, 2699.00, 'HOME-HAMB-TOV6S', 'Hamilton Beach', 5.20, '45 x 35 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(109, 3, 'Wusthof Classic Knife Set', '8-piece German steel knife set, block included', 12999.00, 11999.00, 'HOME-WUST-CLASSIC8', 'Wusthof', 3.20, '30 x 20 x 15 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(110, 3, 'Rubbermaid Food Storage', '40-piece food storage set, BPA-free, microwave safe', 1999.00, 1799.00, 'HOME-RUBR-FS40PC', 'Rubbermaid', 2.50, '35 x 25 x 15 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(111, 3, 'Simplehuman Trash Can', 'Sensor can, stainless steel, 50-liter capacity', 6999.00, 6499.00, 'HOME-SIMP-SEN50', 'Simplehuman', 4.80, '30 x 30 x 60 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(112, 3, 'Mr. Coffee Espresso Maker', '15-bar pump espresso machine, milk frother', 4999.00, 4499.00, 'HOME-MRCOF-ESP15', 'Mr. Coffee', 3.50, '25 x 20 x 35 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(113, 3, 'Farberware Cookware Set', '12-piece non-stick cookware set, dishwasher safe', 5999.00, 5499.00, 'HOME-FARB-12PC-NST', 'Farberware', 8.50, 'Varies', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(114, 3, 'Pyrex Glass Storage Set', '18-piece glass storage set, freezer to oven safe', 2999.00, 2699.00, 'HOME-PYREX-18PC', 'Pyrex', 5.20, '35 x 25 x 20 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(115, 3, 'Oster Blender', '6-speed blender, 48oz glass jar, ice crush function', 1999.00, 1799.00, 'HOME-OSTR-BLND6S', 'Oster', 3.20, '22 x 18 x 38 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(116, 3, 'Sunbeam Stand Mixer', '4.5-quart stand mixer, 5 speeds, includes attachments', 4999.00, 4499.00, 'HOME-SUNB-SMIX45', 'Sunbeam', 6.80, '35 x 25 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(117, 3, 'Cuisinart Griddler', '4-in-1 contact grill, panini press, open grill', 5999.00, 5499.00, 'HOME-CUIS-GRDLR', 'Cuisinart', 5.50, '35 x 30 x 20 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(118, 3, 'Weber Charcoal Grill', '22-inch kettle grill, porcelain-enameled bowl', 4999.00, 4499.00, 'HOME-WEBR-KETTLE22', 'Weber', 18.50, '50 x 50 x 100 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(119, 3, 'GreenPan Cookware Set', '8-piece ceramic non-stick set, healthy cooking', 7999.00, 7499.00, 'HOME-GRNPN-8PC-CER', 'GreenPan', 6.50, 'Varies', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(120, 3, 'Blackstone Griddle', '36-inch outdoor griddle, 4 burners, stainless steel', 19999.00, 18999.00, 'HOME-BLSTN-GRD36', 'Blackstone', 45.00, '140 x 70 x 90 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(121, 3, 'Anova Sous Vide', 'Precision cooker, WiFi/Bluetooth, restaurant quality', 6999.00, 6499.00, 'HOME-ANOVA-SV-WIFI', 'Anova', 0.80, '38 x 6 x 6 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(122, 3, 'Magic Bullet Blender', '17-piece set, personal blender, 250-watt motor', 1999.00, 1799.00, 'HOME-MGBLT-17PC', 'Magic Bullet', 2.50, '25 x 25 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(123, 3, 'Cuisinart Coffee Maker', '14-cup programmable coffee maker, auto shut-off', 2999.00, 2699.00, 'HOME-CUIS-CM14C', 'Cuisinart', 3.20, '35 x 25 x 35 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(124, 3, 'T-fal Cookware Set', '12-piece non-stick set, thermo-spot heat indicator', 4999.00, 4499.00, 'HOME-TFAL-12PC-NS', 'T-fal', 7.50, 'Varies', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(125, 1, 'Razer BlackWidow V4 Pro', 'Mechanical gaming keyboard, Razer Yellow switches, RGB', 12999.00, 11999.00, 'SPRT-RAZR-BW4PRO', '0', 1.35, '45 x 15 x 4 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:47:20'),
+(126, 1, 'Garmin Forerunner 955', 'GPS running watch, multi-band GNSS, training metrics', 34999.00, 32999.00, 'SPRT-GARM-FR955', '0', 0.05, '4.6 x 4.6 x 1.3 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:48:05'),
+(127, 1, 'HyperX Cloud Alpha', 'Gaming headset, dual chamber drivers, detachable mic', 6999.00, 6499.00, 'SPRT-HYPR-CLDA', '0', 0.33, '20 x 18 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:48:13'),
+(128, 1, 'Corsair Vengeance RAM', '32GB DDR5 6000MHz, RGB lighting, Intel XMP 3.0', 8999.00, 8499.00, 'SPRT-CORS-VEN32', '0', 0.08, '13.3 x 4.9 x 0.8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:48:21'),
+(129, 1, 'Logitech G502 X Plus', 'Lightspeed wireless gaming mouse, LIGHTFORCE hybrid', 9999.00, 8999.00, 'SPRT-LOGI-G502X', '0', 0.10, '13.2 x 7.5 x 4.1 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:48:33'),
+(130, 1, 'SteelSeries Arctis Nova Pro', 'Wireless gaming headset, active noise cancellation', 19999.00, 18999.00, 'SPRT-STEL-ANOVA', '0', 0.38, '21 x 19 x 10 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:48:47'),
+(131, 1, 'ASUS ROG Strix Monitor', '27-inch 4K gaming monitor, 160Hz, HDR600, G-Sync', 49999.00, 46999.00, 'SPRT-ASUS-ROG27', '0', 6.50, '61 x 37 x 23 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:48:59'),
+(132, 1, 'NZXT Kraken AIO Cooler', '240mm AIO liquid cooler, RGB pump, 2x 120mm fans', 8999.00, 8499.00, 'SPRT-NZXT-KRK240', '0', 1.20, '27 x 12 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:50:11'),
+(133, 1, 'EVGA Supernova PSU', '850W 80+ Gold power supply, fully modular, 10-year', 9999.00, 9499.00, 'SPRT-EVGA-SN850', '0', 1.80, '15 x 15 x 8.6 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:50:25'),
+(134, 1, 'Samsung 980 Pro SSD', '2TB NVMe M.2 SSD, PCIe 4.0, 7000MB/s read', 12999.00, 11999.00, 'SPRT-SAMS-980P2T', '0', 0.01, '8 x 2.2 x 0.2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:50:32'),
+(135, 1, 'Cooler Master Case', 'Mid-tower ATX case, tempered glass, RGB fans', 6999.00, 6499.00, 'SPRT-CMST-MT500', '0', 8.20, '49 x 23 x 47 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:50:39'),
+(136, 1, 'Thrustmaster T300RS', 'Force feedback racing wheel, GT edition, 1080° rotation', 19999.00, 18999.00, 'SPRT-THRU-T300RS', '0', 4.50, '45 x 35 x 30 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:50:45'),
+(137, 1, 'Elgato Stream Deck', '15-key programmable stream deck, LCD keys', 6999.00, 6499.00, 'SPRT-ELGT-SDECK15', '0', 0.30, '12 x 8 x 3 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:50:54'),
+(138, 1, 'Blue Yeti Microphone', 'USB condenser microphone, multiple pattern selection', 8999.00, 8499.00, 'SPRT-BLUE-YETI-BLK', '0', 1.20, '12 x 12 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:51:07'),
+(139, 1, 'Logitech C920 Webcam', '1080p webcam, auto light correction, built-in mic', 4999.00, 4499.00, 'SPRT-LOGI-C920HD', '0', 0.16, '9.5 x 2.5 x 2.5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:51:22'),
+(140, 1, 'Razer Viper V2 Pro', 'Ultra-lightweight wireless mouse, 58g, 30K DPI', 9999.00, 8999.00, 'SPRT-RAZR-VP2PRO', '0', 0.06, '12.6 x 6.7 x 3.8 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:51:37'),
+(141, 1, 'SteelSeries QcK Mousepad', 'XXL gaming mousepad, cloth surface, non-slip base', 1999.00, 1799.00, 'SPRT-STEL-QCKXXL', '0', 0.45, '90 x 40 x 0.4 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:51:43'),
+(142, 1, 'Corsair K100 Keyboard', 'Optical-mechanical keyboard, 4000Hz polling, PBT keys', 14999.00, 13999.00, 'SPRT-CORS-K100', '0', 1.35, '46 x 16 x 4 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:52:06'),
+(143, 1, 'HyperX Pulsefire Mouse', 'Gaming mouse, 16000 DPI, RGB lighting, 6 buttons', 3999.00, 3499.00, 'SPRT-HYPR-PULSE', '0', 0.09, '12.4 x 6.8 x 3.9 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 04:52:12'),
+(144, 1, 'NVIDIA RTX 4080', '16GB GDDR6X graphics card, DLSS 3, ray tracing', 89999.00, 84999.00, 'SPRT-NVDA-408016', '0', 2.10, '30 x 13 x 6 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:52:17'),
+(145, 1, 'AMD Ryzen 9 7950X', '16-core 32-thread processor, 5.7GHz boost, AM5 socket', 49999.00, 47999.00, 'SPRT-AMD-R97950', '0', 0.05, '4 x 4 x 1 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 04:52:24'),
+(146, 1, 'Intel Core i9-14900K', '24-core processor, 5.8GHz boost, LGA1700 socket', 45999.00, 43999.00, 'SPRT-INTL-I914900', '0', 0.05, '4.5 x 3.5 x 0.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 05:02:10'),
+(147, 1, 'ASUS ROG Motherboard', 'Z790 motherboard, DDR5, WiFi 6E, PCIe 5.0', 29999.00, 28999.00, 'SPRT-ASUS-Z790E', '0', 1.20, '30 x 24 x 6 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 05:02:34'),
+(148, 1, 'G.Skill Trident RAM', '64GB DDR5 6400MHz, RGB, CL32 latency', 15999.00, 14999.00, 'SPRT-GSKL-TRI64', '0', 0.12, '13.3 x 4.9 x 0.8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 05:03:26'),
+(149, 1, 'Seagate FireCuda SSD', '4TB NVMe Gen4 SSD, 7300MB/s, heatsink included', 19999.00, 18999.00, 'SPRT-SEAG-FC4TB', '0', 0.02, '8 x 2.2 x 0.2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 05:03:34'),
+(150, 1, 'be quiet! Dark Rock 4', 'Air CPU cooler, 200W TDP, silent wings fans', 5999.00, 5699.00, 'SPRT-BQUI-DRK4', '0', 1.10, '13.6 x 13.6 x 16.3 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 05:03:39'),
+(151, 1, 'Lian Li Case Fans', '3-pack 120mm RGB fans, daisy chain, PWM control', 3999.00, 3699.00, 'SPRT-LIAN-FAN3PK', '0', 0.45, '12 x 12 x 2.5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 05:03:46'),
+(152, 1, 'Fractal Design Case', 'ATX mid-tower, tempered glass, silent optimized', 7999.00, 7499.00, 'SPRT-FRAC-DESIGN', '0', 9.20, '54 x 23 x 45 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 05:10:05'),
+(153, 1, 'MSI Gaming Monitor', '32-inch QHD, 165Hz, 1ms, HDR400, curved', 29999.00, 27999.00, 'SPRT-MSI-MON32Q', '0', 6.20, '71 x 52 x 24 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-03 05:08:49'),
+(154, 1, 'Glorious Model O Mouse', 'Wireless gaming mouse, honeycomb shell, 67g weight', 5999.00, 5499.00, 'SPRT-GLOR-MODELO', '0', 0.07, '12.8 x 6.7 x 3.7 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-03 05:08:58'),
+(155, 5, 'The Four Agreements', 'Practical guide to personal freedom by Don Miguel Ruiz', 899.00, 799.00, 'BOOK-FOUR-AGRM-PB', 'Amber-Allen', 0.25, '21 x 14 x 1.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(156, 5, 'Thinking, Fast and Slow', 'Daniel Kahneman\'s groundbreaking work on decision-making', 1299.00, 1199.00, 'BOOK-THINK-FS-HC', 'Farrar, Straus and Giroux', 0.68, '24 x 16 x 3 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(157, 5, 'The 7 Habits of Highly Effective People', 'Stephen R. Covey\'s classic on personal and professional effectiveness', 1099.00, 999.00, 'BOOK-7HABITS-HC', 'Simon & Schuster', 0.45, '23 x 15 x 2.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(158, 5, 'The Power of Now', 'Spiritual guide to living in the present moment by Eckhart Tolle', 999.00, 899.00, 'BOOK-POWER-NOW-PB', 'New World Library', 0.32, '21 x 14 x 2 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(159, 5, 'How to Win Friends and Influence People', 'Dale Carnegie\'s timeless classic on human relations', 899.00, 799.00, 'BOOK-WIN-FRNDS-PB', 'Gallery Books', 0.28, '21 x 14 x 1.8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(160, 5, 'The Subtle Art of Not Giving a F*ck', 'Counterintuitive approach to living a good life by Mark Manson', 999.00, 899.00, 'BOOK-SUBTLE-ART-PB', 'HarperOne', 0.30, '21 x 14 x 2 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(161, 5, 'Rich Dad Poor Dad', 'Robert Kiyosaki\'s guide to financial literacy and wealth building', 899.00, 799.00, 'BOOK-RICH-DAD-PB', 'Plata Publishing', 0.26, '21 x 14 x 1.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(162, 5, 'The Alchemist', 'Paulo Coelho\'s magical story about following your dreams', 799.00, 699.00, 'BOOK-ALCHMIST-PB', 'HarperOne', 0.22, '20 x 13 x 1.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(163, 5, 'Man\'s Search for Meaning', 'Viktor Frankl\'s profound memoir and psychological exploration', 899.00, 799.00, 'BOOK-MANS-SRCH-PB', 'Beacon Press', 0.20, '21 x 14 x 1.2 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(164, 5, 'The 48 Laws of Power', 'Robert Greene\'s distillation of 3,000 years of power dynamics', 1299.00, 1199.00, 'BOOK-48LAWS-HC', 'Penguin Books', 0.85, '24 x 16 x 3.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(165, 5, 'Deep Work', 'Rules for focused success in a distracted world by Cal Newport', 999.00, 899.00, 'BOOK-DEEP-WORK-HC', 'Grand Central Publishing', 0.42, '21 x 14 x 2.5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(166, 5, 'The 5 Love Languages', 'Gary Chapman\'s guide to expressing heartfelt commitment', 799.00, 699.00, 'BOOK-5LOVE-LANG-PB', 'Northfield Publishing', 0.24, '21 x 14 x 1.5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(167, 5, 'The Intelligent Investor', 'Benjamin Graham\'s definitive book on value investing', 1499.00, 1399.00, 'BOOK-INTEL-INV-HC', 'Harper Business', 0.75, '24 x 16 x 3 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(168, 5, 'Mindset: The New Psychology of Success', 'Carol Dweck\'s groundbreaking work on growth mindset', 999.00, 899.00, 'BOOK-MINDSET-PB', 'Ballantine Books', 0.30, '21 x 14 x 2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(169, 5, 'The Body Keeps the Score', 'Bessel van der Kolk on trauma, memory, and healing', 1199.00, 1099.00, 'BOOK-BODY-SCORE-PB', 'Penguin Books', 0.40, '23 x 15 x 2.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(170, 5, 'Atomic Habits Journal', 'Companion journal to build good habits and break bad ones', 699.00, 599.00, 'BOOK-ATML-JRNL-PB', 'Avery', 0.35, '23 x 18 x 1.5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(171, 5, 'The Miracle Morning', 'Hal Elrod\'s proven method to transform your life before 8AM', 899.00, 799.00, 'BOOK-MIRAC-MORN-PB', 'Hal Elrod International', 0.28, '21 x 14 x 1.8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(172, 5, 'Start with Why', 'Simon Sinek on how great leaders inspire action', 999.00, 899.00, 'BOOK-START-WHY-PB', 'Portfolio', 0.32, '21 x 14 x 2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(173, 5, 'The 10X Rule', 'Grant Cardone\'s principle of massive action', 899.00, 799.00, 'BOOK-10X-RULE-HC', 'Wiley', 0.38, '23 x 15 x 2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(174, 5, 'Can\'t Hurt Me', 'David Goggins\' story of transforming pain into power', 1099.00, 999.00, 'BOOK-CANT-HURT-HC', 'Lioncrest Publishing', 0.45, '24 x 16 x 2.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(175, 5, 'The Art of War', 'Sun Tzu\'s ancient military strategy applied to modern life', 599.00, 499.00, 'BOOK-ART-WAR-PB', 'Shambhala', 0.18, '20 x 13 x 1 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(176, 5, 'Meditations', 'Marcus Aurelius\' personal writings on Stoic philosophy', 799.00, 699.00, 'BOOK-MEDIT-PB', 'Penguin Classics', 0.22, '20 x 13 x 1.5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(177, 5, 'Principles: Life and Work', 'Ray Dalio\'s unconventional principles for success', 1499.00, 1399.00, 'BOOK-PRIN-LIFE-HC', 'Simon & Schuster', 0.85, '24 x 16 x 3.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(178, 5, 'Extreme Ownership', 'Jocko Willink and Leif Babin on leadership lessons from Navy SEALs', 1199.00, 1099.00, 'BOOK-EXTREME-OWN-HC', 'St. Martin\'s Press', 0.42, '24 x 16 x 2.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(179, 5, 'The Compound Effect', 'Darren Hardy on multiplying your success one step at a time', 899.00, 799.00, 'BOOK-COMPOUND-PB', 'Vanguard Press', 0.26, '21 x 14 x 1.8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(180, 5, 'Thinking in Systems', 'Donella Meadows\' primer on systems thinking', 1099.00, 999.00, 'BOOK-THINK-SYS-PB', 'Chelsea Green Publishing', 0.35, '23 x 15 x 2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(181, 5, 'Essentialism', 'Greg McKeown on disciplined pursuit of less', 999.00, 899.00, 'BOOK-ESSENTIAL-PB', 'Crown Business', 0.30, '21 x 14 x 2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(182, 5, 'The Courage to Be Disliked', 'Japanese phenomenon on finding happiness and freedom', 899.00, 799.00, 'BOOK-COURAGE-DIS-PB', 'Atria Books', 0.25, '21 x 14 x 1.8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(183, 5, 'The Millionaire Fastlane', 'MJ DeMarco on cracking the code to wealth', 1099.00, 999.00, 'BOOK-MILL-FAST-PB', 'Viperion Publishing', 0.38, '23 x 15 x 2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(184, 5, 'The 5 AM Club', 'Robin Sharma on mastering your morning and elevating your life', 999.00, 899.00, 'BOOK-5AM-CLUB-HC', 'HarperCollins', 0.42, '24 x 16 x 2.5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(185, 29, 'Nestle Nido Fortified Milk', 'Full cream milk powder, 1.8kg tin, for kids and adults', 899.00, 849.00, 'GROC-NEST-NIDO18', 'Nestle', 1.80, '15 x 15 x 20 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(186, 29, 'Bear Brand Sterilized Milk', '324ml can, 6-pack, full cream, no sugar added', 299.00, 279.00, 'GROC-BEAR-MLK6PK', 'Bear Brand', 2.00, '30 x 20 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(187, 29, 'Century Tuna Flakes in Oil', '155g can, hot & spicy variant, drained weight 95g', 49.00, 45.00, 'GROC-CENT-TUNA-OIL', 'Century', 0.16, '8 x 8 x 4 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(188, 29, 'Argentina Corned Beef', '150g can, luncheon meat, ready to eat', 55.00, 52.00, 'GROC-ARGI-CB150', 'Argentina', 0.15, '8 x 8 x 4 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(189, 29, 'San Marino Corned Tuna', '180g can, Spanish style, in vegetable oil', 65.00, 59.00, 'GROC-SANM-CTUNA', 'San Marino', 0.18, '8 x 8 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(190, 29, 'Purefoods Classic Hotdog', '1kg pack, regular size, 100% pure beef', 199.00, 189.00, 'GROC-PURE-HOTDOG', 'Purefoods', 1.00, '25 x 15 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(191, 29, 'Magnolia Fresh Milk', '1L carton, full cream, UHT processed', 89.00, 85.00, 'GROC-MAGN-MILK1L', 'Magnolia', 1.00, '10 x 10 x 20 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(192, 29, 'Selecta Ice Cream 1.5L', 'Cookies and cream flavor, family size', 249.00, 229.00, 'GROC-SELC-IC15L', 'Selecta', 1.50, '20 x 20 x 15 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(193, 29, 'Nestle All-Purpose Cream', '250ml tetra pack, for cooking and desserts', 59.00, 55.00, 'GROC-NEST-APC250', 'Nestle', 0.25, '8 x 8 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(194, 29, 'Alaska Evaporated Milk', '370ml can, full cream, for cooking and drinks', 45.00, 42.00, 'GROC-ALAS-EVAP370', 'Alaska', 0.37, '8 x 8 x 12 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(195, 29, 'Birch Tree Fortified Milk', '300g sachet, choco flavor, for kids', 129.00, 119.00, 'GROC-BIRCH-FORT300', 'Birch Tree', 0.30, '20 x 15 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(196, 29, 'Knorr Pork Cube', '8g per cube, 6 cubes pack, flavor seasoning', 25.00, 23.00, 'GROC-KNORR-PORK6', 'Knorr', 0.05, '10 x 5 x 2 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(197, 29, 'Lady\'s Choice Mayonnaise', '220ml jar, real mayonnaise, creamy texture', 89.00, 85.00, 'GROC-LADY-MAYO220', 'Lady\'s Choice', 0.22, '8 x 8 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(198, 29, 'CDO Karne Norte', '150g can, Filipino-style corned beef', 52.00, 49.00, 'GROC-CDO-KN150', 'CDO', 0.15, '8 x 8 x 4 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(199, 29, '555 Sardines in Tomato Sauce', '155g can, Spanish style, spicy variant', 28.00, 25.00, 'GROC-555-SARD155', '555', 0.16, '8 x 8 x 4 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(200, 29, 'Mega Sardines in Oil', '155g can, natural oil, chili added', 32.00, 29.00, 'GROC-MEGA-SARD155', 'Mega', 0.16, '8 x 8 x 4 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(201, 29, 'Swift Meatloaf', '250g can, ready to eat, for sandwiches and meals', 65.00, 59.00, 'GROC-SWIFT-MLOAF', 'Swift', 0.25, '10 x 10 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(202, 29, 'Nestle Yogurt Drink', '90ml bottle, strawberry flavor, 6-pack', 149.00, 139.00, 'GROC-NEST-YOG6PK', 'Nestle', 0.55, '25 x 15 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(203, 29, 'Happy Peanuts Salted', '100g pack, roasted, salted peanuts', 35.00, 32.00, 'GROC-HAPPY-PNUT100', 'Happy', 0.10, '15 x 10 x 3 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(204, 29, 'Magnolia Chicken Nuggets', '500g pack, breaded, ready to cook', 199.00, 189.00, 'GROC-MAGN-NUG500', 'Magnolia', 0.50, '20 x 15 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(205, 31, 'Del Monte Pineapple Slices', '432g can, in syrup, natural sweetness', 65.00, 59.00, 'GROC-DELM-PINE432', 'Del Monte', 0.43, '10 x 10 x 8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(206, 31, 'Libby\'s Vienna Sausage', '340g can, mini sausages in brine', 89.00, 85.00, 'GROC-LIBB-VIENA340', 'Libby\'s', 0.34, '10 x 10 x 8 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(207, 31, 'Hunt\'s Tomato Sauce', '227g can, no preservatives, for cooking', 35.00, 32.00, 'GROC-HUNT-TOM227', 'Hunt\'s', 0.23, '8 x 8 x 6 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(208, 31, 'Spam Lite', '340g can, less fat, less sodium', 199.00, 189.00, 'GROC-SPAM-LITE340', 'Spam', 0.34, '12 x 8 x 4 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(209, 31, 'Pampanga\'s Best Tocino', '250g pack, sweet cured pork, ready to cook', 129.00, 119.00, 'GROC-PAMP-TOC250', 'Pampanga\'s Best', 0.25, '20 x 15 x 3 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(210, 31, 'Purefoods Tender Juicy Hotdog', '1kg pack, jumbo size, skinless', 219.00, 209.00, 'GROC-PURE-TJ1KG', 'Purefoods', 1.00, '25 x 15 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(211, 31, 'CDO Funtastyk Young Pork Tocino', '250g pack, sweet style, easy to cook', 89.00, 85.00, 'GROC-CDO-FYT250', 'CDO', 0.25, '20 x 15 x 3 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(212, 31, 'Argentina Beef Loaf', '150g can, luncheon meat variant', 48.00, 45.00, 'GROC-ARGI-BLOAF150', 'Argentina', 0.15, '8 x 8 x 4 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(213, 31, 'San Marino Corned Beef Chili', '150g can, spicy variant with chili', 58.00, 55.00, 'GROC-SANM-CBCHILI', 'San Marino', 0.15, '8 x 8 x 4 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(214, 31, 'Century Tuna Sweet & Spicy', '180g can, flakes in sweet spicy sauce', 55.00, 52.00, 'GROC-CENT-TUNA-SS', 'Century', 0.18, '8 x 8 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(215, 32, 'Lucky Me Pancit Canton', '80g pack, chili-mansi flavor, 10 packs bundle', 99.00, 89.00, 'GROC-LUCKY-PC10', 'Lucky Me', 0.80, '25 x 15 x 10 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(216, 32, 'Indomie Mi Goreng', '85g pack, Indonesian style, 5 packs', 89.00, 85.00, 'GROC-INDO-MG5PK', 'Indomie', 0.43, '20 x 15 x 5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(217, 32, 'Lucky Me Instant Mami', '65g pack, chicken flavor, 10 packs bundle', 85.00, 79.00, 'GROC-LUCKY-MAMI10', 'Lucky Me', 0.65, '25 x 15 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(218, 32, 'Nissin Cup Noodles', '68g cup, seafood flavor, 6 cups pack', 149.00, 139.00, 'GROC-NISS-CUP6PK', 'Nissin', 0.41, '25 x 20 x 15 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(219, 32, 'Payless Pancit Canton', '60g pack, extra hot chili flavor, 10 packs', 89.00, 85.00, 'GROC-PAYL-PC10', 'Payless', 0.60, '25 x 15 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(220, 32, 'Lucky Me Supreme La Paz Batchoy', '70g pack, Ilonggo style, 6 packs', 109.00, 99.00, 'GROC-LUCKY-LPB6', 'Lucky Me', 0.42, '20 x 15 x 8 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(221, 32, 'Maggi Magic Sarap', '8g sachet, all-purpose seasoning, 12 packs', 35.00, 32.00, 'GROC-MAGGI-MS12', 'Maggi', 0.10, '15 x 10 x 3 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(222, 32, 'San Remo Pasta', '500g pack, spaghetti, durum wheat semolina', 89.00, 85.00, 'GROC-SANR-SPG500', 'San Remo', 0.50, '25 x 15 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(223, 32, 'Barilla Spaghetti', '500g pack, Italian durum wheat, #5 thickness', 129.00, 119.00, 'GROC-BARIL-SPG500', 'Barilla', 0.50, '25 x 15 x 5 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(224, 32, 'Quickchow Instant Noodles', '55g pack, beef flavor, 10 packs bundle', 75.00, 69.00, 'GROC-QUICK-CHW10', 'Quickchow', 0.55, '25 x 15 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(225, 33, 'Nescafe Classic', '50g jar, instant coffee, 100% pure soluble', 89.00, 85.00, 'GROC-NESC-CLASS50', 'Nescafe', 0.05, '8 x 8 x 10 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(226, 33, 'Great Taste White Coffee', '30g sachet, 3-in-1, 10 sachets pack', 65.00, 59.00, 'GROC-GT-WHITE10', 'Great Taste', 0.30, '20 x 15 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(227, 33, 'Kopiko Brown Coffee', '25g sachet, 3-in-1, 20 sachets pack', 89.00, 85.00, 'GROC-KOPIKO-BRN20', 'Kopiko', 0.50, '25 x 15 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(228, 33, 'Coca-Cola 1.5L', 'Regular flavor, plastic bottle', 65.00, 59.00, 'GROC-COKE-15L', 'Coca-Cola', 1.50, '10 x 10 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(229, 33, 'Pepsi 1.5L', 'Regular cola, plastic bottle', 62.00, 58.00, 'GROC-PEPSI-15L', 'Pepsi', 1.50, '10 x 10 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(230, 33, 'Royal 1.5L', 'Orange flavor, carbonated soft drink', 60.00, 56.00, 'GROC-ROYAL-15L', 'Royal', 1.50, '10 x 10 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(231, 33, 'Mountain Dew 1.5L', 'Citrus flavor, caffeinated soft drink', 65.00, 59.00, 'GROC-MTNDEW-15L', 'Mountain Dew', 1.50, '10 x 10 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(232, 33, 'Sprite 1.5L', 'Lemon-lime flavor, caffeine-free', 62.00, 58.00, 'GROC-SPRITE-15L', 'Sprite', 1.50, '10 x 10 x 30 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(233, 33, 'C2 Green Tea', '500ml bottle, apple flavor, 6 bottles pack', 149.00, 139.00, 'GROC-C2-GTEA6PK', 'C2', 3.00, '30 x 20 x 15 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(234, 33, 'Bear Brand Sterilized Milk', '110ml bottle, chocolate flavor, 6 bottles', 89.00, 85.00, 'GROC-BEAR-CHOC6', 'Bear Brand', 0.66, '20 x 15 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(235, 34, 'Datu Puti Soy Sauce', '340ml bottle, naturally brewed', 25.00, 23.00, 'GROC-DATU-SOY340', 'Datu Puti', 0.34, '8 x 8 x 20 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(236, 34, 'Silver Swan Soy Sauce', '350ml bottle, premium quality', 28.00, 25.00, 'GROC-SILV-SOY350', 'Silver Swan', 0.35, '8 x 8 x 20 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(237, 34, 'Datu Puti Vinegar', '340ml bottle, sukang maasim', 22.00, 20.00, 'GROC-DATU-VIN340', 'Datu Puti', 0.34, '8 x 8 x 20 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(238, 34, 'Marca Piña Patis', '350ml bottle, fish sauce, premium quality', 35.00, 32.00, 'GROC-MARCA-PAT350', 'Marca Piña', 0.35, '8 x 8 x 20 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(239, 34, 'Mang Tomas All-Purpose Sauce', '325g bottle, for lechon and grilled meats', 55.00, 52.00, 'GROC-MANG-TOMAS325', 'Mang Tomas', 0.33, '8 x 8 x 15 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00');
+INSERT INTO `products` (`product_id`, `category_id`, `product_name`, `description`, `price`, `sale_price`, `sku`, `brand`, `weight`, `dimensions`, `is_active`, `featured`, `created_at`, `updated_at`) VALUES
+(240, 34, 'Jufran Banana Sauce', '320g bottle, sweet style, for hotdogs and burgers', 48.00, 45.00, 'GROC-JUFRAN-BAN320', 'Jufran', 0.32, '8 x 8 x 15 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(241, 34, 'Heinz Tomato Ketchup', '320g bottle, made from ripe tomatoes', 65.00, 59.00, 'GROC-HEINZ-KET320', 'Heinz', 0.32, '8 x 8 x 15 cm', 1, 1, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(242, 34, 'UFC Banana Ketchup', '320g bottle, Filipino-style sweet ketchup', 42.00, 39.00, 'GROC-UFC-KET320', 'UFC', 0.32, '8 x 8 x 15 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(243, 34, 'Lady\'s Choice Mayonnaise', '220ml jar, real mayonnaise', 89.00, 85.00, 'GROC-LADY-MYO220', 'Lady\'s Choice', 0.22, '8 x 8 x 10 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00'),
+(244, 34, 'Magi Magic Sarap', '8g sachet, all-purpose seasoning, 24 packs', 65.00, 59.00, 'GROC-MAGGI-MS24', 'Magi', 0.20, '20 x 15 x 5 cm', 1, 0, '2025-12-01 20:46:00', '2025-12-01 20:46:00');
 
 -- --------------------------------------------------------
 
@@ -1602,7 +1494,6 @@ INSERT INTO `product_images` (`image_id`, `product_id`, `image_url`, `is_primary
 (56, 28, 'https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=800', 1, 1, '2025-11-24 02:39:49'),
 (57, 28, 'https://images.unsplash.com/photo-1519638399535-1b036603ac77?w=800', 0, 2, '2025-11-24 02:39:49'),
 (58, 29, 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=800', 1, 1, '2025-11-24 02:39:49'),
-<<<<<<< HEAD
 (59, 30, 'https://cdn2.penguin.com.au/covers/original/9781847941831.jpg', 1, 1, '2025-11-24 02:39:49'),
 (60, 31, 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=800', 1, 1, '2025-11-24 02:39:49'),
 (61, 32, 'https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1506026635i/35133922.jpg', 1, 1, '2025-11-24 02:39:49'),
@@ -1830,13 +1721,6 @@ INSERT INTO `product_images` (`image_id`, `product_id`, `image_url`, `is_primary
 (296, 190, 'https://boholgrocery.com/wp-content/uploads/2020/11/Purefoods-Tender-Juicy-Hotdog-Regular-Classic-230g.png', 0, 4, '2025-12-02 02:24:32'),
 (297, 36, 'https://images.samsung.com/is/image/samsung/assets/ph/galaxy-watch6/feature/galaxy-watch6-safety-mo.jpg', 0, 2, '2025-12-02 04:15:04'),
 (299, 38, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQN7QrWKsPQEfQYNjCLUtn174qEvoXEHJJA6w&s', 0, 2, '2025-12-02 04:22:57');
-=======
-(59, 30, 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=800', 1, 1, '2025-11-24 02:39:49'),
-(60, 31, 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?w=800', 1, 1, '2025-11-24 02:39:49'),
-(61, 32, 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800', 1, 1, '2025-11-24 02:39:49'),
-(62, 33, 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=800', 1, 1, '2025-11-24 02:39:49'),
-(63, 34, 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=800', 1, 1, '2025-11-24 02:39:49');
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 -- --------------------------------------------------------
 
@@ -1849,26 +1733,13 @@ CREATE TABLE `reviews` (
   `product_id` int(11) NOT NULL,
   `customer_id` int(11) NOT NULL,
   `order_id` int(11) DEFAULT NULL,
-<<<<<<< HEAD
   `rating` int(11) NOT NULL,
-  `title` varchar(200),
-  `comment` text,
-  `is_verified_purchase` tinyint(1) DEFAULT 0,
-  `is_approved` tinyint(1) DEFAULT 0,
-  `created_at` timestamp DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`review_id`),
-  KEY `product_id` (`product_id`),
-  KEY `customer_id` (`customer_id`)
-=======
-  `rating` int(11) NOT NULL CHECK (`rating` >= 1 and `rating` <= 5),
-  `title` varchar(100) DEFAULT NULL,
-  `comment` text NOT NULL,
+  `title` varchar(200) DEFAULT NULL,
+  `comment` text DEFAULT NULL,
   `is_verified_purchase` tinyint(1) DEFAULT 0,
   `is_approved` tinyint(1) DEFAULT 0,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -1881,6 +1752,38 @@ INSERT INTO `reviews` (`review_id`, `product_id`, `customer_id`, `order_id`, `ra
 (3, 3, 2, NULL, 5, 'Best headphones ever', 'The noise cancellation is phenomenal. I use these daily for work and travel. Worth every penny!', 1, 1, '2025-11-26 01:15:00', '2025-12-01 10:45:52'),
 (4, 11, 3, NULL, 5, 'Super comfortable running shoes', 'These Adidas Ultraboost shoes are incredibly comfortable. Perfect for long runs and everyday wear.', 1, 1, '2025-11-25 08:45:00', '2025-12-01 10:45:52'),
 (5, 30, 2, NULL, 5, 'Life-changing book', 'Atomic Habits helped me build better routines. The concepts are practical and easy to implement. Must read!', 1, 1, '2025-11-24 03:30:00', '2025-12-01 10:45:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `riders`
+--
+
+CREATE TABLE `riders` (
+  `rider_id` int(11) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `vehicle_type` enum('motorcycle','bicycle','car','truck') NOT NULL,
+  `vehicle_plate` varchar(20) DEFAULT NULL,
+  `status` enum('active','inactive','suspended') DEFAULT 'active',
+  `is_verified` tinyint(1) DEFAULT 0,
+  `rating` decimal(3,2) DEFAULT 0.00,
+  `total_deliveries` int(11) DEFAULT 0,
+  `completed_deliveries` int(11) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `riders`
+--
+
+INSERT INTO `riders` (`rider_id`, `first_name`, `last_name`, `email`, `phone`, `password_hash`, `vehicle_type`, `vehicle_plate`, `status`, `is_verified`, `rating`, `total_deliveries`, `completed_deliveries`, `created_at`, `updated_at`) VALUES
+(1, 'John', 'Rider', 'rider1@example.com', '+63 9123456789', '$2y$10$LKLZSI5NDNhnIP9r2NGQQu.EXxlfRV7thJ2Y7xIHXQmDa6XmV93Zu', 'motorcycle', 'ABC-1234', 'active', 1, 0.00, 0, 0, '2025-12-05 17:53:24', '2025-12-05 17:53:24'),
+(2, 'Maria', 'Delgado', 'rider2@example.com', '+63 9123456790', '$2y$10$LKLZSI5NDNhnIP9r2NGQQu.EXxlfRV7thJ2Y7xIHXQmDa6XmV93Zu', 'bicycle', 'XYZ-5678', 'active', 1, 0.00, 0, 0, '2025-12-05 17:53:24', '2025-12-05 17:53:24');
 
 -- --------------------------------------------------------
 
@@ -1919,7 +1822,6 @@ INSERT INTO `shipping` (`shipping_id`, `order_id`, `carrier`, `tracking_number`,
 (10, 10, NULL, NULL, 'Standard', NULL, NULL, NULL, 'preparing', '2025-11-29 00:06:33', '2025-11-29 00:06:33'),
 (11, 11, NULL, NULL, 'Standard', '2025-11-29 00:20:41', NULL, NULL, 'shipped', '2025-11-29 00:10:25', '2025-11-29 00:20:41'),
 (12, 12, NULL, NULL, 'Standard', '2025-11-29 01:52:44', NULL, NULL, 'shipped', '2025-11-29 00:44:59', '2025-11-29 01:52:44'),
-<<<<<<< HEAD
 (13, 13, NULL, NULL, 'Standard', '2025-12-01 07:07:29', NULL, NULL, 'shipped', '2025-12-01 01:27:39', '2025-12-01 07:07:29'),
 (14, 14, NULL, NULL, 'Standard', '2025-12-02 05:58:20', NULL, NULL, 'shipped', '2025-12-02 05:57:17', '2025-12-02 05:58:20'),
 (15, 15, NULL, NULL, 'Standard', NULL, NULL, NULL, 'preparing', '2025-12-03 05:17:21', '2025-12-03 05:17:21'),
@@ -1931,9 +1833,6 @@ INSERT INTO `shipping` (`shipping_id`, `order_id`, `carrier`, `tracking_number`,
 (21, 21, NULL, NULL, 'Standard', NULL, NULL, NULL, 'preparing', '2025-12-05 06:25:34', '2025-12-05 06:25:34'),
 (22, 22, NULL, NULL, 'Standard', NULL, NULL, NULL, 'preparing', '2025-12-05 06:31:50', '2025-12-05 06:31:50'),
 (23, 23, NULL, NULL, 'Standard', NULL, NULL, NULL, 'preparing', '2025-12-05 06:51:35', '2025-12-05 06:51:35');
-=======
-(13, 13, NULL, NULL, 'Standard', '2025-12-01 07:07:29', NULL, NULL, 'shipped', '2025-12-01 01:27:39', '2025-12-01 07:07:29');
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 -- --------------------------------------------------------
 
@@ -1989,11 +1888,7 @@ INSERT INTO `site_settings` (`setting_key`, `setting_value`, `setting_type`, `de
 ('gmail_sender_name', 'JRD Malls', 'text', 'Email sender name', '2025-12-01 01:07:40'),
 ('gmail_sender_password', 'kcooqodzgkvynodo', 'password', 'Gmail app password (16 characters)', '2025-12-01 01:07:40'),
 ('items_per_page', '9', 'number', 'Products per page', '2025-12-01 10:36:49'),
-<<<<<<< HEAD
 ('maintenance_mode', '0', 'checkbox', 'Maintenance mode', '2025-12-05 09:43:24'),
-=======
-('maintenance_mode', '0', 'checkbox', 'Maintenance mode', '2025-11-28 03:29:00'),
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 ('require_email_verification', '1', 'checkbox', 'Require email verification', '2025-11-28 03:29:00'),
 ('shipping_cost', '5.99', 'number', 'Standard shipping cost', '2025-11-24 13:58:30'),
 ('site_email', 'jrd.malls@gmail.com', 'email', 'Contact email', '2025-12-01 00:26:48'),
@@ -2020,12 +1915,8 @@ CREATE TABLE `wishlist` (
 
 INSERT INTO `wishlist` (`wishlist_id`, `customer_id`, `product_id`, `added_at`) VALUES
 (1, 3, 1, '2025-11-24 02:53:26'),
-<<<<<<< HEAD
 (2, 2, 1, '2025-11-29 00:10:05'),
 (3, 2, 42, '2025-12-05 04:59:36');
-=======
-(2, 2, 1, '2025-11-29 00:10:05');
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- Indexes for dumped tables
@@ -2051,7 +1942,6 @@ ALTER TABLE `addresses`
   ADD KEY `customer_id` (`customer_id`);
 
 --
-<<<<<<< HEAD
 -- Indexes for table `admins`
 --
 ALTER TABLE `admins`
@@ -2059,8 +1949,6 @@ ALTER TABLE `admins`
   ADD UNIQUE KEY `username` (`username`);
 
 --
-=======
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 -- Indexes for table `admin_users`
 --
 ALTER TABLE `admin_users`
@@ -2089,6 +1977,23 @@ ALTER TABLE `customers`
   ADD PRIMARY KEY (`customer_id`),
   ADD UNIQUE KEY `email` (`email`),
   ADD KEY `idx_customer_email` (`email`);
+
+--
+-- Indexes for table `delivery_assignments`
+--
+ALTER TABLE `delivery_assignments`
+  ADD PRIMARY KEY (`assignment_id`),
+  ADD UNIQUE KEY `order_id` (`order_id`),
+  ADD KEY `rider_id` (`rider_id`),
+  ADD KEY `delivery_status` (`delivery_status`);
+
+--
+-- Indexes for table `delivery_logs`
+--
+ALTER TABLE `delivery_logs`
+  ADD PRIMARY KEY (`log_id`),
+  ADD KEY `assignment_id` (`assignment_id`),
+  ADD KEY `rider_id` (`rider_id`);
 
 --
 -- Indexes for table `inventory`
@@ -2166,19 +2071,22 @@ ALTER TABLE `product_images`
   ADD KEY `product_id` (`product_id`);
 
 --
-<<<<<<< HEAD
-=======
 -- Indexes for table `reviews`
 --
 ALTER TABLE `reviews`
   ADD PRIMARY KEY (`review_id`),
   ADD KEY `product_id` (`product_id`),
-  ADD KEY `customer_id` (`customer_id`),
-  ADD KEY `order_id` (`order_id`),
-  ADD KEY `idx_approved` (`is_approved`);
+  ADD KEY `customer_id` (`customer_id`);
 
 --
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
+-- Indexes for table `riders`
+--
+ALTER TABLE `riders`
+  ADD PRIMARY KEY (`rider_id`),
+  ADD UNIQUE KEY `unique_email` (`email`),
+  ADD KEY `status` (`status`);
+
+--
 -- Indexes for table `shipping`
 --
 ALTER TABLE `shipping`
@@ -2215,17 +2123,12 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `activity_logs`
 --
 ALTER TABLE `activity_logs`
-<<<<<<< HEAD
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=412;
-=======
-  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=415;
 
 --
 -- AUTO_INCREMENT for table `addresses`
 --
 ALTER TABLE `addresses`
-<<<<<<< HEAD
   MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
@@ -2233,19 +2136,12 @@ ALTER TABLE `addresses`
 --
 ALTER TABLE `admins`
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-=======
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `admin_users`
 --
 ALTER TABLE `admin_users`
-<<<<<<< HEAD
   MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-=======
-  MODIFY `admin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -2257,71 +2153,55 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
-<<<<<<< HEAD
   MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-=======
-  MODIFY `coupon_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-<<<<<<< HEAD
   MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-=======
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
+
+--
+-- AUTO_INCREMENT for table `delivery_assignments`
+--
+ALTER TABLE `delivery_assignments`
+  MODIFY `assignment_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `delivery_logs`
+--
+ALTER TABLE `delivery_logs`
+  MODIFY `log_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-<<<<<<< HEAD
   MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
-=======
-  MODIFY `inventory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-<<<<<<< HEAD
   MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-=======
-  MODIFY `notification_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-<<<<<<< HEAD
   MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-=======
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `order_coupons`
 --
 ALTER TABLE `order_coupons`
-<<<<<<< HEAD
   MODIFY `order_coupon_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-=======
-  MODIFY `order_coupon_id` int(11) NOT NULL AUTO_INCREMENT;
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `order_items`
 --
 ALTER TABLE `order_items`
-<<<<<<< HEAD
   MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
-=======
-  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `order_notes`
@@ -2333,71 +2213,49 @@ ALTER TABLE `order_notes`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-<<<<<<< HEAD
   MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-=======
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-<<<<<<< HEAD
   MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
-=======
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `product_images`
 --
 ALTER TABLE `product_images`
-<<<<<<< HEAD
   MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=300;
-=======
-  MODIFY `image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `reviews`
 --
 ALTER TABLE `reviews`
-<<<<<<< HEAD
-  MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT;
-=======
   MODIFY `review_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
+
+--
+-- AUTO_INCREMENT for table `riders`
+--
+ALTER TABLE `riders`
+  MODIFY `rider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `shipping`
 --
 ALTER TABLE `shipping`
-<<<<<<< HEAD
   MODIFY `shipping_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-=======
-  MODIFY `shipping_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `shopping_cart`
 --
 ALTER TABLE `shopping_cart`
-<<<<<<< HEAD
   MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-=======
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- AUTO_INCREMENT for table `wishlist`
 --
 ALTER TABLE `wishlist`
-<<<<<<< HEAD
   MODIFY `wishlist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-=======
-  MODIFY `wishlist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 
 --
 -- Constraints for dumped tables
@@ -2414,6 +2272,19 @@ ALTER TABLE `addresses`
 --
 ALTER TABLE `categories`
   ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`parent_category_id`) REFERENCES `categories` (`category_id`) ON DELETE SET NULL;
+
+--
+-- Constraints for table `delivery_assignments`
+--
+ALTER TABLE `delivery_assignments`
+  ADD CONSTRAINT `fk_order` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`),
+  ADD CONSTRAINT `fk_rider` FOREIGN KEY (`rider_id`) REFERENCES `riders` (`rider_id`);
+
+--
+-- Constraints for table `delivery_logs`
+--
+ALTER TABLE `delivery_logs`
+  ADD CONSTRAINT `fk_assignment_log` FOREIGN KEY (`assignment_id`) REFERENCES `delivery_assignments` (`assignment_id`);
 
 --
 -- Constraints for table `inventory`
@@ -2475,17 +2346,6 @@ ALTER TABLE `product_images`
   ADD CONSTRAINT `product_images_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE;
 
 --
-<<<<<<< HEAD
-=======
--- Constraints for table `reviews`
---
-ALTER TABLE `reviews`
-  ADD CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `reviews_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE SET NULL;
-
---
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 -- Constraints for table `shipping`
 --
 ALTER TABLE `shipping`

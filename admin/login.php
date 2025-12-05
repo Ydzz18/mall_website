@@ -271,14 +271,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                        required
                        placeholder="Enter your password">
             </div>
-<<<<<<< HEAD
-=======
             
-               <div class="back-link">
-                   <a href="reset_password.php">Forgot Password?</a>
-               </div>
-            
->>>>>>> abd58bf62e8dc875020e1b26bb184585e4ed1d43
             <button type="submit" class="btn-login" id="loginBtn">
                 Login to Dashboard
             </button>

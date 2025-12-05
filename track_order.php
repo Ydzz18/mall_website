@@ -6,19 +6,11 @@ $order_items = null;
 $error = '';
 $success = '';
 
-<<<<<<< HEAD
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_number'])) {
     $order_number = trim($_POST['order_number']);
     
     if (empty($order_number)) {
         $error = 'Please enter a valid order number.';
-=======
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
-    $order_id = intval($_POST['order_id']);
-    
-    if ($order_id <= 0) {
-        $error = 'Please enter a valid order ID.';
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
     } else {
         $conn = getDBConnection();
         
@@ -27,21 +19,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
                    a.street_address, a.city, a.state_province, a.postal_code, a.country
             FROM orders o
             LEFT JOIN addresses a ON o.shipping_address_id = a.address_id
-<<<<<<< HEAD
             WHERE o.order_number = ?
         ");
         $stmt->bind_param("s", $order_number);
-=======
-            WHERE o.order_id = ?
-        ");
-        $stmt->bind_param("i", $order_id);
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
         $stmt->execute();
         $result = $stmt->get_result();
         $order = $result->fetch_assoc();
         
         if (!$order) {
-            $error = 'Order not found. Please check your order ID and try again.';
+            $error = 'Order not found. Please check your order number and try again.';
         } else {
             $stmt = $conn->prepare("
                 SELECT oi.*, p.product_name, p.sku, pi.image_url
@@ -50,11 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order_id'])) {
                 LEFT JOIN product_images pi ON p.product_id = pi.product_id AND pi.is_primary = 1
                 WHERE oi.order_id = ?
             ");
-<<<<<<< HEAD
             $stmt->bind_param("i", $order['order_id']);
-=======
-            $stmt->bind_param("i", $order_id);
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
             $stmt->execute();
             $order_items = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
             $success = 'Order found! Here are your order details.';
@@ -291,39 +273,10 @@ function getStatusBadge($status) {
             text-align: center;
             color: #666;
         }
-<<<<<<< HEAD
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #f5f5f5;
-            line-height: 1.6;
-            color: #333;
-        }
-        
-        a {
-            color: #7c3aed;
-            text-decoration: none;
-        }
-        
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-    <!-- Removed header include for independence -->
-=======
     </style>
 </head>
 <body>
     <?php include 'includes/header.php'; ?>
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
     
     <div class="track-container">
         <div class="track-header">
@@ -334,7 +287,6 @@ function getStatusBadge($status) {
         <div class="search-form">
             <form method="POST">
                 <div class="form-group">
-<<<<<<< HEAD
                     <label for="order_number">Order Number</label>
                     <input 
                         type="text" 
@@ -342,16 +294,6 @@ function getStatusBadge($status) {
                         name="order_number" 
                         placeholder="Enter your order number (e.g., ORD-2024-001234)" 
                         required
-=======
-                    <label for="order_id">Order ID</label>
-                    <input 
-                        type="number" 
-                        id="order_id" 
-                        name="order_id" 
-                        placeholder="Enter your order ID" 
-                        required
-                        min="1"
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
                     >
                 </div>
                 <button type="submit">Search Order</button>
@@ -466,10 +408,6 @@ function getStatusBadge($status) {
         <?php endif; ?>
     </div>
     
-<<<<<<< HEAD
-    <!-- Removed footer include for independence -->
-=======
     <?php include 'includes/footer.php'; ?>
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
 </body>
 </html>
