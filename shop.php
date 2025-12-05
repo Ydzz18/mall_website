@@ -140,8 +140,58 @@
     
     <?php include 'includes/footer.php'; ?>
     
+    <style>
+        header {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+        
+        header.hide {
+            transform: translateY(-100%);
+        }
+        
+        .sidebar {
+            transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: top;
+        }
+        
+        .sidebar.sticky-top {
+            top: 0 !important;
+        }
+    </style>
+    
     <script>
-        // Scroll animations
+        let lastScrollTop = 0;
+        let isHeaderHidden = false;
+        let ticking = false;
+        const header = document.querySelector('header');
+        const sidebar = document.querySelector('.sidebar');
+        
+        function updateScroll() {
+            let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+            let scrollingDown = currentScroll > lastScrollTop;
+            
+            if (scrollingDown && currentScroll > 100 && !isHeaderHidden) {
+                header.classList.add('hide');
+                if (sidebar) sidebar.classList.add('sticky-top');
+                isHeaderHidden = true;
+            } else if (!scrollingDown && isHeaderHidden) {
+                header.classList.remove('hide');
+                if (sidebar) sidebar.classList.remove('sticky-top');
+                isHeaderHidden = false;
+            }
+            
+            lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(updateScroll);
+                ticking = true;
+            }
+        }, { passive: true });
+        
         document.addEventListener('DOMContentLoaded', function() {
             const fadeElements = document.querySelectorAll('.fade-in');
             

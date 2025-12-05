@@ -52,6 +52,52 @@ foreach ($default_settings as $setting) {
                   VALUES ('{$setting[0]}', '{$setting[1]}', '{$setting[2]}', '{$setting[3]}')");
 }
 
+// Handle maintenance mode toggle - MUST BE BEFORE ANY OUTPUT
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_maintenance_mode'])) {
+    clearSettingsCache();
+    
+    $result = $conn->query("SELECT setting_value FROM site_settings WHERE setting_key = 'maintenance_mode'");
+    $current_value = $result->fetch_assoc()['setting_value'];
+    
+    $new_value = ($current_value === '1') ? '0' : '1';
+    $old_value = $current_value;
+    
+    $conn->query("UPDATE site_settings SET setting_value = '$new_value' WHERE setting_key = 'maintenance_mode'");
+    
+    // Create or delete maintenance flag file (in nccc directory)
+    $flag_file = dirname(__DIR__) . '/maintenance.flag';
+    if ($new_value === '1') {
+        // Create flag file when enabling maintenance mode
+        file_put_contents($flag_file, 'Maintenance mode enabled at ' . date('Y-m-d H:i:s'));
+    } else {
+        // Delete flag file when disabling maintenance mode
+        if (file_exists($flag_file)) {
+            unlink($flag_file);
+        }
+    }
+    
+    logAdminActivity(
+        $_SESSION['admin_id'],
+        'maintenance_mode_toggle',
+        "Maintenance mode " . ($new_value === '1' ? 'enabled' : 'disabled'),
+        'site_settings',
+        null,
+        null,
+        ['maintenance_mode' => $old_value],
+        ['maintenance_mode' => $new_value]
+    );
+    
+    clearSettingsCache();
+    
+    $message = $new_value === '1' 
+        ? '🔒 Maintenance mode enabled. Your site is now offline for customers.' 
+        : '✅ Maintenance mode disabled. Your site is now live and accessible to customers!';
+    
+    $conn->close();
+    header("Location: settings.php?message=" . urlencode($message));
+    exit;
+}
+
 // Handle settings update
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_settings'])) {
     $updated_settings = [];
@@ -115,6 +161,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_settings'])) {
     $message = 'Settings updated successfully! Changes will take effect on next page load.';
 }
 
+// Check for message in URL
+if (isset($_GET['message'])) {
+    $message = $_GET['message'];
+}
+
 // Handle test email
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_test_email'])) {
     $test_email = trim($_POST['test_email']);
@@ -169,32 +220,52 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send_test_email'])) {
     }
 }
 
-// Handle admin creation
+// Handle admin creation - FIXED TO USE admin_users TABLE
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_admin'])) {
-    $conn->query("
-        CREATE TABLE IF NOT EXISTS admins (
-            admin_id INT PRIMARY KEY AUTO_INCREMENT,
-            username VARCHAR(100) UNIQUE NOT NULL,
-            password_hash VARCHAR(255) NOT NULL,
-            email VARCHAR(255),
-            full_name VARCHAR(200),
-            is_active BOOLEAN DEFAULT TRUE,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    ");
-    
     $username = trim($_POST['admin_username']);
-    $password = password_hash($_POST['admin_password'], PASSWORD_DEFAULT);
+    $password = $_POST['admin_password'];
     $email = trim($_POST['admin_email']);
     $full_name = trim($_POST['admin_full_name']);
+    $role = isset($_POST['admin_role']) ? $_POST['admin_role'] : 'admin';
     
-    $stmt = $conn->prepare("INSERT INTO admins (username, password_hash, email, full_name) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $username, $password, $email, $full_name);
-    
-    if ($stmt->execute()) {
-        $message = 'Admin user created successfully!';
+    // Validate inputs
+    if (empty($username) || empty($password)) {
+        $error = 'Username and password are required.';
     } else {
-        $error = 'Error creating admin user. Username may already exist.';
+        // Check if username already exists
+        $check_stmt = $conn->prepare("SELECT admin_id FROM admin_users WHERE username = ? OR email = ?");
+        $check_stmt->bind_param("ss", $username, $email);
+        $check_stmt->execute();
+        $existing = $check_stmt->get_result();
+        
+        if ($existing->num_rows > 0) {
+            $error = 'Username or email already exists.';
+        } else {
+            // Hash password and insert into admin_users table
+            $password_hash = password_hash($password, PASSWORD_DEFAULT);
+            
+            $stmt = $conn->prepare("INSERT INTO admin_users (username, password_hash, email, full_name, role, is_active) VALUES (?, ?, ?, ?, ?, 1)");
+            $stmt->bind_param("sssss", $username, $password_hash, $email, $full_name, $role);
+            
+            if ($stmt->execute()) {
+                $new_admin_id = $conn->insert_id;
+                
+                // Log admin creation
+                logAdminActivity(
+                    $_SESSION['admin_id'],
+                    'admin_create',
+                    "New admin user created: $username ($full_name)",
+                    'admin_users',
+                    $new_admin_id,
+                    null,
+                    ['username' => $username, 'email' => $email, 'role' => $role]
+                );
+                
+                $message = "✅ Admin user '$username' created successfully! They can now login with their credentials.";
+            } else {
+                $error = 'Error creating admin user: ' . $conn->error;
+            }
+        }
     }
 }
 
@@ -202,6 +273,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['create_admin'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['clear_all_carts'])) {
     $result = $conn->query("DELETE FROM shopping_cart");
     if ($result) {
+        logAdminActivity(
+            $_SESSION['admin_id'],
+            'carts_clear',
+            "All shopping carts cleared",
+            'shopping_cart',
+            null
+        );
         $message = 'All shopping carts cleared successfully!';
     } else {
         $error = 'Failed to clear shopping carts.';
@@ -211,6 +289,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['clear_all_carts'])) {
 // Handle reset statistics
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['reset_statistics'])) {
     $conn->query("UPDATE products SET views = 0");
+    
+    logAdminActivity(
+        $_SESSION['admin_id'],
+        'statistics_reset',
+        "Product view statistics reset",
+        'products',
+        null
+    );
+    
     $message = 'Statistics reset successfully!';
 }
 
@@ -234,6 +321,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['backup_database'])) {
         $error = 'Failed to create database backup.';
     }
 }
+
+// Get fresh maintenance mode value for display
+clearSettingsCache();
+$fresh_maintenance = getSetting('maintenance_mode', '0');
+$is_maintenance_on = ($fresh_maintenance === '1' || $fresh_maintenance === 1);
 
 // Get all settings grouped
 $settings = $conn->query("SELECT * FROM site_settings ORDER BY setting_key")->fetch_all(MYSQLI_ASSOC);
@@ -260,7 +352,12 @@ $db_stats = [
     'orders' => $conn->query("SELECT COUNT(*) as count FROM orders")->fetch_assoc()['count'],
     'reviews' => $conn->query("SELECT COUNT(*) as count FROM reviews")->fetch_assoc()['count'],
     'cart_items' => $conn->query("SELECT COUNT(*) as count FROM shopping_cart")->fetch_assoc()['count'],
+    'admin_users' => $conn->query("SELECT COUNT(*) as count FROM admin_users")->fetch_assoc()['count'],
 ];
+
+// Get list of existing admin users
+$admin_users_result = $conn->query("SELECT admin_id, username, email, full_name, role, is_active, created_at, last_login FROM admin_users ORDER BY created_at DESC");
+$admin_users = $admin_users_result->fetch_all(MYSQLI_ASSOC);
 
 $conn->close();
 ?>
@@ -324,7 +421,8 @@ $conn->close();
         .form-group input[type="text"],
         .form-group input[type="email"],
         .form-group input[type="number"],
-        .form-group input[type="password"] {
+        .form-group input[type="password"],
+        .form-group select {
             width: 100%;
             padding: 12px;
             border: 2px solid #e0e0e0;
@@ -423,6 +521,62 @@ $conn->close();
             margin-top: 15px;
         }
         
+        .admin-users-list {
+            margin-top: 20px;
+        }
+        
+        .admin-user-card {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .admin-user-card.inactive {
+            opacity: 0.6;
+            border-left-color: #95a5a6;
+        }
+        
+        .admin-user-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .admin-user-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .admin-user-role {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .role-super_admin {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .role-admin {
+            background: #3498db;
+            color: white;
+        }
+        
+        .role-moderator {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        .admin-user-details {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+        }
+        
         @media (max-width: 968px) {
             .settings-grid {
                 grid-template-columns: 1fr;
@@ -446,6 +600,54 @@ $conn->close();
             <?php if ($error): ?>
                 <div class="alert alert-error"><?php echo htmlspecialchars($error); ?></div>
             <?php endif; ?>
+            
+            <?php if ($is_maintenance_on): ?>
+                <div class="alert" style="background: #fef3c7; border: 2px solid #f59e0b; color: #92400e; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="font-size: 2rem;">⚠️</div>
+                        <div style="flex: 1;">
+                            <h3 style="margin: 0 0 10px 0; color: #92400e;">MAINTENANCE MODE IS CURRENTLY ACTIVE</h3>
+                            <p style="margin: 0;">Your website is currently in maintenance mode. Regular customers cannot access the site. Only administrators can view and manage the system.</p>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+            
+            <!-- Maintenance Mode Quick Toggle Card -->
+            <div class="settings-section" style="border-left: 4px solid <?php echo $is_maintenance_on ? '#f59e0b' : '#16a34a'; ?>;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+                    <div style="flex: 1;">
+                        <h2 style="margin: 0 0 10px 0; color: #1e293b;">
+                            <?php if ($is_maintenance_on): ?>
+                                🔒 Site is Under Maintenance
+                            <?php else: ?>
+                                ✅ Site is Online
+                            <?php endif; ?>
+                        </h2>
+                        <p style="margin: 0; color: #64748b; font-size: 0.95rem;">
+                            <?php if ($is_maintenance_on): ?>
+                                Your store is currently offline for maintenance. Customers will see a maintenance page.
+                            <?php else: ?>
+                                Your store is live and customers can browse and make purchases.
+                            <?php endif; ?>
+                        </p>
+                    </div>
+                    <div>
+                        <form method="POST" style="display: inline;" onsubmit="return confirm('<?php echo $is_maintenance_on ? 'Turn OFF maintenance mode and make the site public?' : 'Turn ON maintenance mode? This will prevent customers from accessing your site.'; ?>')">
+                            <input type="hidden" name="toggle_maintenance_mode" value="1">
+                            <?php if ($is_maintenance_on): ?>
+                                <button type="submit" class="btn-admin btn-success" style="font-size: 1rem; padding: 12px 30px;">
+                                    🟢 Turn Site Online
+                                </button>
+                            <?php else: ?>
+                                <button type="submit" class="btn-admin btn-danger" style="font-size: 1rem; padding: 12px 30px;">
+                                    🔒 Enable Maintenance Mode
+                                </button>
+                            <?php endif; ?>
+                        </form>
+                    </div>
+                </div>
+            </div>
             
             <div class="settings-grid">
                 <div>
@@ -532,28 +734,73 @@ $conn->close();
                         <form method="POST">
                             <div class="form-group">
                                 <label>Username *</label>
-                                <input type="text" name="admin_username" required>
+                                <input type="text" name="admin_username" required placeholder="Enter username">
                             </div>
                             
                             <div class="form-group">
                                 <label>Full Name</label>
-                                <input type="text" name="admin_full_name">
+                                <input type="text" name="admin_full_name" placeholder="Enter full name">
                             </div>
                             
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="email" name="admin_email">
+                                <input type="email" name="admin_email" placeholder="Enter email address">
                             </div>
                             
                             <div class="form-group">
                                 <label>Password *</label>
-                                <input type="password" name="admin_password" required>
+                                <input type="password" name="admin_password" required placeholder="Enter password" minlength="6">
+                                <small>Minimum 6 characters</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>Role *</label>
+                                <select name="admin_role" required>
+                                    <option value="admin">Admin</option>
+                                    <option value="moderator">Moderator</option>
+                                    <option value="super_admin">Super Admin</option>
+                                </select>
+                                <small>Super Admin has full access, Admin has most features, Moderator has limited access</small>
                             </div>
                             
                             <button type="submit" name="create_admin" class="btn-admin btn-primary" style="width: 100%;">
-                                Create Admin
+                                ➕ Create Admin User
                             </button>
                         </form>
+                        
+                        <!-- Existing Admin Users -->
+                        <?php if (count($admin_users) > 0): ?>
+                        <div class="admin-users-list">
+                            <h3>📋 Existing Admin Users (<?php echo count($admin_users); ?>)</h3>
+                            <?php foreach ($admin_users as $admin): ?>
+                            <div class="admin-user-card <?php echo $admin['is_active'] ? '' : 'inactive'; ?>">
+                                <div class="admin-user-header">
+                                    <div class="admin-user-name">
+                                        <?php echo htmlspecialchars($admin['full_name'] ?: $admin['username']); ?>
+                                        <?php if (!$admin['is_active']): ?>
+                                            <span style="color: #e74c3c; font-size: 0.85rem;"> (Inactive)</span>
+                                        <?php endif; ?>
+                                    </div>
+                                    <span class="admin-user-role role-<?php echo $admin['role']; ?>">
+                                        <?php echo strtoupper(str_replace('_', ' ', $admin['role'])); ?>
+                                    </span>
+                                </div>
+                                <div class="admin-user-details">
+                                    <div>👤 Username: <strong><?php echo htmlspecialchars($admin['username']); ?></strong></div>
+                                    <?php if ($admin['email']): ?>
+                                    <div>📧 Email: <?php echo htmlspecialchars($admin['email']); ?></div>
+                                    <?php endif; ?>
+                                    <div>📅 Created: <?php echo date('M d, Y', strtotime($admin['created_at'])); ?></div>
+                                    <?php if ($admin['last_login']): ?>
+                                    <div>🕐 Last Login: <?php echo date('M d, Y g:i A', strtotime($admin['last_login'])); ?></div>
+                                    <?php else: ?>
+                                    <div>🕐 Last Login: <em>Never logged in</em></div>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <?php endif; ?>
                     </div>
                     
                     <!-- Danger Zone -->
@@ -565,13 +812,13 @@ $conn->close();
                         <form method="POST" style="display: inline;">
                             <button type="submit" name="clear_all_carts" class="btn-admin btn-danger" 
                                     onclick="return confirm('Are you sure you want to clear all shopping carts? This action cannot be undone.')">
-                                Clear All Carts
+                                🛒 Clear All Carts
                             </button>
                         </form>
                         <form method="POST" style="display: inline; margin-left: 10px;">
                             <button type="submit" name="reset_statistics" class="btn-admin btn-danger"
                                     onclick="return confirm('Are you sure you want to reset all statistics?')">
-                                Reset Statistics
+                                📊 Reset Statistics
                             </button>
                         </form>
                     </div>
@@ -584,6 +831,10 @@ $conn->close();
                         
                         <div class="info-card">
                             <h4>Database Statistics</h4>
+                            <div class="info-row">
+                                <span>👥 Admin Users:</span>
+                                <strong><?php echo number_format($db_stats['admin_users']); ?></strong>
+                            </div>
                             <div class="info-row">
                                 <span>Customers:</span>
                                 <strong><?php echo number_format($db_stats['customers']); ?></strong>
