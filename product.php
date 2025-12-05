@@ -189,45 +189,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
     }
 }
 
-// Handle Add to Wishlist
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_wishlist'])) {
-    if (!isLoggedIn()) {
-        header('Location: login.php');
-        exit;
-    }
-    
-    $customer_id = $_SESSION['customer_id'];
-    $conn = getDBConnection();
-    
-    // Check if already in wishlist
-    $stmt = $conn->prepare("SELECT wishlist_id FROM wishlist WHERE customer_id = ? AND product_id = ?");
-    $stmt->bind_param("ii", $customer_id, $product_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows > 0) {
-        $error = 'Product already in wishlist.';
-    } else {
-        $stmt = $conn->prepare("INSERT INTO wishlist (customer_id, product_id) VALUES (?, ?)");
-        $stmt->bind_param("ii", $customer_id, $product_id);
-        if ($stmt->execute()) {
-            $message = 'Added to wishlist!';
-            $wishlist_id = $conn->insert_id;
-            
-            logCustomerActivity(
-                $customer_id,
-                'wishlist_add',
-                "Added product to wishlist: {$product['product_name']}",
-                'wishlist',
-                $wishlist_id,
-                null,
-                ['product_id' => $product_id, 'product_name' => $product['product_name']]
-            );
-        }
-    }
-    
-    $conn->close();
-}
+
 
 // Get product images and related data
 $conn = getDBConnection();
@@ -498,9 +460,6 @@ $current_price = $product['sale_price'] ?: $product['price'];
                         <div class="action-buttons">
                             <button type="submit" name="add_to_cart" class="btn-add-cart">
                                 🛒 Add to Cart
-                            </button>
-                            <button type="submit" name="add_to_wishlist" class="btn-wishlist">
-                                ♥
                             </button>
                         </div>
                     </form>

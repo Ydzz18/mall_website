@@ -943,7 +943,7 @@ footer .footer-bottom {
     opacity: 1;
 }
 
-.btn-quick-view, .btn-wishlist {
+.btn-quick-view {
     background: white;
     border: none;
     padding: 0.5rem;
@@ -952,7 +952,7 @@ footer .footer-bottom {
     transition: var(--transition);
 }
 
-.btn-quick-view:hover, .btn-wishlist:hover {
+.btn-quick-view:hover {
     transform: scale(1.1);
 }
 
