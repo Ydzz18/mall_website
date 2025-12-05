@@ -9,24 +9,22 @@
                 <ul>
                     <li><a href="index.php">Home</a></li>
                     <li><a href="shop.php">Shop</a></li>
-                    <?php if (isLoggedIn()): ?>
+                    <?php if (isLoggedIn()): 
+                        require_once 'includes/notifications.php';
+                        $unread_count = getUnreadNotificationCount($_SESSION['customer_id']);
+                    ?>
                         <li><a href="cart.php">Cart</a></li>
                         <li><a href="orders.php">My Orders</a></li>
-                        <?php if (isLoggedIn()): 
-                            require_once 'includes/notifications.php';
-                            $unread_count = getUnreadNotificationCount($_SESSION['customer_id']);
-                        ?>
-                            <li style="position: relative;">
-                                <a href="notifications.php">
-                                    🔔 Notifications
-                                    <?php if ($unread_count > 0): ?>
-                                        <span style="position: absolute; top: 0; right: 0; background: #ef4444; color: white; border-radius: 50%; width: 20px; height: 20px; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; font-weight: bold;">
-                                            <?php echo $unread_count; ?>
-                                        </span>
-                                    <?php endif; ?>
-                                </a>
-                            </li>
-                        <?php endif; ?>
+                        <li style="position: relative;">
+                            <a href="notifications.php">
+                                🔔 Notifications
+                                <?php if ($unread_count > 0): ?>
+                                    <span style="position: absolute; top: 0; right: 0; background: #ef4444; color: white; border-radius: 50%; width: 20px; height: 20px; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                                        <?php echo $unread_count; ?>
+                                    </span>
+                                <?php endif; ?>
+                            </a>
+                        </li>
                         <li><a href="profile.php">Profile</a></li>
                         <li><a href="logout.php">Logout</a></li>
                     <?php else: ?>
@@ -38,10 +36,23 @@
             
             <?php if (isLoggedIn()): 
                 $user = getCurrentUser(); ?>
-                <div class="user-info">
+                <div class="user-info" id="userInfoNotification">
                     <span class="welcome-text">Welcome,</span>
                     <span class="user-name"><?php echo htmlspecialchars($user['first_name']); ?>!</span>
                 </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const userInfo = document.getElementById('userInfoNotification');
+                        if (userInfo) {
+                            setTimeout(function() {
+                                userInfo.style.opacity = '0';
+                                setTimeout(function() {
+                                    userInfo.style.display = 'none';
+                                }, 300);
+                            }, 5000);
+                        }
+                    });
+                </script>
             <?php endif; ?>
         </div>
     </div>
@@ -128,6 +139,17 @@
     width: 70%;
 }
 
+@keyframes slideInRight {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
 .user-info {
     display: flex;
     align-items: center;
@@ -136,6 +158,14 @@
     background: #f8fafc;
     border-radius: 8px;
     font-size: 0.9rem;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: slideInRight 0.3s ease-out;
+    opacity: 1;
+    transition: opacity 0.3s ease;
 }
 
 .welcome-text {

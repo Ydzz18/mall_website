@@ -1,5 +1,26 @@
 <footer class="main-footer">
     <div class="container">
+        <?php
+        // Fetch contact information from database
+        $contact_info = array(
+            'email' => 'support@example.com',
+            'phone' => '+1 (555) 123-4567',
+            'address' => '123 Commerce St, City, State 12345'
+        );
+        
+        $conn = getDBConnection();
+        if ($conn) {
+            $result = $conn->query("SELECT setting_key, setting_value FROM site_settings WHERE setting_key IN ('support_email', 'support_phone', 'support_address')");
+            if ($result) {
+                while ($row = $result->fetch_assoc()) {
+                    if ($row['setting_key'] === 'support_email') $contact_info['email'] = $row['setting_value'];
+                    if ($row['setting_key'] === 'support_phone') $contact_info['phone'] = $row['setting_value'];
+                    if ($row['setting_key'] === 'support_address') $contact_info['address'] = $row['setting_value'];
+                }
+            }
+            $conn->close();
+        }
+        ?>
         <div class="footer-content">
             <div class="footer-section">
                 <div class="footer-logo">
@@ -39,15 +60,15 @@
                 <div class="contact-info">
                     <div class="contact-item">
                         <span class="contact-icon">📧</span>
-                        <span>support@<?php echo strtolower(SITE_NAME); ?>.com</span>
+                        <span><?php echo htmlspecialchars($contact_info['email']); ?></span>
                     </div>
                     <div class="contact-item">
                         <span class="contact-icon">📞</span>
-                        <span>+1 (555) 123-4567</span>
+                        <span><?php echo htmlspecialchars($contact_info['phone']); ?></span>
                     </div>
                     <div class="contact-item">
                         <span class="contact-icon">📍</span>
-                        <span>123 Commerce St, City, State 12345</span>
+                        <span><?php echo htmlspecialchars($contact_info['address']); ?></span>
                     </div>
                 </div>
             </div>

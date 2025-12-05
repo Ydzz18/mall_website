@@ -453,13 +453,7 @@ $current_price = $product['sale_price'] ?: $product['price'];
                 
                 <div class="rating-section">
                     <div class="stars">
-                        <?php for ($i = 1; $i <= 5; $i++): ?>
-                            <?php if ($i <= $avg_rating): ?>
-                                ★
-                            <?php else: ?>
-                                ☆
-                            <?php endif; ?>
-                        <?php endfor; ?>
+                        <?php echo getStarDisplay($avg_rating); ?>
                     </div>
                     <span class="rating-text"><?php echo $avg_rating; ?> (<?php echo $review_count; ?> reviews)</span>
                 </div>
@@ -634,9 +628,7 @@ $current_price = $product['sale_price'] ?: $product['price'];
                                 <span class="review-date"><?php echo date('M d, Y', strtotime($review['created_at'])); ?></span>
                             </div>
                             <div class="review-stars">
-                                <?php for ($i = 1; $i <= 5; $i++): ?>
-                                    <?php echo $i <= $review['rating'] ? '★' : '☆'; ?>
-                                <?php endfor; ?>
+                                <?php echo getStarDisplay($review['rating']); ?>
                             </div>
                             <?php if ($review['title']): ?>
                                 <div class="review-title"><?php echo htmlspecialchars($review['title']); ?></div>

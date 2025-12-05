@@ -60,6 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>Login - <?php echo SITE_NAME; ?></title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/png" href="logo/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .login-container {
             min-height: 80vh;
@@ -345,11 +346,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             <div class="social-login">
                 <button type="button" class="btn-social">
-                    <span>🔴</span>
+                    <i class="fab fa-google"></i>
                     GOOGLE
                 </button>
                 <button type="button" class="btn-social">
-                    <span>👤</span>
+                    <i class="fab fa-facebook-f"></i>
                     FACEBOOK
                 </button>
             </div>
