@@ -551,3 +551,82 @@ function getWelcomeEmailTemplate($customer_name) {
     </html>
     ";
 }
+
+/**
+ * Send password reset email
+ */
+function sendPasswordResetEmail($customer_email, $customer_name, $reset_link) {
+    try {
+        $mail = getMailer();
+        if (!$mail) return false;
+        
+        $mail->addAddress($customer_email, $customer_name);
+        $mail->Subject = "Reset Your Password - " . SITE_NAME;
+        
+        $mail->Body = getPasswordResetTemplate($customer_name, $reset_link);
+        $mail->AltBody = "Click the link below to reset your password: " . $reset_link;
+        
+        $result = $mail->send();
+        if ($result) {
+            error_log("Password reset email sent to $customer_email");
+        }
+        return $result;
+    } catch (Exception $e) {
+        error_log("Password reset email error: " . $e->getMessage());
+        return false;
+    }
+}
+
+function getPasswordResetTemplate($customer_name, $reset_link) {
+    return "
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset='UTF-8'>
+        <style>
+            body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+            .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+            .header { background: linear-gradient(135deg, #7c3aed 0%, #06d6a0 100%); color: white; padding: 30px; text-align: center; border-radius: 10px 10px 0 0; }
+            .content { background: #f9f9f9; padding: 30px; border-radius: 0 0 10px 10px; }
+            .reset-box { background: white; padding: 20px; border-radius: 8px; margin: 20px 0; }
+            .button { display: inline-block; background: #7c3aed; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; margin: 20px 0; }
+            .warning { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 15px; margin: 20px 0; border-radius: 4px; }
+            .footer { text-align: center; color: #666; font-size: 12px; margin-top: 30px; }
+        </style>
+    </head>
+    <body>
+        <div class='container'>
+            <div class='header'>
+                <h1>🔐 Reset Your Password</h1>
+            </div>
+            <div class='content'>
+                <p>Hi <strong>$customer_name</strong>,</p>
+                <p>We received a request to reset your password. Click the button below to create a new password:</p>
+                
+                <div class='reset-box'>
+                    <table width='100%' cellpadding='0' cellspacing='0'>
+                        <tr>
+                            <td align='center' style='padding: 20px 0;'>
+                                <a href='" . htmlspecialchars($reset_link) . "' style='display: inline-block; background: #7c3aed; color: white; padding: 12px 30px; text-decoration: none; border-radius: 6px; font-weight: 600;'>Reset Password</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <p>Or copy and paste this link in your browser:</p>
+                <p style='word-break: break-all; background: #f0f0f0; padding: 10px; border-radius: 4px;'><small>" . htmlspecialchars($reset_link) . "</small></p>
+                
+                <div class='warning'>
+                    <strong>⚠️ Security Notice:</strong> This link will expire in 1 hour. If you didn't request a password reset, please ignore this email. Your account is secure.
+                </div>
+                
+                <p>If you have any questions, contact us at " . htmlspecialchars(SITE_EMAIL) . "</p>
+            </div>
+            <div class='footer'>
+                <p>&copy; " . date('Y') . " " . SITE_NAME . ". All rights reserved.</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    ";
+}

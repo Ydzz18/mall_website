@@ -183,7 +183,7 @@ $admins = $conn->query("
            COUNT(DISTINCT al.log_id) as total_actions,
            MAX(al.created_at) as last_activity
     FROM admin_users a
-    LEFT JOIN activity_logs al ON a.admin_id = al.admin_id
+    LEFT JOIN activity_logs al ON a.admin_id = al.user_id AND al.user_type = 'admin'
     GROUP BY a.admin_id
     ORDER BY a.created_at DESC
 ")->fetch_all(MYSQLI_ASSOC);

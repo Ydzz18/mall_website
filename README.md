@@ -1071,6 +1071,145 @@ Fixed Amount: ₱500 off (discount_value = 500)
 - Track rider delivery statistics
 - Update rider vehicle information
 
+#### 13. **Delivery Management** (`admin/deliveries.php`)
+
+**Access Level:** Admin+ (Admin, Super Admin)
+
+**Features:**
+- Assign orders to delivery riders
+- Track delivery status in real-time
+- Update delivery progress (pending_assignment → assigned → in_transit → delivered)
+- Search and filter deliveries by:
+  - Order number
+  - Customer name
+  - Delivery status
+  - Date range
+- View assigned rider information (name, vehicle type, plate)
+- View customer delivery address
+- Monitor multiple delivery assignments
+- Update delivery status for shipped orders
+
+**Delivery Workflow:**
+1. Order marked as `shipped` in order management
+2. Admin navigates to Deliveries section
+3. Selects unassigned order
+4. Assigns available rider with vehicle info
+5. Rider receives notification
+6. Status updates automatically as delivery progresses
+
+**Delivery Status States:**
+- **pending_assignment**: Order ready for delivery, no rider assigned
+- **assigned**: Rider assigned, ready to pick up
+- **in_transit**: Package in transit to customer
+- **delivered**: Successfully delivered to customer
+
+#### 14. **Admin Account Management** (`admin/super_admin.php`)
+
+**Access Level:** Super Admin only
+
+**Features:**
+- Create new admin and moderator accounts
+  - Role-based restrictions (Super Admin can create Admins & Moderators, Admin can only create Moderators)
+  - Username and email validation (must be unique)
+  - Password strength requirements (minimum 6 characters)
+  - Full name entry
+  - Auto-assignment of role with restricted options
+
+- Manage existing admin accounts
+  - Edit admin details (name, email)
+  - Update admin role (with hierarchy validation)
+  - Activate/deactivate accounts
+  - View admin activity statistics
+  - View last login timestamp
+  - Delete admin accounts (prevents self-deletion for security)
+
+- View admin statistics
+  - Total admin count by role
+  - Super Admin count
+  - Regular Admin count
+  - Moderator count
+  - Active/Inactive status breakdown
+
+**Role Hierarchy for Creation:**
+- **Super Admin**: Can create Admins and Moderators
+- **Admin**: Can create Moderators only
+- **Moderator**: Cannot create any users
+
+#### 15. **Role-Based Access Control** (`includes/RoleManager.php`)
+
+**Role Management System:**
+- Three-tier role hierarchy (Super Admin → Admin → Moderator)
+- Granular permission system with 15+ configurable permissions
+- Dynamic sidebar menu filtering based on role
+- Permission enforcement on all protected pages
+
+**Available Permissions:**
+```
+PERMISSION_VIEW_DASHBOARD
+PERMISSION_MANAGE_USERS
+PERMISSION_MANAGE_ADMINS (Super Admin only)
+PERMISSION_MANAGE_MODERATORS (Super Admin & Admin)
+PERMISSION_MANAGE_PRODUCTS
+PERMISSION_MANAGE_ORDERS
+PERMISSION_MANAGE_CUSTOMERS
+PERMISSION_MANAGE_CATEGORIES
+PERMISSION_MANAGE_COUPONS
+PERMISSION_MANAGE_INVENTORY
+PERMISSION_MANAGE_REVIEWS
+PERMISSION_MANAGE_RIDERS
+PERMISSION_MANAGE_DELIVERIES
+PERMISSION_VIEW_REPORTS
+PERMISSION_MANAGE_SETTINGS (Super Admin only)
+PERMISSION_VIEW_ACTIVITY_LOGS
+```
+
+**Helper Functions:**
+```php
+getAdminRole()                    // Get current admin's role
+hasAdminPermission($permission)   // Check if admin has permission
+canCreateAdminRole($targetRole)   // Validate role creation rights
+```
+
+#### 16. **Password Reset System** (`admin/reset_password.php`)
+
+**Access Level:** Public (for any admin)
+
+**Features:**
+- **Three-Step Reset Process:**
+  1. **Request Reset**: Admin enters registered email address
+  2. **Token Verification**: System generates secure token (valid for 1 hour)
+  3. **Set New Password**: Admin creates new password with strength requirements
+
+- **Security Features:**
+  - Time-limited reset tokens (1 hour expiry)
+  - Secure token generation (random bytes)
+  - One-time use tokens
+  - Email verification
+  - Password strength validation
+  - Activity logging
+
+- **Email Notifications:**
+  - Reset link sent to registered email
+  - Includes expiry warning (1 hour limit)
+  - Security warnings in email
+  - Plain text + HTML email formats
+
+- **Validation:**
+  - Email must be registered and active
+  - Token must be valid and not expired
+  - New password must meet strength requirements
+  - Password confirmation must match
+
+**Reset Flow:**
+1. Admin navigates to `/admin/reset_password.php`
+2. Enters registered email address
+3. System sends reset link via Gmail SMTP
+4. Admin clicks link from email (valid for 1 hour)
+5. Enters new password with confirmation
+6. System validates and updates password
+7. Activity logged with IP and user agent
+8. Admin can login with new password
+
 ### Admin Authentication
 
 #### Login Process (`admin/login.php`)

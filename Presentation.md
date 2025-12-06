@@ -196,7 +196,75 @@ Inactive products
 Show Customer Report
 Total customers
 Customer spending breakdown
-Step 11: Admin Logout
+
+Step 11: Delivery Management
+Navigate to Deliveries section
+Show orders ready for delivery (status: shipped)
+Demonstrate:
+Search/filter by order number or customer name
+Filter by delivery status (pending_assignment, assigned, in_transit)
+Click on an order to assign rider
+Show rider selection dropdown with vehicle info
+Display assigned rider details (name, vehicle type, plate)
+Show delivery status (pending_assignment → assigned → in_transit → delivered)
+Explain how riders update delivery progress
+
+Step 12: Rider Setup
+Navigate to Rider Setup section
+Show registered riders list
+Demonstrate:
+View rider profile details
+Edit rider information
+Check rider status (active/inactive)
+View vehicle details (type, plate number)
+Activate/deactivate riders
+Show rider assignment history
+
+Step 13: Admin User Management
+Navigate to Admin Management (Super Admin only)
+Show admin statistics:
+Total admin count by role
+Active/inactive status breakdown
+Show admin list with details
+Demonstrate:
+Create new admin account
+  - Fill in username, email, full name
+  - Assign role (Admin or Moderator)
+  - Set secure password (min 6 chars)
+  - Show validation messages
+Edit existing admin:
+  - Update name or email
+  - Change role with hierarchy validation
+  - Activate/deactivate account
+  - Show last login timestamp
+Delete admin (with self-deletion prevention)
+View admin activity statistics
+
+Step 14: Role-Based Access Control
+Explain the three-tier role system:
+Super Admin: Full system access
+Admin: Manage products, orders, riders, deliveries
+Moderator: View and manage orders and reviews only
+Demonstrate:
+Login as different admin roles (Super Admin, Admin, Moderator)
+Show how sidebar menu changes per role
+Highlight visible/hidden menu items based on permissions
+Show permission-based page access
+Show permission check in Activity Logs
+
+Step 15: Password Reset for Admin
+Navigate to password reset page (public accessible)
+Show forgot password process:
+Enter registered email address
+Submit form
+Check email for reset link
+Click reset link from email (with token)
+Set new password with confirmation
+Show password strength requirements
+Demonstrate successful login with new password
+Explain security features (1-hour token expiry, one-time use)
+
+Step 16: Admin Logout
 Click logout
 Show session termination
 Explain activity log entry for logout
@@ -220,6 +288,18 @@ Feature 5: Role-Based Admin Access
 
 Feature 6: Email Notification System
 "Automatic emails for registration, orders, payments, and shipping. All configured from admin settings panel—no coding required."
+
+Feature 7: Delivery Management System
+"Orders that ship automatically route to our delivery management system. Admins assign riders with vehicle information, and the system tracks delivery progress in real-time: pending → assigned → in-transit → delivered."
+
+Feature 8: Multi-Level Role-Based Access Control
+"Three admin levels with granular permissions prevent unauthorized access. A Super Admin can manage all admins, an Admin can only create moderators, and a Moderator can only view and manage orders. The sidebar automatically adjusts based on permissions."
+
+Feature 9: Secure Admin Password Reset
+"Admins can reset forgotten passwords through email with time-limited tokens (1 hour expiry). The system validates identity via registered email and logs all password reset attempts for security."
+
+Feature 10: Admin Account Management
+"Super Admins can create, manage, and delete other admin accounts with role-based restrictions. This ensures proper delegation of responsibilities and prevents role escalation attacks."
 
 5. DATABASE HIGHLIGHTS (1-2 minutes)
 Key Statistics

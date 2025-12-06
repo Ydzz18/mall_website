@@ -40,7 +40,6 @@
                 <?php
                 $conn = getDBConnection();
                 $categories = $conn->query("SELECT * FROM categories WHERE parent_category_id IS NULL AND is_active = 1 ORDER BY category_name");
-<<<<<<< HEAD
                 while ($cat = $categories->fetch_assoc()): ?>
                     <li class="category-item">
                         <a href="shop.php?category=<?php echo $cat['category_id']; ?>" class="category-link">
@@ -62,34 +61,6 @@
                                     </a>
                                 </li>
                             <?php endwhile; ?>
-=======
-                while ($cat = $categories->fetch_assoc()): 
-                    $subcategories = $conn->query("SELECT * FROM categories WHERE parent_category_id = {$cat['category_id']} AND is_active = 1 ORDER BY category_name");
-                    $hasSubcategories = $subcategories->num_rows > 0;
-                    ?>
-                    <li class="category-item" data-parent-id="<?php echo $cat['category_id']; ?>">
-                        <div class="category-header">
-                            <?php if ($hasSubcategories): ?>
-                                <span class="category-toggle">▼</span>
-                            <?php else: ?>
-                                <span class="category-toggle"></span>
-                            <?php endif; ?>
-                            <a href="shop.php?category=<?php echo $cat['category_id']; ?>" class="category-link">
-                                <span class="category-icon">🛍️</span>
-                                <span class="category-name"><?php echo htmlspecialchars($cat['category_name']); ?></span>
-                            </a>
-                        </div>
-                        <?php if ($hasSubcategories): ?>
-                            <ul class="subcategory-list" style="display: none;">
-                                <?php while ($subcat = $subcategories->fetch_assoc()): ?>
-                                    <li class="subcategory-item">
-                                        <a href="shop.php?category=<?php echo $subcat['category_id']; ?>" class="subcategory-link">
-                                            <span class="subcategory-icon">├</span>
-                                            <span class="subcategory-name"><?php echo htmlspecialchars($subcat['category_name']); ?></span>
-                                        </a>
-                                    </li>
-                                <?php endwhile; ?>
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
                             </ul>
                         <?php endif; ?>
                     </li>
@@ -229,7 +200,6 @@
         .sidebar {
             transition: top 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             will-change: top;
-<<<<<<< HEAD
             max-height: calc(100vh - 200px);
             overflow-y: auto;
             padding-right: 8px;
@@ -251,15 +221,12 @@
         
         .sidebar::-webkit-scrollbar-thumb:hover {
             background: #999;
-=======
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
         }
         
         .sidebar.sticky-top {
             top: 0 !important;
         }
         
-<<<<<<< HEAD
         /* Search Section Styles */
         .search-section {
             margin-bottom: 25px;
@@ -382,44 +349,6 @@
         .category-item:hover .subcategory-list,
         .category-item.active .subcategory-list {
             display: block;
-=======
-        .category-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .category-toggle {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            user-select: none;
-            font-size: 12px;
-            line-height: 20px;
-        }
-        
-        .category-toggle.expanded {
-            transform: rotate(180deg);
-        }
-        
-        .category-item {
-            margin-bottom: 4px;
-        }
-        
-        .subcategory-list {
-            margin-left: 20px;
-            margin-top: 8px;
-            border-left: 2px solid #eee;
-            padding-left: 12px;
-            transition: max-height 0.3s ease, opacity 0.3s ease;
-            overflow: hidden;
-        }
-        
-        .subcategory-list.open {
-            display: block !important;
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
         }
         
         .subcategory-item {
@@ -452,25 +381,6 @@
         
         .subcategory-link:hover .subcategory-icon {
             color: #7c3aed;
-=======
-        .subcategory-icon {
-            color: #999;
-            margin-right: 4px;
-        }
-        
-        .subcategory-link {
-            display: flex;
-            align-items: center;
-            color: #555;
-            text-decoration: none;
-            font-size: 0.9em;
-            padding: 4px 0;
-            transition: color 0.2s ease;
-        }
-        
-        .subcategory-link:hover {
-            color: #333;
->>>>>>> 5b1f3061036619f6e03034d7b5c0c9fda0523dd1
         }
     </style>
     
