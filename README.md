@@ -2063,7 +2063,7 @@ RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 For technical support or questions about this documentation:
 
-- **Email**: jrd.malls@gmail.com
+- **Email**: yayenydrian@gmail.com
 - **Phone**: +63 992 607 2695
 - **Documentation Updates**: Check Git repository
 
@@ -2071,10 +2071,10 @@ For technical support or questions about this documentation:
 
 ## License
 
-Copyright © 2025 JRD Malls. All rights reserved.
+Copyright © 2025 Ydrian Marcil D. Yayen. All rights reserved.
 
 ---
 
 **Last Updated**: December 2025  
 **Version**: 1.0  
-**Author**: Development Team
+**Author**: Ydrian Marcil D. Yayen & Andre Pagliawan
