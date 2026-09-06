@@ -383,6 +383,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             transform: translateY(-1px);
         }
 
+        .btn-social .fa-google {
+            color: #ea4335;
+        }
+
+        .btn-social .fa-facebook-f {
+            color: #1877f2;
+        }
+
         .login-link {
             text-align: center;
             color: #64748b;
@@ -550,11 +558,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             <div class="social-register">
                 <button type="button" class="btn-social">
-                    <span>🔴</span>
+                    <i class="fab fa-google"></i>
                     GOOGLE
                 </button>
                 <button type="button" class="btn-social">
-                    <span>👤</span>
+                    <i class="fab fa-facebook-f"></i>
                     FACEBOOK
                 </button>
             </div>

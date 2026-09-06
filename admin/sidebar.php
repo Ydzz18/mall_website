@@ -1,9 +1,10 @@
+<?php $sidebar_auto_hide = (getSetting('admin_sidebar_auto_hide', '0') == '1' || getSetting('admin_sidebar_auto_hide', '0') === 1); ?>
 <button class="mobile-menu-toggle" id="mobileMenuToggle">
     <span id="menuIcon">☰</span>
 </button>
 
-<aside class="admin-sidebar" id="adminSidebar">
-    <div class="admin-logo">NCCC Admin</div>
+<aside class="admin-sidebar<?php echo $sidebar_auto_hide ? ' auto-hide' : ''; ?>" id="adminSidebar" data-auto-hide="<?php echo $sidebar_auto_hide ? '1' : '0'; ?>">
+    <div class="admin-logo">Admin</div>
     <nav class="admin-nav">
         <?php if (hasAdminPermission(RoleManager::PERMISSION_VIEW_DASHBOARD)): ?>
         <a href="index.php" class="nav-item <?php echo basename($_SERVER['PHP_SELF']) === 'index.php' ? 'active' : ''; ?>">
@@ -126,10 +127,21 @@
         const adminSidebar = document.getElementById('adminSidebar');
         const mobileOverlay = document.getElementById('mobileOverlay');
         const menuIcon = document.getElementById('menuIcon');
+        const autoHideEnabled = adminSidebar && adminSidebar.dataset.autoHide === '1';
         
         if (!mobileMenuToggle || !adminSidebar || !mobileOverlay) {
             console.error('Mobile menu elements not found');
             return;
+        }
+
+        if (autoHideEnabled && window.innerWidth > 968) {
+            adminSidebar.addEventListener('mouseenter', function() {
+                adminSidebar.classList.add('expanded');
+            });
+
+            adminSidebar.addEventListener('mouseleave', function() {
+                adminSidebar.classList.remove('expanded');
+            });
         }
         
         function toggleMenu(e) {
@@ -167,6 +179,9 @@
         window.addEventListener('resize', function() {
             if (window.innerWidth > 968) {
                 closeMenu();
+                if (autoHideEnabled) {
+                    adminSidebar.classList.remove('expanded');
+                }
             }
         });
     }

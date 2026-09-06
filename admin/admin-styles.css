@@ -24,10 +24,21 @@ body {
     height: 100vh;
     border-right: 1px solid rgba(51, 65, 85, 0.3);
     z-index: 1000;
-    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
+    will-change: width, transform;
+}
+
+.admin-sidebar.auto-hide {
+    width: 80px;
+}
+
+.admin-sidebar.auto-hide:hover,
+.admin-sidebar.auto-hide.expanded,
+.admin-sidebar:hover {
+    width: 260px;
 }
 
 .admin-sidebar::-webkit-scrollbar {
@@ -191,10 +202,12 @@ body {
     padding: 30px;
     width: 100%;
     min-width: 0;
-    transition: margin-left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: margin-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.admin-sidebar:hover ~ .admin-main {
+.admin-sidebar:hover ~ .admin-main,
+.admin-sidebar.auto-hide.expanded ~ .admin-main,
+.admin-sidebar.expanded ~ .admin-main {
     margin-left: 260px;
 }
 

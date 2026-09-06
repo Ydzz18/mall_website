@@ -140,10 +140,6 @@
                             <div class="product-info">
                                 <h3><?php echo htmlspecialchars($product['product_name']); ?></h3>
                                 <p class="brand"><?php echo htmlspecialchars($product['brand']); ?></p>
-                                <?php 
-                                    $rating_data = getProductRating($product['product_id']);
-                                    echo getStarDisplay($rating_data['average'], $rating_data['count']);
-                                ?>
                                 <p class="price">
                                     <?php if ($product['sale_price']): ?>
                                         <span class="original-price"><?php echo formatCurrency($product['price']); ?></span>

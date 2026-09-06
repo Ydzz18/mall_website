@@ -1,11 +1,5 @@
 <?php 
 require_once 'config.php';
-
-// Explicit maintenance mode check for index.php
-if (file_exists(__DIR__ . '/maintenance.flag') && !isAdminLoggedIn()) {
-    header('Location: maintenance.php');
-    exit;
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">

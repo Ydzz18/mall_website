@@ -46,7 +46,7 @@ if (!in_array($current_file, $allowed_files)) {
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'malls');
+define('DB_NAME', 'malls_db');
 
 // Connect to database
 function getDBConnection() {
@@ -68,6 +68,17 @@ require_once __DIR__ . '/includes/RoleManager.php';
 // Check if user is logged in
 function isLoggedIn() {
     return isset($_SESSION['customer_id']);
+}
+
+function getSiteRelativePrefix() {
+    $script_name = $_SERVER['SCRIPT_NAME'] ?? '';
+    $script_dir = dirname($script_name);
+
+    if (stripos($script_dir, '/rider') !== false || stripos($script_dir, '/admin') !== false) {
+        return '../';
+    }
+
+    return '';
 }
 
 // Check if admin is logged in - SIMPLIFIED VERSION
@@ -148,13 +159,16 @@ function getSiteSettings() {
         return [];
     }
     
-    $result = $conn->query("SELECT setting_key, setting_value FROM site_settings");
     $settings = [];
-    
-    if ($result) {
-        while ($row = $result->fetch_assoc()) {
-            $settings[$row['setting_key']] = $row['setting_value'];
+    try {
+        $result = $conn->query("SELECT setting_key, setting_value FROM site_settings");
+        if ($result) {
+            while ($row = $result->fetch_assoc()) {
+                $settings[$row['setting_key']] = $row['setting_value'];
+            }
         }
+    } catch (mysqli_sql_exception $e) {
+        error_log('getSiteSettings database error: ' . $e->getMessage());
     }
     
     $conn->close();
@@ -198,6 +212,12 @@ if (!defined('ENABLE_REVIEWS')) {
 }
 if (!defined('MAINTENANCE_MODE')) {
     define('MAINTENANCE_MODE', getSetting('maintenance_mode', 0) === '1' || getSetting('maintenance_mode', 0) === 1);
+}
+
+function isMaintenanceModeEnabled() {
+    $flag_exists = file_exists(__DIR__ . '/maintenance.flag');
+    $db_enabled = getSetting('maintenance_mode', '0') === '1' || getSetting('maintenance_mode', '0') === 1;
+    return $flag_exists || $db_enabled;
 }
 
 // Gmail SMTP Configuration
@@ -251,33 +271,14 @@ function checkMaintenanceMode() {
     if (isset($_SESSION['admin_id'])) {
         return false;
     }
-    
-    // First check the file flag (simplest)
-    if (file_exists(__DIR__ . '/maintenance.flag')) {
-        if (!$is_in_admin) {
-            header('Location: /maintenance.php');
-            exit;
-        }
-        return true;
+
+    $maintenance = isMaintenanceModeEnabled();
+    if ($maintenance && !$is_in_admin) {
+        header('Location: /maintenance.php');
+        exit;
     }
-    
-    // Then check database if file flag doesn't exist
-    $conn = getDBConnection();
-    if ($conn) {
-        $result = $conn->query("SELECT setting_value FROM site_settings WHERE setting_key = 'maintenance_mode'");
-        if ($result && $row = $result->fetch_assoc()) {
-            $maintenance = $row['setting_value'] == '1' || $row['setting_value'] == 1;
-            if ($maintenance && !$is_in_admin) {
-                header('Location: /maintenance.php');
-                exit;
-            }
-            $conn->close();
-            return $maintenance;
-        }
-        $conn->close();
-    }
-    
-    return false;
+
+    return $maintenance;
 }
 
 // Call the maintenance check function

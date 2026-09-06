@@ -1,37 +1,42 @@
+<?php
+$site_prefix = getSiteRelativePrefix();
+if (isLoggedIn()) {
+    require_once __DIR__ . '/notifications.php';
+    $unread_count = getUnreadNotificationCount($_SESSION['customer_id']);
+}
+?>
 <header class="main-header">
     <div class="container">
         <div class="header-content">
             <div class="logo">
-                <a href="index.php"><img src="logo/icon.png" alt=""><?php echo SITE_NAME; ?></a>
+                <a href="<?php echo $site_prefix; ?>index.php"><img src="<?php echo $site_prefix; ?>logo/icon.png" alt=""><?php echo SITE_NAME; ?></a>
             </div>
             
             <nav class="main-nav">
                 <ul>
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="shop.php">Shop</a></li>
-                    <li><a href="track_order.php">Track Order</a></li>
+                    <li><a href="<?php echo $site_prefix; ?>index.php">Home</a></li>
+                    <li><a href="<?php echo $site_prefix; ?>shop.php">Shop</a></li>
+                    <li><a href="<?php echo $site_prefix; ?>track_order.php">Track Order</a></li>
                     <?php 
                     if (isLoggedIn()): 
-                        require_once 'includes/notifications.php';
-                        $unread_count = getUnreadNotificationCount($_SESSION['customer_id']);
                     ?>
-                        <li><a href="cart.php">Cart</a></li>
-                        <li><a href="orders.php">My Orders</a></li>
+                        <li><a href="<?php echo $site_prefix; ?>cart.php">Cart</a></li>
+                        <li><a href="<?php echo $site_prefix; ?>orders.php">My Orders</a></li>
                         <li style="position: relative;">
-                            <a href="notifications.php">
+                            <a href="<?php echo $site_prefix; ?>notifications.php">
                                 🔔 Notifications
-                                <?php if ($unread_count > 0): ?>
+                                <?php if (isset($unread_count) && $unread_count > 0): ?>
                                     <span style="position: absolute; top: 0; right: 0; background: #ef4444; color: white; border-radius: 50%; width: 20px; height: 20px; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; font-weight: bold;">
                                         <?php echo $unread_count; ?>
                                     </span>
                                 <?php endif; ?>
                             </a>
                         </li>
-                        <li><a href="profile.php">Profile</a></li>
-                        <li><a href="logout.php">Logout</a></li>
+                        <li><a href="<?php echo $site_prefix; ?>profile.php">Profile</a></li>
+                        <li><a href="<?php echo $site_prefix; ?>logout.php">Logout</a></li>
                     <?php else: ?>
-                        <li><a href="login.php">Login</a></li>
-                        <li><a href="register.php">Register</a></li>
+                        <li><a href="<?php echo $site_prefix; ?>login.php">Login</a></li>
+                        <li><a href="<?php echo $site_prefix; ?>register.php">Register</a></li>
                     <?php endif; ?>
                 </ul>
             </nav>

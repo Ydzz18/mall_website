@@ -253,6 +253,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             transform: translateY(-1px);
         }
 
+        .btn-social .fa-google {
+            color: #ea4335;
+        }
+
+        .btn-social .fa-facebook-f {
+            color: #1877f2;
+        }
+
         .signup-link {
             text-align: center;
             color: #64748b;

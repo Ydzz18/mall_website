@@ -39,6 +39,7 @@ $default_settings = [
     ['enable_reviews', '1', 'checkbox', 'Enable product reviews'],
     ['require_email_verification', '0', 'checkbox', 'Require email verification'],
     ['maintenance_mode', '0', 'checkbox', 'Maintenance mode'],
+    ['admin_sidebar_auto_hide', '0', 'checkbox', 'Auto-hide admin sidebar'],
     
     // Gmail SMTP Settings
     ['gmail_sender_email', '', 'email', 'Gmail sender email address'],
@@ -127,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_settings'])) {
     }
     
     // Handle checkboxes (unchecked boxes don't send POST data)
-    $checkboxes = ['enable_reviews', 'require_email_verification', 'maintenance_mode', 
+    $checkboxes = ['enable_reviews', 'require_email_verification', 'maintenance_mode', 'admin_sidebar_auto_hide',
                    'enable_email_notifications', 'enable_order_emails', 'enable_shipping_emails', 'enable_payment_emails'];
     foreach ($checkboxes as $checkbox) {
         if (!isset($_POST[$checkbox])) {

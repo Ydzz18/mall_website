@@ -489,7 +489,7 @@ $status_labels = [
     </style>
 </head>
 <body>
-    <?php include '../includes/header.php'; ?>
+    <?php include 'header.php'; ?>
     
     <div class="rider-container">
         <div class="rider-header">
