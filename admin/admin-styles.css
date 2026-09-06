@@ -17,28 +17,17 @@ body {
 
 /* Sidebar */
 .admin-sidebar {
-    width: 80px;
+    width: 260px;
     background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
     color: white;
     position: fixed;
     height: 100vh;
     border-right: 1px solid rgba(51, 65, 85, 0.3);
     z-index: 1000;
-    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
-    will-change: width, transform;
-}
-
-.admin-sidebar.auto-hide {
-    width: 80px;
-}
-
-.admin-sidebar.auto-hide:hover,
-.admin-sidebar.auto-hide.expanded,
-.admin-sidebar:hover {
-    width: 260px;
 }
 
 .admin-sidebar::-webkit-scrollbar {
@@ -58,10 +47,6 @@ body {
     background: rgba(226, 232, 240, 0.5);
 }
 
-.admin-sidebar:hover {
-    width: 260px;
-}
-
 .admin-logo {
     padding: 30px 20px;
     font-size: 1.3rem;
@@ -71,13 +56,7 @@ body {
     background: rgba(91, 33, 182, 0.1);
     background: linear-gradient(135deg, rgba(91, 33, 182, 0.1), rgba(6, 182, 212, 0.05));
     white-space: nowrap;
-    opacity: 0;
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     flex-shrink: 0;
-}
-
-.admin-sidebar:hover .admin-logo {
-    opacity: 1;
 }
 
 .admin-nav {
@@ -115,13 +94,8 @@ body {
     border-left: 3px solid transparent;
     margin: 2px 0;
     min-height: 52px;
-    justify-content: center;
-    white-space: nowrap;
-}
-
-.admin-sidebar:hover .nav-item {
     justify-content: flex-start;
-    padding: 14px 25px;
+    white-space: nowrap;
 }
 
 .nav-item:hover, .nav-item.active {
@@ -137,14 +111,8 @@ body {
 }
 
 .nav-label {
-    opacity: 0;
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    max-width: 0;
-}
-
-.admin-sidebar:hover .nav-label {
     opacity: 1;
-    max-width: 100px;
+    max-width: 180px;
 }
 
 .nav-item:hover .nav-label,
@@ -197,18 +165,11 @@ body {
 
 /* Main Content */
 .admin-main {
-    margin-left: 80px;
+    margin-left: 260px;
     flex: 1;
     padding: 30px;
     width: 100%;
     min-width: 0;
-    transition: margin-left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.admin-sidebar:hover ~ .admin-main,
-.admin-sidebar.auto-hide.expanded ~ .admin-main,
-.admin-sidebar.expanded ~ .admin-main {
-    margin-left: 260px;
 }
 
 .admin-header {
@@ -1088,6 +1049,7 @@ body {
         left: 0;
         top: 0;
         height: 100vh;
+        transform: translateX(-100%);
         overflow: hidden;
         z-index: 1000;
         transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1097,6 +1059,7 @@ body {
     
     .admin-sidebar.open {
         width: 260px !important;
+        transform: translateX(0);
         box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
         overflow-y: auto;
         visibility: visible;
@@ -1104,6 +1067,10 @@ body {
     
     .admin-sidebar:hover {
         width: 0 !important;
+    }
+
+    .admin-sidebar.open:hover {
+        width: 260px !important;
     }
     
     .admin-sidebar.open .admin-logo {

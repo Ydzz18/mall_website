@@ -14,10 +14,12 @@
     <div class="shop-container">
         <!-- Enhanced Sidebar -->
         <aside class="sidebar fade-in">
-            <div class="sidebar-header">
-                <h3>Filters</h3>
-                <div class="filter-icon">🔍</div>
-            </div>
+            <details class="filter-dropdown" open>
+                <summary class="sidebar-header">
+                    <h3>Filters</h3>
+                    <span class="filter-icon" aria-hidden="true">🔍</span>
+                </summary>
+                <div class="filter-content">
             
             <!-- Search Box -->
             <div class="search-section">
@@ -68,16 +70,18 @@
                 </ul>
             </div>
             
-            <!-- Price Filter -->
-            <div class="filter-section">
-                <h4>Price Range</h4>
-                <div class="price-inputs">
-                    <input type="number" placeholder="Min" class="price-input">
-                    <span class="price-separator">-</span>
-                    <input type="number" placeholder="Max" class="price-input">
+                <!-- Price Filter -->
+                <div class="filter-section">
+                    <h4>Price Range</h4>
+                    <div class="price-inputs">
+                        <input type="number" placeholder="Min" class="price-input">
+                        <span class="price-separator">-</span>
+                        <input type="number" placeholder="Max" class="price-input">
+                    </div>
+                    <button class="btn btn-secondary btn-block">Apply Filters</button>
                 </div>
-                <button class="btn btn-secondary btn-block">Apply Filters</button>
-            </div>
+                </div>
+            </details>
         </aside>
         
         <!-- Enhanced Shop Content -->
@@ -414,6 +418,21 @@
         
         document.addEventListener('DOMContentLoaded', function() {
             const fadeElements = document.querySelectorAll('.fade-in');
+            const filterDropdown = document.querySelector('.filter-dropdown');
+            const mobileFilters = window.matchMedia('(max-width: 768px)');
+
+            function syncFilterDropdown() {
+                if (!filterDropdown) return;
+
+                if (mobileFilters.matches) {
+                    filterDropdown.removeAttribute('open');
+                } else {
+                    filterDropdown.setAttribute('open', '');
+                }
+            }
+
+            syncFilterDropdown();
+            mobileFilters.addEventListener('change', syncFilterDropdown);
             
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {

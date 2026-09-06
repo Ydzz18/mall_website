@@ -711,6 +711,26 @@ footer .footer-bottom {
     font-size: 1.3rem;
 }
 
+.filter-dropdown > summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+.filter-dropdown > summary::-webkit-details-marker {
+    display: none;
+}
+
+.filter-dropdown > summary::after {
+    content: '+';
+    color: var(--primary);
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.filter-dropdown[open] > summary::after {
+    content: '-';
+}
+
 .category-list {
     list-style: none;
     margin-bottom: 2rem;
@@ -1735,6 +1755,14 @@ footer .footer-bottom {
 }
 
 @media (max-width: 768px) {
+    .filter-dropdown > summary {
+        margin-bottom: 0;
+    }
+
+    .filter-dropdown:not([open]) > summary {
+        margin-bottom: 0;
+    }
+
     .product-title {
         font-size: 1.8rem;
     }
