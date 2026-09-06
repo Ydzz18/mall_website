@@ -46,7 +46,7 @@ if (!in_array($current_file, $allowed_files)) {
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'malls_db');
+define('DB_NAME', 'malls');
 
 // Connect to database
 function getDBConnection() {
